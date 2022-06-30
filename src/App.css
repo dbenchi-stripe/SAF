@@ -5,7 +5,7 @@
 body {
   margin: 0;
   padding: 0;
-  background: #eee;
+  background: white;
   font-family: sans-serif;
 }
 .title {
@@ -14,7 +14,7 @@ body {
 
 .container {
   position: relative;
-  max-width: 800px;
+  /* max-width: 800px; */
   margin: 0 auto;
   background: #fff;
   border-radius: 3px;
@@ -22,7 +22,7 @@ body {
 
 @media (min-width: 769px) {
   .container {
-    margin: 2.5rem auto;
+    margin: 2.5rem 2.5rem;
   }
 }
 
@@ -44,7 +44,12 @@ body {
   padding: 0.5rem 2.5rem 1.5rem 2.5rem;
 }
 
-.questionText {
+.question-card {
+  border: blue;
+  border-style: solid;
+}
+
+.question-text {
   margin: 20px;
 }
 
