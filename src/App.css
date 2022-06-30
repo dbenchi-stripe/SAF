@@ -62,15 +62,27 @@ body {
 }
 
 .answerOption.Red:hover {
-  background-color: rgba(255, 0, 0, 0.4);
+  background-color: rgba(255, 0, 0, 0.3);
 }
 
 .answerOption.Amber:hover {
-  background-color: rgba(255, 191, 0, 0.4);
+  background-color: rgba(255, 191, 0, 0.3);
 }
 
 .answerOption.Green:hover {
-  background-color: rgba(60, 255, 0, 0.4);
+  background-color: rgba(60, 255, 0, 0.3);
+}
+
+.answerOption.Red {
+  color: rgba(255, 0, 0);
+}
+
+.answerOption.Amber {
+  color: rgba(255, 191, 0);
+}
+
+.answerOption.Green {
+  color: rgba(60, 255, 0);
 }
 
 
@@ -79,11 +91,12 @@ body {
   width: 100%;
   margin: 0;
   padding: 1.5rem 2.5rem 1.5rem 5rem;
-  font-size: 16px;
+  font-size: 1.17em;;
   line-height: 1.5;
   display: inline-block;
   vertical-align: middle;
   cursor: pointer;
+  font-weight: bold;
 }
 
 button {
