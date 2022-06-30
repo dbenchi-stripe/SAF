@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import {
   Radar,
   RadarChart,
@@ -9,6 +9,8 @@ import {
   Legend,
   Tooltip,
 } from "recharts";
+import FileSaver from "file-saver";
+import { useCurrentPng } from "recharts-to-png";
 import { questions } from "./questions";
 import { answers } from "./answers";
 import { average } from "./utils";
@@ -18,6 +20,13 @@ function CapabilityAssessment() {
   const [showResults, setShowResults] = useState(true);
   const [done, setDone] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [getAreaPng, { ref }] = useCurrentPng();
+  const handleAreaDownload = useCallback(async () => {
+    const png = await getAreaPng();
+    if (png) {
+      FileSaver.saveAs(png, "capapility-assessment.png");
+    }
+  }, [getAreaPng]);
   const initialCapacities = [
     {
       subject: "Business",
@@ -48,6 +57,7 @@ function CapabilityAssessment() {
   const [capacities, setCapacities] = useState(initialCapacities);
 
   // Helper Functions
+
   const setCapacityAssessment = (workshopPhase, value) => {
     const newCapacities = capacities.map((capacity) => {
       if (capacity.subject === workshopPhase) {
@@ -88,7 +98,6 @@ function CapabilityAssessment() {
   };
 
   const toggleShowResult = () => {
-    console.log(showResults);
     setShowResults((showResults) => !showResults);
   };
 
@@ -98,7 +107,13 @@ function CapabilityAssessment() {
       {showResults && (
         <div style={{ width: "100%", height: done ? 700 : 300 }}>
           <ResponsiveContainer>
-            <RadarChart cx="50%" cy="50%" outerRadius="90%" data={capacities}>
+            <RadarChart
+              ref={ref}
+              cx="50%"
+              cy="50%"
+              outerRadius="90%"
+              data={capacities}
+            >
               <PolarGrid />
               <PolarAngleAxis dataKey="subject" />
               <PolarRadiusAxis
@@ -152,7 +167,9 @@ function CapabilityAssessment() {
         </div>
       )}
       {done ? (
-        "rrr"
+        <div className="buttonContainer">
+          <button onClick={() => handleAreaDownload()}>Download</button>
+        </div>
       ) : (
         <div className="buttonContainer">
           <button onClick={() => restartCapacityAssessment()}>
