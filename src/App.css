@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
   white-space: pre-line;
+  color: rgb(84, 105, 212)
   /* vertical-align: bottom; */
 }
 
@@ -47,7 +48,7 @@ body {
 }
 
 .question-card {
-  border: blue;
+  border: rgb(84, 105, 212);
   border-style: solid;
 }
 
@@ -86,7 +87,7 @@ body {
 }
 
 button {
-  background-color: rgb(0, 26, 255);
+  background-color: rgb(84, 105, 212);
   color: white;
   /* Green */
   border: none;

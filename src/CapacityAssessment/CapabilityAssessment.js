@@ -122,7 +122,7 @@ function CapabilityAssessment() {
               />
               <Radar
                 dataKey="score"
-                stroke="blue"
+                stroke="#5469D4"
                 fill="#8884d8"
                 fillOpacity={0.6}
               />
