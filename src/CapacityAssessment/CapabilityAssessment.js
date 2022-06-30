@@ -24,17 +24,17 @@ function CapabilityAssessment() {
     },
     {
       subject: "People & Governance",
-      score: 30,
+      score: 0,
       results: [],
     },
     {
       subject: "Risk & Reg",
-      score: 30,
+      score: 0,
       results: [],
     },
     {
       subject: "Tech",
-      score: 30,
+      score: 0,
       results: [],
     },
     {
@@ -95,12 +95,8 @@ function CapabilityAssessment() {
   };
 
   return (
-    <div className="App">
-      {/* 1. Header  */}
-      <h1>SAF Capability Assessment</h1>
-      {/* 2. Current Score  */}
-
-      {/* 3. Show results or show the question game  */}
+    <div className="container">
+      <h1 className="title">SAF Capability Assessment</h1>
       {showResults && (
         <div style={{ width: "100%", height: 300 }}>
           <ResponsiveContainer>
@@ -119,21 +115,23 @@ function CapabilityAssessment() {
         </div>
       )}
       <div className="question-card">
+        <div className="questionCount">
+          Question <span> {currentQuestion + 1}</span> of{" "}
+          <span>{questions.length}</span>
+        </div>
         {/* Current Question  */}
-        <h2>
-          Question {currentQuestion + 1}/{questions.length}:{" "}
-          {questions[currentQuestion].text}
-        </h2>
+        <h2 className="question">{questions[currentQuestion].text}</h2>
         <h3 className="question-text">
           {questions[currentQuestion].defination}
         </h3>
 
         {/* List of possible answers  */}
-        <ul>
+        <ul className="answerOptions">
           {answers.map((answer) => {
             return (
               <li
                 key={answer.id}
+                className={`answerOption ${answer.text}`}
                 onClick={() =>
                   answerClicked(
                     questions[currentQuestion].category,
@@ -147,7 +145,7 @@ function CapabilityAssessment() {
           })}
         </ul>
       </div>
-      <div>
+      <div className="buttonContainer">
         <button onClick={() => restartCapacityAssessment()}>
           Restart Capacity Assessment
         </button>

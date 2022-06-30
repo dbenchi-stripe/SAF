@@ -1,76 +1,100 @@
-.App {
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #eee;
+  font-family: sans-serif;
+}
+.title {
   text-align: center;
 }
 
-.question-card {
-  /* Center the div  */
+.container {
+  position: relative;
+  max-width: 800px;
   margin: 0 auto;
-
-  /* Dimensions  */
-  width: 80%;
-  /* Can be in percentage also. */
-  height: auto;
-
-  /* Visual  */
-  background-color: gray;
-  padding: 16px;
-  border-radius: 16px;
-  color: white;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
-    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+  background: #fff;
+  border-radius: 3px;
 }
 
-ul {
+@media (min-width: 769px) {
+  .container {
+    margin: 2.5rem auto;
+  }
+}
+
+
+
+.answerOptions {
+  margin: 0;
+  padding: 0;
   list-style: none;
 }
 
-li {
-  margin-top: 8px;
-  background-color: darkgray;
-  padding: 16px;
-  border: 3px solid white;
-  border-radius: 20px;
-  font-size: 20px;
+.questionCount {
+  padding: 1.5rem 2.5rem 0;
+  font-size: 14px;
+}
+
+.question {
+  margin: 0;
+  padding: 0.5rem 2.5rem 1.5rem 2.5rem;
+}
+
+.questionText {
+  margin: 20px;
+}
+
+/* AnswerOption Component */
+.answerOption {
+  border-top: 1px solid #eee;
+}
+
+.answerOption.Red:hover {
+  background-color: rgba(255, 0, 0, 0.4);
+}
+
+.answerOption.Amber:hover {
+  background-color: rgba(255, 191, 0, 0.4);
+}
+
+.answerOption.Green:hover {
+  background-color: rgba(60, 255, 0, 0.4);
+}
+
+
+.answerOption {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 1.5rem 2.5rem 1.5rem 5rem;
+  font-size: 16px;
+  line-height: 1.5;
+  display: inline-block;
+  vertical-align: middle;
   cursor: pointer;
 }
 
-.question-text {
-  color: darkblue;
-  font-size: 24px;
-}
-
-/* Final Results  */
-
-.final-results {
-  /* Center the div  */
-  margin: 0 auto;
-
-  /* Dimensions  */
-  width: 50%;
-  /* Can be in percentage also. */
-  height: auto;
-  margin-top: 64px;
-
-  /* Visual  */
-  background-color: gray;
-  padding: 16px;
-  border-radius: 16px;
-  color: white;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
-    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
-}
-
 button {
-  background-color: red;
+  background-color: rgb(0, 26, 255);
+  color: white;
   /* Green */
   border: none;
-  color: white;
+  margin: 40px;
   padding: 16px 24px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
   font-weight: bold;
-
+  cursor: pointer;
   border-radius: 24px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-around;
 }
