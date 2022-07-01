@@ -18,6 +18,13 @@ export const Questions = () => {
         <h3 className="question-text">
           {questions[currentQuestion].ratingDefinition}
         </h3>
+        {questions[currentQuestion].pathToGreen && (
+          <div className="path-to-green-container">
+            <h3 className="path-to-green">
+              {questions[currentQuestion].pathToGreen}
+            </h3>
+          </div>
+        )}
 
         <ul className="answer-options">
           {answers.map((answer) => {

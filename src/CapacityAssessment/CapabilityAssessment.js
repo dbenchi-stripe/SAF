@@ -73,7 +73,6 @@ function CapabilityAssessment() {
     }
   };
 
-  /* Resets the game back to default */
   const restartCapacityAssessment = () => {
     setCurrentQuestion(0);
     setShowResults(true);

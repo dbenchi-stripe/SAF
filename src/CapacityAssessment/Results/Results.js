@@ -24,6 +24,7 @@ export const Results = () => {
       FileSaver.saveAs(png, "capapility-assessment.png");
     }
   }, [getAreaPng]);
+
   return (
     <div style={{ width: "100%", height: done ? 700 : 300 }}>
       <ResponsiveContainer>
@@ -50,7 +51,7 @@ export const Results = () => {
         </RadarChart>
       </ResponsiveContainer>
       {done && (
-        <div className="buttonContainer">
+        <div className="button-container">
           <button onClick={() => handleAreaDownload()}>Download</button>
         </div>
       )}

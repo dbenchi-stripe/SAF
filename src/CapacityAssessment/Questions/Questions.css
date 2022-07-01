@@ -60,3 +60,33 @@
 .answer-option.Green {
     color: rgba(60, 255, 0);
 }
+
+.path-to-green-container {
+    display: flex;
+    justify-content: center;
+}
+
+.path-to-green {
+    width: 95%;
+    text-indent: -8px;
+    padding: 6px 10px 6px 8px;
+    background-color: rgb(227,232,238);
+    color:rgb(60,66,87,1);
+    font-weight: normal;
+    font-family: monospace;
+    font-size: revert;
+}
+
+.path-to-green::before {
+    content: 'Path to Green';
+    font-weight: bold;
+    /* font-style: italic; */
+    font-size: 12pt;
+    line-height: 12pt;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color:white;
+    background-color:rgb(84, 105, 212);
+    padding: 4px;
+    margin-right: 6px;
+}
