@@ -114,16 +114,21 @@ function CapabilityAssessment() {
       }}
     >
       <div className="container">
-        <h1 className="title">SAF Capability Assessment</h1>
-        <button disabled={!hasNextQuestion()} onClick={() => nextQuestion()}>
-          Next Question
-        </button>
-        <button
-          disabled={!hasPreviousQuestion()}
-          onClick={() => previousQuestion()}
-        >
-          previousQuestion
-        </button>
+        <div className="header">
+          <button
+            disabled={!hasPreviousQuestion() || done}
+            onClick={() => previousQuestion()}
+          >
+            {"<"}
+          </button>
+          <h1 className="title">SAF Capability Assessment</h1>
+          <button
+            disabled={!hasNextQuestion() || done}
+            onClick={() => nextQuestion()}
+          >
+            {">"}
+          </button>
+        </div>
         {showResults && <Results />}
         {!done && (
           <>

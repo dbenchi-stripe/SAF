@@ -1,5 +1,6 @@
 .title {
     text-align: center;
+    color: white;
 }
 
 .container {
@@ -8,6 +9,19 @@
     margin: 0 auto;
     background: #fff;
     border-radius: 3px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgb(84, 105, 212);
+    margin-bottom: 20px;
+    height: 100px;
+}
+
+.header button {
+    font-size: 40px;
 }
 
 @media (min-width: 769px) {
@@ -34,7 +48,7 @@ button {
 button:disabled,
 button[disabled] {
     cursor: initial;
-    background-color: #666666;
+    color: #666666;
 }
 
 .button-container {
