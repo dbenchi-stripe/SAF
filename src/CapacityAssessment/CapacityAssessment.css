@@ -1,0 +1,38 @@
+.title {
+    text-align: center;
+}
+
+.container {
+    position: relative;
+    /* max-width: 800px; */
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 3px;
+}
+
+@media (min-width: 769px) {
+    .container {
+        margin: 2.5rem 2.5rem;
+    }
+}
+
+button {
+    background-color: rgb(84, 105, 212);
+    color: white;
+    /* Green */
+    border: none;
+    margin: 40px;
+    padding: 16px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 24px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-around;
+}
