@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 
 import { questions } from "../assets/questions";
 import { answers } from "../assets/answers";
@@ -41,12 +41,31 @@ function CapabilityAssessment() {
   const [showResults, setShowResults] = useState(true);
   const [done, setDone] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [answeredQuestions, setAnsweredQuestions] = useState({});
   const [capacities, setCapacities] = useState(initialCapacities);
 
-  const setCapacityAssessment = (workshopPhase, value) => {
+  console.log(answeredQuestions);
+  useEffect(() => {
+    setCapacityAssessment();
+  }, [capacities]);
+
+  const setCapacityAssessment = () => {
+    if (!hasPreviousQuestion()) {
+      return;
+    }
     const newCapacities = capacities.map((capacity) => {
+      const workshopPhase = questions[currentQuestion - 1].workshopPhase;
+
       if (capacity.subject === workshopPhase) {
-        const newResult = [...capacity.results, value];
+        console.log(answeredQuestions);
+        const newResult = Object.values(answeredQuestions).map(
+          ({ workshopPhase: internalWorkshopPhase, value }) => {
+            console.log({ internalWorkshopPhase, workshopPhase });
+            if (internalWorkshopPhase === workshopPhase) {
+              return value;
+            }
+          }
+        );
         console.log(capacity, newResult);
         return {
           subject: workshopPhase,
@@ -61,16 +80,33 @@ function CapabilityAssessment() {
     setCapacities(newCapacities);
   };
 
-  const answerClicked = (workshopPhase, value) => {
-    console.log({ workshopPhase, value });
-    setCapacityAssessment(workshopPhase, value);
+  const hasNextQuestion = () => currentQuestion + 1 < questions.length;
+  const hasPreviousQuestion = () => currentQuestion >= 1;
 
-    if (currentQuestion + 1 < questions.length) {
+  const nextQuestion = () => {
+    if (hasNextQuestion()) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       setShowResults(true);
       setDone(true);
     }
+  };
+
+  const previousQuestion = () => {
+    if (hasPreviousQuestion()) {
+      setCurrentQuestion(currentQuestion - 1);
+    }
+  };
+
+  const answerClicked = (questionNumber, workshopPhase, value) => {
+    setAnsweredQuestions((answeredQuestions) => ({
+      ...answeredQuestions,
+      questionNumber: {
+        workshopPhase,
+        value,
+      },
+    }));
+    nextQuestion();
   };
 
   const restartCapacityAssessment = () => {
@@ -97,6 +133,15 @@ function CapabilityAssessment() {
     >
       <div className="container">
         <h1 className="title">SAF Capability Assessment</h1>
+        <button disabled={!hasNextQuestion()} onClick={() => nextQuestion()}>
+          Next Question
+        </button>
+        <button
+          disabled={!hasPreviousQuestion()}
+          onClick={() => previousQuestion()}
+        >
+          previousQuestion
+        </button>
         {showResults && <Results />}
         {!done && (
           <>

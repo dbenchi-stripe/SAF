@@ -34,6 +34,7 @@ export const Questions = () => {
                 className={`answer-option ${answer.text}`}
                 onClick={() =>
                   answerClicked(
+                    currentQuestion + 1,
                     questions[currentQuestion].workshopPhase,
                     answer.value
                   )
