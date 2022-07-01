@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect } from "react";
+import React, { useState, createContext } from "react";
 
 import { questions } from "../assets/questions";
 import { answers } from "../assets/answers";
@@ -13,27 +13,22 @@ const initialCapacities = [
   {
     subject: "Business",
     score: 0,
-    results: [],
   },
   {
     subject: "People & Governance",
     score: 0,
-    results: [],
   },
   {
     subject: "Risk & Reg",
     score: 0,
-    results: [],
   },
   {
     subject: "Tech",
     score: 0,
-    results: [],
   },
   {
     subject: "Operations",
     score: 0,
-    results: [],
   },
 ];
 
@@ -42,42 +37,28 @@ function CapabilityAssessment() {
   const [done, setDone] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answeredQuestions, setAnsweredQuestions] = useState({});
-  const [capacities, setCapacities] = useState(initialCapacities);
 
-  console.log(answeredQuestions);
-  useEffect(() => {
-    setCapacityAssessment();
-  }, [capacities]);
-
-  const setCapacityAssessment = () => {
-    if (!hasPreviousQuestion()) {
-      return;
-    }
-    const newCapacities = capacities.map((capacity) => {
-      const workshopPhase = questions[currentQuestion - 1].workshopPhase;
-
-      if (capacity.subject === workshopPhase) {
-        console.log(answeredQuestions);
-        const newResult = Object.values(answeredQuestions).map(
-          ({ workshopPhase: internalWorkshopPhase, value }) => {
-            console.log({ internalWorkshopPhase, workshopPhase });
-            if (internalWorkshopPhase === workshopPhase) {
-              return value;
-            }
-          }
-        );
-        console.log(capacity, newResult);
+  const getCapacities = () => {
+    const newResult = Object.values(answeredQuestions)?.reduce(
+      (result, { workshopPhase, value }) => {
         return {
-          subject: workshopPhase,
-          results: newResult,
-          score: average(newResult),
+          ...result,
+          [workshopPhase]: [
+            ...(result[workshopPhase] ? result[workshopPhase] : []),
+            value,
+          ],
         };
-      }
-
-      return capacity;
+      },
+      {}
+    );
+    const newCapacities = initialCapacities.map(({ subject, score }) => {
+      return {
+        subject,
+        score: newResult[subject]?.length ? average(newResult[subject]) : score,
+      };
     });
 
-    setCapacities(newCapacities);
+    return newCapacities;
   };
 
   const hasNextQuestion = () => currentQuestion + 1 < questions.length;
@@ -99,20 +80,20 @@ function CapabilityAssessment() {
   };
 
   const answerClicked = (questionNumber, workshopPhase, value) => {
-    setAnsweredQuestions((answeredQuestions) => ({
+    setAnsweredQuestions({
       ...answeredQuestions,
-      questionNumber: {
+      [questionNumber]: {
         workshopPhase,
         value,
       },
-    }));
+    });
     nextQuestion();
   };
 
   const restartCapacityAssessment = () => {
     setCurrentQuestion(0);
     setShowResults(true);
-    setCapacities(initialCapacities);
+    setAnsweredQuestions({});
   };
 
   const toggleShowResult = () => {
@@ -128,7 +109,8 @@ function CapabilityAssessment() {
         questions,
         answers,
         initialCapacities,
-        capacities,
+        capacities: getCapacities(),
+        answeredQuestions,
       }}
     >
       <div className="container">
