@@ -13,27 +13,22 @@ const initialCapacities = [
   {
     subject: "Business",
     score: 0,
-    results: [],
   },
   {
     subject: "People & Governance",
     score: 0,
-    results: [],
   },
   {
     subject: "Risk & Reg",
     score: 0,
-    results: [],
   },
   {
     subject: "Tech",
     score: 0,
-    results: [],
   },
   {
     subject: "Operations",
     score: 0,
-    results: [],
   },
 ];
 
@@ -41,31 +36,36 @@ function CapabilityAssessment() {
   const [showResults, setShowResults] = useState(true);
   const [done, setDone] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [capacities, setCapacities] = useState(initialCapacities);
+  const [answeredQuestions, setAnsweredQuestions] = useState({});
 
-  const setCapacityAssessment = (workshopPhase, value) => {
-    const newCapacities = capacities.map((capacity) => {
-      if (capacity.subject === workshopPhase) {
-        const newResult = [...capacity.results, value];
-        console.log(capacity, newResult);
+  const getCapacities = () => {
+    const newResult = Object.values(answeredQuestions)?.reduce(
+      (result, { workshopPhase, value }) => {
         return {
-          subject: workshopPhase,
-          results: newResult,
-          score: average(newResult),
+          ...result,
+          [workshopPhase]: [
+            ...(result[workshopPhase] ? result[workshopPhase] : []),
+            value,
+          ],
         };
-      }
-
-      return capacity;
+      },
+      {}
+    );
+    const newCapacities = initialCapacities.map(({ subject, score }) => {
+      return {
+        subject,
+        score: newResult[subject]?.length ? average(newResult[subject]) : score,
+      };
     });
 
-    setCapacities(newCapacities);
+    return newCapacities;
   };
 
-  const answerClicked = (workshopPhase, value) => {
-    console.log({ workshopPhase, value });
-    setCapacityAssessment(workshopPhase, value);
+  const hasNextQuestion = () => currentQuestion + 1 < questions.length;
+  const hasPreviousQuestion = () => currentQuestion >= 1;
 
-    if (currentQuestion + 1 < questions.length) {
+  const nextQuestion = () => {
+    if (hasNextQuestion()) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       setShowResults(true);
@@ -73,10 +73,27 @@ function CapabilityAssessment() {
     }
   };
 
+  const previousQuestion = () => {
+    if (hasPreviousQuestion()) {
+      setCurrentQuestion(currentQuestion - 1);
+    }
+  };
+
+  const answerClicked = (questionNumber, workshopPhase, value) => {
+    setAnsweredQuestions({
+      ...answeredQuestions,
+      [questionNumber]: {
+        workshopPhase,
+        value,
+      },
+    });
+    nextQuestion();
+  };
+
   const restartCapacityAssessment = () => {
     setCurrentQuestion(0);
     setShowResults(true);
-    setCapacities(initialCapacities);
+    setAnsweredQuestions({});
   };
 
   const toggleShowResult = () => {
@@ -92,11 +109,21 @@ function CapabilityAssessment() {
         questions,
         answers,
         initialCapacities,
-        capacities,
+        capacities: getCapacities(),
+        answeredQuestions,
       }}
     >
       <div className="container">
         <h1 className="title">SAF Capability Assessment</h1>
+        <button disabled={!hasNextQuestion()} onClick={() => nextQuestion()}>
+          Next Question
+        </button>
+        <button
+          disabled={!hasPreviousQuestion()}
+          onClick={() => previousQuestion()}
+        >
+          previousQuestion
+        </button>
         {showResults && <Results />}
         {!done && (
           <>

@@ -3,9 +3,14 @@ import { CapabilityAssessmentContext } from "../CapabilityAssessment";
 import "./Questions.css";
 
 export const Questions = () => {
-  const { currentQuestion, questions, answerClicked, answers } = useContext(
-    CapabilityAssessmentContext
-  );
+  const {
+    currentQuestion,
+    questions,
+    answerClicked,
+    answers,
+    answeredQuestions,
+  } = useContext(CapabilityAssessmentContext);
+
   return (
     <div>
       <div className="question-card">
@@ -13,7 +18,6 @@ export const Questions = () => {
           Question <span> {currentQuestion + 1}</span> of{" "}
           <span>{questions.length}</span>
         </div>
-        {/* Current Question  */}
         <h2 className="question">{questions[currentQuestion].question}</h2>
         <h3 className="question-text">
           {questions[currentQuestion].ratingDefinition}
@@ -34,12 +38,33 @@ export const Questions = () => {
                 className={`answer-option ${answer.text}`}
                 onClick={() =>
                   answerClicked(
+                    currentQuestion + 1,
                     questions[currentQuestion].workshopPhase,
                     answer.value
                   )
                 }
               >
-                {answer.text}
+                <input
+                  type="radio"
+                  className="radioCustomButton"
+                  name="radioGroup"
+                  checked={
+                    answer.value ===
+                    answeredQuestions[currentQuestion + 1]?.value
+                  }
+                  value={answer.text}
+                  id={answer.id}
+                  onChange={() => {
+                    answerClicked(
+                      currentQuestion + 1,
+                      questions[currentQuestion].workshopPhase,
+                      answer.value
+                    );
+                  }}
+                />
+                <label className={`radioCustomLabel ${answer.text}`}>
+                  {answer.text}
+                </label>
               </li>
             );
           })}
