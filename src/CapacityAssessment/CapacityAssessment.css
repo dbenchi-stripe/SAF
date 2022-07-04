@@ -17,7 +17,7 @@
     justify-content: space-between;
     background: rgb(84, 105, 212);
     margin-bottom: 20px;
-    height: 100px;
+    height: 70px;
 }
 
 .header button {
@@ -26,7 +26,7 @@
 
 @media (min-width: 769px) {
     .container {
-        margin: 2.5rem 2.5rem;
+        margin: 0 2.5rem;
     }
 }
 
@@ -35,7 +35,7 @@ button {
     color: white;
     border: none;
     margin: 40px;
-    padding: 16px 24px;
+    padding: 10px 24px;
     text-align: center;
     text-decoration: none;
     display: inline-block;

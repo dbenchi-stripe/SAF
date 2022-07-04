@@ -56,7 +56,7 @@ export const Results = () => {
             <Tooltip />
           </RadarChart>
         </ResponsiveContainer>
-        <SAFArchitecture />
+        {!done && <SAFArchitecture />}
       </div>
       {done && (
         <div className="button-container">

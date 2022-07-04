@@ -1,0 +1,102 @@
+.answer-options {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.answer-option {
+    border-top: 1px solid #eee;
+    /* position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 1.5rem 2.5rem 1.5rem 5rem;
+    font-size: 1.17em;
+    line-height: 1.5;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    font-weight: bold; */
+}
+
+
+.answer-option.Red:hover {
+    background-color: rgba(255, 0, 0, 0.3);
+}
+
+.answer-option.Amber:hover {
+    background-color: rgba(255, 191, 0, 0.3);
+}
+
+.answer-option.Green:hover {
+    background-color: rgba(60, 255, 0, 0.3);
+}
+
+.answer-option.Red {
+    color: rgba(255, 0, 0);
+}
+
+.answer-option.Amber {
+    color: rgba(255, 191, 0);
+}
+
+.answer-option.Green {
+    color: rgba(60, 255, 0);
+}
+
+.radioCustomButton {
+    position: absolute;
+    width: auto;
+    opacity: 0;
+}
+
+.radioCustomButton,
+.radioCustomLabel {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.radioCustomLabel {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 1.5rem 2.5rem 1.5rem 5rem;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.radioCustomButton~.radioCustomLabel:before {
+    position: absolute;
+    top: 20px;
+    left: 38px;
+    width: 28px;
+    height: 28px;
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    background: #fff;
+    border: 1px solid #bbb;
+    border-radius: 50%;
+    transition: all 0.3s;
+}
+
+.radioCustomButton:checked~.radioCustomLabel.Green:before {
+    content: '';
+    background: #8bc53f url(../../assets/icon-check.svg) no-repeat;
+    background-size: 27px;
+    border-color: #8bc53f;
+}
+
+.radioCustomButton:checked~.radioCustomLabel.Red:before {
+    content: '';
+    background: rgba(255, 0, 0) url(../../assets/icon-check.svg) no-repeat;
+    background-size: 27px;
+    border-color: rgba(255, 0, 0);
+}
+
+.radioCustomButton:checked~.radioCustomLabel.Amber:before {
+    content: '';
+    background: rgba(255, 191, 0) url(../../assets/icon-check.svg) no-repeat;
+    background-size: 27px;
+    border-color: rgba(255, 191, 0);
+}
