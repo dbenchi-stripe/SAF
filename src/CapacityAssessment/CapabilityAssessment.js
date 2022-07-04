@@ -1,6 +1,8 @@
 import React, { useState, createContext } from "react";
 
 import { questions } from "../assets/questions";
+import { WorkshopPhases } from "../assets/WorkshopPhases";
+
 import { answers } from "../assets/answers";
 import { average } from "./utils";
 import { Questions } from "./Questions/Questions";
@@ -11,23 +13,23 @@ export const CapabilityAssessmentContext = createContext();
 
 const initialCapacities = [
   {
-    subject: "Business",
+    subject: WorkshopPhases["business"],
     score: 0,
   },
   {
-    subject: "People & Governance",
+    subject: WorkshopPhases["people"],
     score: 0,
   },
   {
-    subject: "Risk & Reg",
+    subject: WorkshopPhases["risk"],
     score: 0,
   },
   {
-    subject: "Tech",
+    subject: WorkshopPhases["tech"],
     score: 0,
   },
   {
-    subject: "Operations",
+    subject: WorkshopPhases["operation"],
     score: 0,
   },
 ];
