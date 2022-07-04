@@ -16,7 +16,11 @@ export const Introduction = () => {
           services infrastructure
         </h2>
         <div className="introduction-card">
-          <img alt="SAF Architecture" src={saf} width="100%" />
+          <img
+            alt="SAF Architecture"
+            src={saf}
+            className="introduction-image"
+          />
           <button
             style={{ height: 70, width: 200, fontSize: 35 }}
             onClick={() => navigate(`/saf`)}
