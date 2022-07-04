@@ -35,7 +35,8 @@ export const questions = [
     question:
       "How does this initiative help you execute on your business strategy?",
     workshopPhase: "Business",
-    ratingDefinition: "Red - \nAmber - \nGreen - see above",
+    ratingDefinition:
+      "Red - \nAmber - \nGreen - User has put together a business case document which covers business drivers as well as tangible and intangible business benefits (including cost efficiency, staff productivity, operational efficiency etc.). The business case does also link the program objectives, goals and benefits to the overall business strategy. The business case does also point out the risks and business impact of not executing this program.",
     nestleOwner: "Vanessa / Massud",
     pathToGreen:
       "Outcome: Business case defined\n\nHow: Build a 3-5 year business case for the initiative\na. Collect current state revenue and cost information \nb. Determine the costs for driving and adoption of the initiative\nc. Determine benchmarks and assumptions to incorporate into revenue and cost forecasts\nd. Socialize and refine the business case to get stakeholder(s) buy-in",
