@@ -1,4 +1,5 @@
 import React, { useState, createContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { questions } from "../assets/questions";
 import { WorkshopPhases } from "../assets/WorkshopPhases";
@@ -9,7 +10,16 @@ import { Questions } from "./Questions/Questions";
 import { Results } from "./Results/Results";
 import "./CapacityAssessment.css";
 
-export const CapabilityAssessmentContext = createContext();
+export const CapabilityAssessmentContext = createContext({
+  answerClicked: null,
+  done: null,
+  currentQuestion: null,
+  questions: null,
+  answers: null,
+  initialCapacities: null,
+  capacities: null,
+  answeredQuestions: null,
+});
 
 const initialCapacities = [
   {
@@ -39,6 +49,7 @@ function CapabilityAssessment() {
   const [done, setDone] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answeredQuestions, setAnsweredQuestions] = useState({});
+  const navigate = useNavigate();
 
   const getCapacities = () => {
     const newResult = Object.values(answeredQuestions)?.reduce(
@@ -96,6 +107,7 @@ function CapabilityAssessment() {
     setCurrentQuestion(0);
     setShowResults(true);
     setAnsweredQuestions({});
+    navigate(`/`);
   };
 
   const toggleShowResult = () => {
@@ -123,7 +135,7 @@ function CapabilityAssessment() {
           >
             {"<"}
           </button>
-          <h1 className="title">SAF Capability Assessment</h1>
+          <h1 className="title">Stripe Adoption Framework</h1>
           <button
             disabled={!hasNextQuestion() || done}
             onClick={() => nextQuestion()}

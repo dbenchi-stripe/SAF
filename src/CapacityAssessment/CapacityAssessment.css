@@ -14,7 +14,7 @@
 .header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     background: rgb(84, 105, 212);
     margin-bottom: 20px;
     height: 70px;
