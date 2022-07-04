@@ -1,10 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { getInvalideQuestions } from "../helper/questionsValidation";
 import saf from "../assets/SAFArchitecture.svg";
 import "./Introduction.css";
 
 export const Introduction = () => {
   const navigate = useNavigate();
+  const invalideQuestions = getInvalideQuestions();
+
   return (
     <div>
       <div className="container">
@@ -24,11 +27,18 @@ export const Introduction = () => {
           <button
             style={{ height: 70, width: 200, fontSize: 35 }}
             onClick={() => navigate(`/saf`)}
+            disabled={invalideQuestions.length !== 0}
           >
             Start
           </button>
         </div>
       </div>
+
+      {invalideQuestions.length !== 0 && (
+        <div class="alert">
+          <pre>{JSON.stringify(invalideQuestions, null, 2)}</pre>
+        </div>
+      )}
     </div>
   );
 };

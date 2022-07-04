@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
   white-space: pre-line;
-  color: rgb(84, 105, 212)
+ 
   /* vertical-align: bottom; */
 }
 
@@ -9,5 +9,6 @@ body {
   margin: 0;
   padding: 0;
   background: white;
+  color: rgb(84, 105, 212);
   font-family: sans-serif;
 }
