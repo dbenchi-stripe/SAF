@@ -1,7 +1,51 @@
 .result-container {
     display: flex;
     width: 100%;
-    height: 300px;
+    height: 50%;
     justify-content: space-between;
     margin-bottom: 30px;
+}
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
+    grid-template-rows: repeat(2, minmax(200px, 1fr));
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    width: 100%;
+}
+
+.div1 {
+    grid-area: 1 / 1 / 2 / 2;
+    font-size: 12px;
+}
+
+.div2 {
+    grid-area: 2 / 1 / 3 / 2;
+    font-size: 12px;
+}
+
+.div3 {
+    grid-area: 1 / 2 / 2 / 3;
+    font-size: 12px;
+}
+
+.div4 {
+    grid-area: 2 / 2 / 3 / 3;
+    font-size: 12px;
+}
+
+.div5 {
+    grid-area: 1 / 3 / 2 / 4;
+    font-size: 12px;
+}
+
+.div6 {
+    grid-area: 2 / 3 / 3 / 4;
+    font-size: 12px;
+}
+
+.div7 {
+    grid-area: 1 / 4 / 3 / 5;
+    /* font-size: 12px; */
 }

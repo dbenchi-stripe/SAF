@@ -3,20 +3,21 @@ import { CapabilityAssessmentContext } from "../CapabilityAssessment";
 import { WorkshopPhases } from "../../assets/WorkshopPhases";
 import "./SAFArchitecture.css";
 
-export const SAFArchitecture = () => {
-  const { currentQuestion, questions } = useContext(
+export const SAFArchitecture = ({ className }) => {
+  const { currentQuestion, questions, done } = useContext(
     CapabilityAssessmentContext
   );
 
   const getClassNames = (className) =>
     `saf-item ${className} ${
+      done ||
       questions[currentQuestion].workshopPhase === WorkshopPhases[className]
         ? "active"
         : ""
     }`;
 
   return (
-    <div className="saf">
+    <div className={`${className} saf`}>
       <div className={getClassNames("business")}>Business</div>
       <div className={getClassNames("people")}>People & Governance</div>
       <div className={getClassNames("tech")}>Technology Platform</div>

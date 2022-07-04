@@ -24,22 +24,27 @@ export const CapabilityAssessmentContext = createContext({
 const initialCapacities = [
   {
     subject: WorkshopPhases["business"],
+    titles: [],
     score: 0,
   },
   {
     subject: WorkshopPhases["people"],
+    titles: [],
     score: 0,
   },
   {
     subject: WorkshopPhases["risk"],
+    titles: [],
     score: 0,
   },
   {
     subject: WorkshopPhases["tech"],
+    titles: [],
     score: 0,
   },
   {
     subject: WorkshopPhases["operation"],
+    titles: [],
     score: 0,
   },
 ];
@@ -53,12 +58,18 @@ function CapabilityAssessment() {
 
   const getCapacities = () => {
     const newResult = Object.values(answeredQuestions)?.reduce(
-      (result, { workshopPhase, value }) => {
+      (result, { workshopPhase, title, value }) => {
         return {
           ...result,
           [workshopPhase]: [
             ...(result[workshopPhase] ? result[workshopPhase] : []),
             value,
+          ],
+          [workshopPhase + "_titles"]: [
+            ...(result[workshopPhase + "_titles"]
+              ? result[workshopPhase + "_titles"]
+              : []),
+            { subject: title, score: value },
           ],
         };
       },
@@ -68,6 +79,7 @@ function CapabilityAssessment() {
       return {
         subject,
         score: newResult[subject]?.length ? average(newResult[subject]) : score,
+        title: newResult[subject + "_titles"],
       };
     });
 
@@ -92,11 +104,12 @@ function CapabilityAssessment() {
     }
   };
 
-  const answerClicked = (questionNumber, workshopPhase, value) => {
+  const answerClicked = ({ questionNumber, workshopPhase, title, value }) => {
     setAnsweredQuestions({
       ...answeredQuestions,
       [questionNumber]: {
         workshopPhase,
+        title,
         value,
       },
     });
