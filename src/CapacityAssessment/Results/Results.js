@@ -11,11 +11,13 @@ import {
 import { useCurrentPng } from "recharts-to-png";
 import FileSaver from "file-saver";
 import { CapabilityAssessmentContext } from "../CapabilityAssessment";
+import { SAFArchitecture } from "../SAFArchitecture/SAFArchitecture";
 import "./Results.css";
 
 export const Results = () => {
-  const { initialCapacities, capacities, done, currentQuestion, questions } =
-    useContext(CapabilityAssessmentContext);
+  const { initialCapacities, capacities, done } = useContext(
+    CapabilityAssessmentContext
+  );
   const [getAreaPng, { ref }] = useCurrentPng();
 
   const handleAreaDownload = useCallback(async () => {
@@ -24,11 +26,6 @@ export const Results = () => {
       FileSaver.saveAs(png, "capapility-assessment.png");
     }
   }, [getAreaPng]);
-
-  const getClassNames = (className, workshopPhase) =>
-    `saf-item ${className} ${
-      questions[currentQuestion].workshopPhase === workshopPhase ? "active" : ""
-    }`;
 
   return (
     <div>
@@ -59,22 +56,7 @@ export const Results = () => {
             <Tooltip />
           </RadarChart>
         </ResponsiveContainer>
-
-        <div className="saf">
-          <div className={getClassNames("business", "Business")}>Business</div>
-          <div className={getClassNames("people", "People & Governance")}>
-            People & Governance
-          </div>
-          <div className={getClassNames("tech", "Tech")}>
-            Technology Platform
-          </div>
-          <div className={getClassNames("risk", "Risk & Reg")}>
-            Risk, Regulatory & Compliance
-          </div>
-          <div className={getClassNames("operation", "Operations")}>
-            Operations Readiness
-          </div>
-        </div>
+        <SAFArchitecture />
       </div>
       {done && (
         <div className="button-container">
