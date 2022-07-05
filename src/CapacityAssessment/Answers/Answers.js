@@ -19,11 +19,12 @@ export const Answers = () => {
             key={answer.id}
             className={`answer-option ${answer.text}`}
             onClick={() =>
-              answerClicked(
-                currentQuestion + 1,
-                questions[currentQuestion].workshopPhase,
-                answer.value
-              )
+              answerClicked({
+                questionNumber: currentQuestion + 1,
+                workshopPhase: questions[currentQuestion].workshopPhase,
+                title: questions[currentQuestion].title,
+                value: answer.value,
+              })
             }
           >
             <input
