@@ -21,30 +21,46 @@ export const CapabilityAssessmentContext = createContext({
   answeredQuestions: null,
 });
 
+const getCapacitiesTitles = (workshopPhase) => {
+  return questions
+    .filter((question) => {
+      if (question.workshopPhase === workshopPhase) {
+        return true;
+      }
+      return false;
+    })
+    .map((question) => {
+      return {
+        subject: question.title,
+        score: 0,
+      };
+    });
+};
+
 const initialCapacities = [
   {
     subject: WorkshopPhases["business"],
-    titles: [],
+    titles: getCapacitiesTitles(WorkshopPhases["business"]),
     score: 0,
   },
   {
     subject: WorkshopPhases["people"],
-    titles: [],
+    titles: getCapacitiesTitles(WorkshopPhases["people"]),
     score: 0,
   },
   {
     subject: WorkshopPhases["risk"],
-    titles: [],
+    titles: getCapacitiesTitles(WorkshopPhases["risk"]),
     score: 0,
   },
   {
     subject: WorkshopPhases["tech"],
-    titles: [],
+    titles: getCapacitiesTitles(WorkshopPhases["tech"]),
     score: 0,
   },
   {
     subject: WorkshopPhases["operation"],
-    titles: [],
+    titles: getCapacitiesTitles(WorkshopPhases["operation"]),
     score: 0,
   },
 ];
@@ -75,13 +91,29 @@ function CapabilityAssessment() {
       },
       {}
     );
-    const newCapacities = initialCapacities.map(({ subject, score }) => {
-      return {
-        subject,
-        score: newResult[subject]?.length ? average(newResult[subject]) : score,
-        title: newResult[subject + "_titles"],
-      };
-    });
+
+    const getTitles = (originalTitles, newComputedTitles) => {
+      return originalTitles?.map((originalTitlesObject) => {
+        return (
+          newComputedTitles?.find(
+            (newComputedTitlesObject) =>
+              newComputedTitlesObject.subject === originalTitlesObject.subject
+          ) || originalTitlesObject
+        );
+      });
+    };
+
+    const newCapacities = initialCapacities.map(
+      ({ subject, score, titles }) => {
+        return {
+          subject,
+          score: newResult[subject]?.length
+            ? average(newResult[subject])
+            : score,
+          title: getTitles(titles, newResult[subject + "_titles"]),
+        };
+      }
+    );
 
     return newCapacities;
   };
