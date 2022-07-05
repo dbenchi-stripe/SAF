@@ -28,9 +28,9 @@ export const Results = () => {
   const [getTotalAreaPng, { ref: ref_total }] = useCurrentPng(
     html2CanavsConfiguration
   );
-  const [getBusinessAreaPng, { ref: ref_business }] = useCurrentPng({
-    scale: 10,
-  });
+  const [getBusinessAreaPng, { ref: ref_business }] = useCurrentPng(
+    html2CanavsConfiguration
+  );
   const [getPeopleAreaPng, { ref: ref_people }] = useCurrentPng(
     html2CanavsConfiguration
   );
@@ -97,12 +97,7 @@ export const Results = () => {
           </ResponsiveContainer>
 
           {capacities.map((capacity, index) => (
-            <ResponsiveContainer
-              // width={400 - numberOfCharts}
-              // height="80%"
-              className={"div" + (index + 2)}
-              key={index}
-            >
+            <ResponsiveContainer className={"div" + (index + 2)} key={index}>
               <RadarChart ref={refs[index]} data={capacity.title}>
                 <PolarGrid />
                 <PolarAngleAxis dataKey="subject" />
