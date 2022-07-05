@@ -1,3 +1,6 @@
+:root {
+    --radar-font-size: min(0.6vw, 15px);
+}
 .result-container {
     display: flex;
     width: 100%;
@@ -17,30 +20,30 @@
 
 .div1 {
     grid-area: 1 / 1 / 2 / 2;
-    font-size: 0.6vw;
+    font-size: var(--radar-font-size);
 }
 
 .div2 {
     grid-area: 2 / 1 / 3 / 2;
-    font-size: 0.6vw;
+    font-size: var(--radar-font-size);
 }
 
 .div3 {
     grid-area: 1 / 2 / 2 / 3;
-    font-size: 0.6vw;
+    font-size: var(--radar-font-size);
 }
 
 .div4 {
     grid-area: 2 / 2 / 3 / 3;
-    font-size: 0.6vw;
+    font-size: var(--radar-font-size);
 }
 
 .div5 {
     grid-area: 1 / 3 / 2 / 4;
-    font-size: 0.6vw;
+    font-size: var(--radar-font-size);
 }
 
 .div6 {
     grid-area: 2 / 3 / 3 / 4;
-    font-size: 0.6vw;
+    font-size: var(--radar-font-size);
 }

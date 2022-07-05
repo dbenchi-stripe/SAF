@@ -36,7 +36,6 @@
 .path-to-green::before {
     content: 'Path to Green';
     font-weight: bold;
-    /* font-style: italic; */
     font-size: 12pt;
     line-height: 12pt;
     text-transform: uppercase;
