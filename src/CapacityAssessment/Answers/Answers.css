@@ -1,3 +1,9 @@
+:root{
+    --color-amber: rgba(255, 191, 0);
+    --color-red: rgba(255, 0, 0);
+    --color-green: rgba(60, 255, 0);
+}
+
 .answer-options {
     margin: 0;
     padding: 0;
@@ -22,15 +28,15 @@
 }
 
 .answer-option.Red {
-    color: rgba(255, 0, 0);
+    color: var(--color-red)
 }
 
 .answer-option.Amber {
-    color: rgba(255, 191, 0);
+    color: var(--color-amber)
 }
 
 .answer-option.Green {
-    color: rgba(60, 255, 0);
+    color: var(--color-green)
 }
 
 .radioCustomButton {

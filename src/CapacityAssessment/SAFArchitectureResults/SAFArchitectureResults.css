@@ -1,0 +1,29 @@
+.inner-item {
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+}
+.inner-item-header {
+    font-weight: 900;
+}
+
+.inner-item-content {
+    flex-grow: 1;
+}
+
+.inner-capacity-name {
+    margin-right: 20px;
+}
+
+.inner-capacity-name.amber {
+    color: var(--color-amber);
+}
+
+.inner-capacity-name.green {
+    color: var(--color-green);
+}
+
+.inner-capacity-name.red {
+    color: var(--color-red);
+}
+

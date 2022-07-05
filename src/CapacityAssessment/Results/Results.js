@@ -14,6 +14,7 @@ import FileSaver from "file-saver";
 import { CapabilityAssessmentContext } from "../CapabilityAssessment";
 import { SAFArchitecture } from "../SAFArchitecture/SAFArchitecture";
 import "./Results.css";
+import { SAFArchitectureResults } from "../SAFArchitectureResults/SAFArchitectureResults";
 
 /*
  * the recharts-to-png is internally based on html2canavas
@@ -120,6 +121,7 @@ export const Results = () => {
         </div>
         {!done && <SAFArchitecture />}
       </div>
+      {done && <SAFArchitectureResults />}
       {done && (
         <div className="button-container">
           <button onClick={() => handleAreaDownload()}>Download All</button>
