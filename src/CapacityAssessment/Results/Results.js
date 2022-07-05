@@ -11,6 +11,7 @@ import {
 } from "recharts";
 import { useCurrentPng } from "recharts-to-png";
 import FileSaver from "file-saver";
+import html2canvas from "html2canvas";
 import { CapabilityAssessmentContext } from "../CapabilityAssessment";
 import { SAFArchitecture } from "../SAFArchitecture/SAFArchitecture";
 import "./Results.css";
@@ -23,9 +24,12 @@ import { SAFArchitectureResults } from "../SAFArchitectureResults/SAFArchitectur
 const html2CanavsConfiguration = { scale: 10 };
 
 export const Results = () => {
-  const { initialCapacities, capacities, done } = useContext(
-    CapabilityAssessmentContext
-  );
+  const {
+    initialCapacities,
+    capacities,
+    done,
+    printSAFArchitectureResultsRef,
+  } = useContext(CapabilityAssessmentContext);
   const [getTotalAreaPng, { ref: ref_total }] = useCurrentPng(
     html2CanavsConfiguration
   );
@@ -65,13 +69,34 @@ export const Results = () => {
   );
 
   const handleAreaDownload = useCallback(async () => {
+    const handleDownloadImage = async () => {
+      const element = printSAFArchitectureResultsRef.current;
+      const canvas = await html2canvas(element);
+
+      const data = canvas.toDataURL("image/png");
+      const link = document.createElement("a");
+
+      if (typeof link.download === "string") {
+        link.href = data;
+        link.download = "saf-stripes.png";
+
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } else {
+        window.open(data);
+      }
+    };
+
+    handleDownloadImage();
+
     for await (const { getPng, title } of getPngs) {
       let png = await getPng();
       if (png) {
         FileSaver.saveAs(png, title);
       }
     }
-  }, [getPngs]);
+  }, [getPngs, printSAFArchitectureResultsRef]);
 
   return (
     <div>

@@ -19,6 +19,7 @@ export const CapabilityAssessmentContext = createContext({
   initialCapacities: null,
   capacities: null,
   answeredQuestions: null,
+  printSAFArchitectureResultsRef: null,
 });
 
 const getCapacitiesTitles = (workshopPhase) => {
@@ -71,6 +72,7 @@ function CapabilityAssessment() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answeredQuestions, setAnsweredQuestions] = useState({});
   const navigate = useNavigate();
+  const printSAFArchitectureResultsRef = React.useRef();
 
   const getCapacities = () => {
     const newResult = Object.values(answeredQuestions)?.reduce(
@@ -170,6 +172,7 @@ function CapabilityAssessment() {
         initialCapacities,
         capacities: getCapacities(),
         answeredQuestions,
+        printSAFArchitectureResultsRef,
       }}
     >
       <div className="container">

@@ -4,7 +4,9 @@ import { WorkshopPhases } from "../../assets/WorkshopPhases";
 import "./SAFArchitectureResults.css";
 
 export const SAFArchitectureResults = ({ className }) => {
-  const { capacities } = useContext(CapabilityAssessmentContext);
+  const { capacities, printSAFArchitectureResultsRef } = useContext(
+    CapabilityAssessmentContext
+  );
 
   const getClassNames = (className) =>
     `saf-item inner-item-content active ${className}`;
@@ -38,13 +40,18 @@ export const SAFArchitectureResults = ({ className }) => {
               </div>
             ));
           }
+
+          return undefined;
         })}
       </div>
     </div>
   );
 
   return (
-    <div className={`${className ? className : ""} saf`}>
+    <div
+      ref={printSAFArchitectureResultsRef}
+      className={`${className ? className : ""} saf`}
+    >
       <SAFArchitectureResultsItem workshoPhase="business" />
       <SAFArchitectureResultsItem workshoPhase="people" />
       <SAFArchitectureResultsItem workshoPhase="tech" />
