@@ -69,6 +69,7 @@ const initialCapacities = [
 function CapabilityAssessment() {
   const [showResults, setShowResults] = useState(true);
   const [done, setDone] = useState(false);
+  const [showMoreInformation, setShowMoreInformation] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answeredQuestions, setAnsweredQuestions] = useState({});
   const navigate = useNavigate();
@@ -170,6 +171,10 @@ function CapabilityAssessment() {
     setShowResults((showResults) => !showResults);
   };
 
+  const toggleShowMoreInformation = () => {
+    setShowMoreInformation((showMoreInformation) => !showMoreInformation);
+  };
+
   return (
     <CapabilityAssessmentContext.Provider
       value={{
@@ -203,13 +208,18 @@ function CapabilityAssessment() {
         {showResults && <Results />}
         {!done && (
           <>
-            <Questions />
+            <Questions showMoreInformation={showMoreInformation} />
             <div className="button-container">
               <button onClick={() => restartCapacityAssessment()}>
                 Restart Capacity Assessment
               </button>
               <button onClick={() => toggleShowResult()}>
                 {showResults ? "Hide Results" : "Show Results"}
+              </button>
+              <button onClick={() => toggleShowMoreInformation()}>
+                {showMoreInformation
+                  ? "Hide Question Information"
+                  : "Show Question Information"}
               </button>
             </div>
           </>
