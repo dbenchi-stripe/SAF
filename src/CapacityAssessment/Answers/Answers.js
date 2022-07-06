@@ -14,8 +14,8 @@ export const Answers = () => {
   const [note, setNote] = useState();
 
   useEffect(() => {
-    const note = answeredQuestions[currentQuestion + 1]
-      ? answeredQuestions[currentQuestion + 1].note
+    const note = answeredQuestions[currentQuestion]
+      ? answeredQuestions[currentQuestion].note
       : "";
     setNote(note);
   }, [answeredQuestions, currentQuestion]);
@@ -50,7 +50,7 @@ export const Answers = () => {
               onClick={() => {
                 setNote("");
                 answerClicked({
-                  questionNumber: currentQuestion + 1,
+                  questionNumber: currentQuestion,
                   workshopPhase: questions[currentQuestion].workshopPhase,
                   title: questions[currentQuestion].title,
                   value: answer.value,
@@ -64,7 +64,7 @@ export const Answers = () => {
                 className="radioCustomButton"
                 name="radioGroup"
                 checked={
-                  answer.value === answeredQuestions[currentQuestion + 1]?.value
+                  answer.value === answeredQuestions[currentQuestion]?.value
                 }
                 value={answer.text}
                 id={answer.id}
