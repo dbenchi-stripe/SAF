@@ -3,6 +3,19 @@
     --color-red: rgba(255, 0, 0);
     --color-green: rgba(60, 255, 0);
 }
+.answer-wrapper {
+    display: flex;
+}
+
+.answer-wrapper-text-area{
+    flex-grow: 3;
+    display: flex;
+    padding-left: 40px;
+}
+
+.answer-wrapper-answer-options{
+    flex-grow: 1;
+}
 
 .answer-options {
     margin: 0;

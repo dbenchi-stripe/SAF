@@ -138,13 +138,20 @@ function CapabilityAssessment() {
     }
   };
 
-  const answerClicked = ({ questionNumber, workshopPhase, title, value }) => {
+  const answerClicked = ({
+    questionNumber,
+    workshopPhase,
+    title,
+    value,
+    note,
+  }) => {
     setAnsweredQuestions({
       ...answeredQuestions,
       [questionNumber]: {
         workshopPhase,
         title,
         value,
+        note,
       },
     });
     nextQuestion();
