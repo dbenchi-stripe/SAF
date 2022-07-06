@@ -12,6 +12,7 @@ import {
 import { useCurrentPng } from "recharts-to-png";
 import FileSaver from "file-saver";
 import html2canvas from "html2canvas";
+import { parse } from "json2csv";
 import { CapabilityAssessmentContext } from "../CapabilityAssessment";
 import { SAFArchitecture } from "../SAFArchitecture/SAFArchitecture";
 import "./Results.css";
@@ -27,6 +28,8 @@ export const Results = () => {
   const {
     initialCapacities,
     capacities,
+    answeredQuestions,
+    questions,
     done,
     printSAFArchitectureResultsRef,
   } = useContext(CapabilityAssessmentContext);
@@ -68,6 +71,19 @@ export const Results = () => {
     ]
   );
 
+  const allResults = questions.map((question, index) => {
+    if (answeredQuestions[index]) {
+      return {
+        ...question,
+        answerText: answeredQuestions[index].text,
+        answerValue: answeredQuestions[index].value,
+        note: answeredQuestions[index].note,
+      };
+    }
+
+    return question;
+  });
+
   const handleAreaDownload = useCallback(async () => {
     const handleDownloadImage = async () => {
       const element = printSAFArchitectureResultsRef.current;
@@ -88,7 +104,32 @@ export const Results = () => {
       }
     };
 
+    const handleDownloadCsv = async () => {
+      const link = document.createElement("a");
+      const csv = parse(allResults, {
+        quote: "",
+        delimiter: "\t",
+        eol: "\r\n",
+        transforms: (item) => {
+          return Object.entries(item).reduce((result, [key, value]) => {
+            return {
+              ...result,
+              [key]: String(value).replaceAll?.("\n", "\\n"),
+            };
+          }, {});
+        },
+      });
+
+      link.href = "data:text/csv;charset=utf-8," + encodeURI(csv);
+      link.target = "_blank";
+      link.download = "saf-csv.csv";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
+
     handleDownloadImage();
+    handleDownloadCsv();
 
     for await (const { getPng, title } of getPngs) {
       let png = await getPng();
@@ -96,7 +137,7 @@ export const Results = () => {
         FileSaver.saveAs(png, title);
       }
     }
-  }, [getPngs, printSAFArchitectureResultsRef]);
+  }, [getPngs, printSAFArchitectureResultsRef, allResults]);
 
   return (
     <div>
