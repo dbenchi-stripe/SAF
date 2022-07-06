@@ -21,7 +21,7 @@ import { SAFArchitectureResults } from "../SAFArchitectureResults/SAFArchitectur
  * the recharts-to-png is internally based on html2canavas
  * all html2canavas configuration is supported: https://html2canvas.hertzen.com/configuration
  */
-const html2CanavsConfiguration = { scale: 10 };
+const html2CanavsConfiguration = { scale: 5 };
 
 export const Results = () => {
   const {
@@ -71,7 +71,7 @@ export const Results = () => {
   const handleAreaDownload = useCallback(async () => {
     const handleDownloadImage = async () => {
       const element = printSAFArchitectureResultsRef.current;
-      const canvas = await html2canvas(element);
+      const canvas = await html2canvas(element, html2CanavsConfiguration);
 
       const data = canvas.toDataURL("image/png");
       const link = document.createElement("a");

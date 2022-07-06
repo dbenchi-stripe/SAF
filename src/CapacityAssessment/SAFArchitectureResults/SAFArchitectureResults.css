@@ -1,14 +1,17 @@
 .inner-item {
     display: flex;
     align-items: center;
-    justify-content:space-around;
+    justify-content:space-between;
 }
 .inner-item-header {
     font-weight: 900;
+    width: 12vw;
+    text-align: left;
 }
 
 .inner-item-content {
-    flex-grow: 1;
+    width: 87vw;
+    font-size: min(0.8vw, 15px);
 }
 
 .inner-capacity-name {
