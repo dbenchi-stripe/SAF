@@ -30,8 +30,8 @@ export const Answers = () => {
       <div className="answer-wrapper-text-area">
         <h3>Notes:</h3>
         <TextareaAutosize
-          minRows={13}
-          maxRows={13}
+          minRows={14}
+          maxRows={14}
           style={{ width: "94%", marginLeft: 20 }}
           cacheMeasurements
           value={note}
