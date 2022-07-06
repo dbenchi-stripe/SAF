@@ -142,6 +142,7 @@ function CapabilityAssessment() {
     questionNumber,
     workshopPhase,
     title,
+    text,
     value,
     note,
   }) => {
@@ -150,6 +151,7 @@ function CapabilityAssessment() {
       [questionNumber]: {
         workshopPhase,
         title,
+        text,
         value,
         note,
       },

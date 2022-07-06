@@ -20,11 +20,10 @@ export const Answers = () => {
     setNote(note);
   }, [answeredQuestions, currentQuestion]);
 
-  // console.log({
-  //   answeredQuestion: answeredQuestions[currentQuestion + 1],
-  //   note,
-  //   notR: answeredQuestions[currentQuestion + 1]?.note,
-  // });
+  console.log({
+    questions,
+    answeredQuestions,
+  });
 
   return (
     <div className="answer-wrapper">
@@ -56,6 +55,7 @@ export const Answers = () => {
                   title: questions[currentQuestion].title,
                   value: answer.value,
                   note,
+                  text: answer.text,
                 });
               }}
             >
