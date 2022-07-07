@@ -21,8 +21,19 @@ function onOpen() {
   var menuEntries = [
     { name: "Export JSON for this sheet", functionName: "exportSheet" },
     { name: "Export JSON for all sheets", functionName: "exportAllSheets" },
+    { name: "Replace \\n by newline", functionName: "replaceEverywhere" },
   ];
-  ss.addMenu("Export JSON", menuEntries);
+  ss.addMenu("SAF", menuEntries);
+}
+
+function replaceEverywhere() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet();
+  var textFinder = sheet.createTextFinder("\\r\n");
+  textFinder.replaceAllWith(String.fromCharCode(10));
+  textFinder = sheet.createTextFinder("\\n");
+  textFinder.replaceAllWith(String.fromCharCode(10));
+  textFinder = sheet.createTextFinder("\\r");
+  textFinder.replaceAllWith(String.fromCharCode(10));
 }
 
 function makeLabel(app, text, id) {
