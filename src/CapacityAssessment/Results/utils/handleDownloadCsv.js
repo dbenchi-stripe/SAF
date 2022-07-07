@@ -10,7 +10,9 @@ export const handleDownloadCsv = async (allAnswers) => {
       return Object.entries(item).reduce((result, [key, value]) => {
         return {
           ...result,
-          [key]: String(value).replaceAll?.("\n", "\\n"),
+          [key]: String(value)
+            .replaceAll?.("\n", "\\n")
+            .replaceAll("\r", "\\r"),
         };
       }, {});
     },
