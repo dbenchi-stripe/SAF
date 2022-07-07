@@ -1,13 +1,16 @@
 import React, { useState, createContext } from "react";
-import { useNavigate } from "react-router-dom";
+import useLocalStorageState from "use-local-storage-state";
+import _ from "lodash";
+import { confirmAlert } from "react-confirm-alert";
 
 import { questions } from "../assets/questions";
 import { WorkshopPhases } from "../assets/WorkshopPhases";
-
 import { answers } from "../assets/answers";
 import { average } from "./utils";
 import { Questions } from "./Questions/Questions";
 import { Results } from "./Results/Results";
+
+import "react-confirm-alert/src/react-confirm-alert.css";
 import "./CapacityAssessment.css";
 
 export const CapabilityAssessmentContext = createContext({
@@ -72,8 +75,33 @@ function CapabilityAssessment() {
   const [showMoreInformation, setShowMoreInformation] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answeredQuestions, setAnsweredQuestions] = useState({});
-  const navigate = useNavigate();
   const printSAFArchitectureResultsRef = React.useRef();
+  const [storage, setStorage, { removeItem, isPersistent }] =
+    useLocalStorageState("saf");
+  if (!_.isEmpty(storage) && _.isEmpty(answeredQuestions)) {
+    confirmAlert({
+      title: "Pick up where we left off?",
+      message: "Do you want to move forward with the latest evaluation?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => {
+            setAnsweredQuestions(storage);
+            setCurrentQuestion(
+              parseInt(Object.keys(storage)[Object.keys(storage).length - 1]) +
+                1
+            );
+          },
+        },
+        {
+          label: "No, delete it",
+          onClick: () => {
+            removeItem("saf");
+          },
+        },
+      ],
+    });
+  }
 
   const getCapacities = () => {
     const newResult = Object.values(answeredQuestions)?.reduce(
@@ -129,6 +157,7 @@ function CapabilityAssessment() {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       setShowResults(true);
+      removeItem("saf");
       setDone(true);
     }
   };
@@ -147,7 +176,7 @@ function CapabilityAssessment() {
     value,
     note,
   }) => {
-    setAnsweredQuestions({
+    const newAnsweredQuestions = {
       ...answeredQuestions,
       [questionNumber]: {
         workshopPhase,
@@ -156,7 +185,9 @@ function CapabilityAssessment() {
         value,
         note,
       },
-    });
+    };
+    setAnsweredQuestions(newAnsweredQuestions);
+    setStorage(newAnsweredQuestions);
     nextQuestion();
   };
 
@@ -164,7 +195,7 @@ function CapabilityAssessment() {
     setCurrentQuestion(0);
     setShowResults(true);
     setAnsweredQuestions({});
-    navigate(`/`);
+    removeItem("saf");
   };
 
   const toggleShowResult = () => {

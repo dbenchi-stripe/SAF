@@ -4,7 +4,7 @@ export const questions = [
     title: "Business objective",
     workshopPhase: "Business",
     ratingDefinition:
-      "Red - \nAmber - \nGreen - User can not only clearly articulate the business objectives/goals for adopting Stripe, but has also documented motivating drivers alongside business objectives and goals. ",
+      "Red - User does not really understand the business reason for chosing Stripe. Decision was taken by another stakeholder.\nAmber - User has a business objective for adopting Stripe but have no document or specific goals to support it.\nGreen - User can not only clearly articulate the business objectives/goals for adopting Stripe, but has also documented motivating drivers alongside business objectives and goals. ",
     nestleOwner: "Christophe / Massud",
     why: "Commitment from executive stakeholders. Long term vision is shared. Roadmap are exchanged.\n\nNot only Payments: need involvement from different business areas (Customer support, finance...).",
     sunnyDay:
@@ -22,11 +22,13 @@ export const questions = [
     title: "Objective, scope and timeline",
     workshopPhase: "Business",
     ratingDefinition:
-      "Red - \nAmber - \nGreen - User has clearly defined and documented objectives, scope, milestones and timeline of the program. It is clearly visible when and how the program will deliver value to the business. ",
+      "Red - User is unclear of the objectives, scope, milestones and timeline of the program.\nAmber - User has defined the objectives and the scope but has no clear milestones or timeline for the program or the user knows the timeline but the scope is not clear.\nGreen - User has clearly defined and documented objectives, scope, milestones and timeline of the program. It is clearly visible when and how the program will deliver value to the business. ",
     nestleOwner: "Christophe / Massud",
     why: "Enable have clear plan for initiative/project. Project charter, business requirements. Even for agile project, know what will be the output.\n\nIf this is not the case, business could be adding additional features along the way and delay the project (reducing ROI).",
     sunnyDay:
       "Le Monde had a clear project scope. Project timelines were met. Were able to have a business case (video shot). Migration of cards is the next item for them.",
+    rainyDay:
+      "A car manufacturer had 2 initiatives to create a platform with their dealers. Idea was to provide services: booking a car, buying parts. As the initiative had many different objectives and no clear scope, the project has been delayed for +3 months.",
     pathToGreen:
       "Outcome: Short-term and long term goals defined\n\nHow: Translate high-level vision into specific short-term and long term goals\na. Define series of Minimum Lovable Prodducts (MLPs) that will lead to end business outcomes\nb. Identify the scope, timeline, and criteria for success in KPIs for each of the MLPs\nc. Identify target users and feedback mechanism to continuously iterate the MLPs",
   },
@@ -35,11 +37,13 @@ export const questions = [
     title: "Business case",
     workshopPhase: "Business",
     ratingDefinition:
-      "Red - \nAmber - \nGreen - User has put together a business case document which covers business drivers as well as tangible and intangible business benefits (including cost efficiency, staff productivity, operational efficiency etc.). The business case does also link the program objectives, goals and benefits to the overall business strategy. The business case does also point out the risks and business impact of not executing this program.",
+      "Red - User does not have a business case document for the initiative.\nAmber - User has put together a business case document which covers business drivers as well as one or two tangible and intangible business benefits. The business case does not include any risks for not launching the program.\nGreen - User has put together a business case document which covers business drivers as well as tangible and intangible business benefits (including cost efficiency, staff productivity, operational efficiency etc.). The business case does also link the program objectives, goals and benefits to the overall business strategy. The business case does also point out the risks and business impact of not executing this program.",
     nestleOwner: "Christophe / Massud",
     why: "Project sponsor expect results out of an initiative. Investments are made (time, budget, human). Either an ROI is expected or a positive impact (could be process improved which leads to better productivity, happyness at work).\nRisks / Responsibilities are identified",
     sunnyDay:
-      "Initiative for Le Monde was aligned with the business strategy which are\n- international expansion: get new French subscribers living abroad and in particular in the US\n- enhance digital footprint which market share is gaining vs paper subscription ",
+      "24S create a business case for all their initiatives. They presented the Klarna expansion and could sell it internally demonstrating the volumes expected and the ROI of the project.",
+    rainyDay:
+      "Crypto platform chose Stripe. No real business case for the adoption ot PSP except better prices. But these better prices and authorization rates were not clearly identified and mentioned. Cost of the development seemed higher than the benefits of the initiative.",
     pathToGreen:
       "Outcome: Business case defined\n\nHow: Build a 3-5 year business case for the initiative\na. Collect current state revenue and cost information \nb. Determine the costs for driving and adoption of the initiative\nc. Determine benchmarks and assumptions to incorporate into revenue and cost forecasts\nd. Socialize and refine the business case to get stakeholder(s) buy-in",
     commentsInsightsDerivedOutOfTheAnswersQuestions:
@@ -51,9 +55,13 @@ export const questions = [
     title: "Strategy Alignment",
     workshopPhase: "Business",
     ratingDefinition:
-      "Red - \nAmber - \nGreen - Program aligns with overal business strategy",
+      "Red - Program is not aligned with overal business strategy\nAmber - Program aligns with strategy of one or two departments\nGreen - Program aligns with overal business strategy",
     nestleOwner: "Christophe / Massud",
     why: "Ensure that this project is aligned with the overall strategy of the company and it is not at risk of cancellation. e.g. geo expansion, transitioning from enterprises to SMB, move from B2C to B2B",
+    sunnyDay:
+      "Initiative for Le Monde was aligned with the business strategy which are\n- international expansion: get new French subscribers living abroad and in particular in the US\n- enhance digital footprint which market share is gaining vs paper subscription ",
+    rainyDay:
+      "Crypto platform chose Stripe. 1 year after signing the contract, implementation has not started because conflicting interest between CEO and CTO. Lack of alignment to the business strategy impacts its priorization.",
     pathToGreen:
       "Outcome: Business case defined\n\nHow: Build a 3-5 year business case for the initiative\na. Collect current state revenue and cost information \nb. Determine the costs for driving and adoption of the initiative\nc. Determine benchmarks and assumptions to incorporate into revenue and cost forecasts\nd. Socialize and refine the business case to get stakeholder(s) buy-in",
     commentsInsightsDerivedOutOfTheAnswersQuestions:
@@ -65,7 +73,7 @@ export const questions = [
     title: "Leadership",
     workshopPhase: "Business",
     ratingDefinition:
-      "Red -  \nAmber - \nGreen - User has identified a single-threaded senior leader / executive sponsor who is accountable for success and actively supports the program organization with steering and removing blockers.",
+      "Red -  User has not identified a senior leader / executive sponsor for the initiative.\nAmber - User has identified a sponsor for the initiative but is not part of the executive committee or will not be able to remove potential blockers.\nGreen - User has identified a single-threaded senior leader / executive sponsor who is accountable for success and actively supports the program organization with steering and removing blockers.",
     nestleOwner: "Christophe / Massud",
     why: "A project sponsor will be responsible for the outcome of the project.",
     sunnyDay:
@@ -81,11 +89,13 @@ export const questions = [
     title: "Stakeholder Buy-in",
     workshopPhase: "Business",
     ratingDefinition:
-      "Red - \nAmber - \nGreen - The business case has not only been documented, but also shared/communicated to all stakeholders (e.g. CFO). All relevant stakeholders have given their buy-in to the business case. ",
+      "Red - Not all stakeholders (e.g. CFO) have been involved within this initiative.\nAmber - The business case has been documented and shared/communicated to all stakeholders (e.g. CFO). Not all of these stakeholders have given their buy-in to the business case.\nGreen - The business case has not only been documented, but also shared/communicated to all stakeholders (e.g. CFO). All relevant stakeholders have given their buy-in to the business case. ",
     nestleOwner: "Christophe / Massud",
     why: "All stakeholders must be aligned as this initiative is part of the overal business strategy. All stakeholders have named a responsible from their department that will be in touch for the correct execution of the project.",
     sunnyDay:
       "For a BNPL entity of a French Bank, we had every stakeholder identified and aligned with the Stripe implementation. They were asking for precise workshops with all their teams and be kept in the loop.",
+    rainyDay:
+      "When implementing Stripe for a FR media company, the technology and payment team drove the initiative. However after implementation, they had to pull in new ressources to train finance team who were not aware and could not dedicate time to Stripe deployment.",
     pathToGreen: "already part of business case",
   },
   {
@@ -94,8 +104,13 @@ export const questions = [
     title: "KPIs / Metrics",
     workshopPhase: "Business",
     ratingDefinition:
-      "Red - \nAmber - \nGreen - The user has defined and documented the set of KPIs/metrics which enable them to measure the success of the program. These KPIs and metrics are clearly linked to the overall business strategy/objectives and were signed off by the relevant stakeholders. ",
+      "Red - The user has neither defined nor documented the set of KPIs/metrics to measure the success of the program.\nAmber - The user has defined and documented the set of KPIs/metrics which enable them to measure the success of the program. These KPIs and metrics are not linked to the overall business strategy/objectives. \nGreen - The user has defined and documented the set of KPIs/metrics which enable them to measure the success of the program. These KPIs and metrics are clearly linked to the overall business strategy/objectives and were signed off by the relevant stakeholders. ",
     nestleOwner: "Christophe / Massud",
+    why: "KPI / OKR / Metrics will help measure the success of the initiative. These are concrete figures that cannot alter subjectives opinions. If they are set from the beginning, progress can be tracked.\n\nExamples could be volume processed, customers created, quantity of disputes, conversion rate. These metrics could be set by different stakeholders.",
+    sunnyDay:
+      "24S: volume of Klarna payments + average basket value.\nLe Monde: new customers from abroad and MRR from them.",
+    rainyDay:
+      "A FR platform after 2 years of operations recently discovered that they were not making money. They measured the number of merchants and the volume but missed the calculation of the profit made and that they were not passing through a sufficient fee.",
     pathToGreen: "already part of short term/long term goals",
   },
   {
@@ -103,8 +118,13 @@ export const questions = [
     title: "Go-To-Market Plan",
     workshopPhase: "Business",
     ratingDefinition:
-      "Red - \nAmber - \nGreen - The user has put together a go-to-market plan which is not only based on the implementation milestones and timelines, but also considers other internal and external factors for successfully launching the new product/feature. ",
+      "Red - The user has not put together a go-to-market plan. \nAmber - The user has put together a go-to-market plan based on the implementation milestones and timelines. It does not considers internal and external factors for successfully launching the new product/feature. \nGreen - The user has put together a go-to-market plan which is not only based on the implementation milestones and timelines, but also considers other internal and external factors for successfully launching the new product/feature. ",
     nestleOwner: "Christophe / Massud",
+    why: "This is crucial when you start a new business. When you are migrating from one provider to the other, you already have expectations and know how the market reacts. When you are opening a new country or launching a new product or service, you need to anticipate how you will market it and know the ramp up that will be needed. It would also help to get the ROI.\nWhen creating a marketplace where you need to onboard vendors, go to market could be how you will recruit the merchants on the marketplace.",
+    sunnyDay:
+      "At Shore, a German platform, the initiative was to expand the business with Terminals. This was expanding their business with a side market.\nThey knew how many of their existing merchants have a POS system that needed to be migrated (SumUp, iZettle) and they targeted these first merchants. Then their existing customers and at the end, created social campaign + physical exhibitions to recruit additional merchants.",
+    rainyDay:
+      "A Spanish platform created a marketplace to sell travel services. They worked during 6 months on the Connect setup. Once they launched, they figured out that they miss to prepare the GTM approach to onboard merchants and they took 1 year to recover from the initiative.",
     pathToGreen:
       "Outcome: Go to market plan defined\n\nHow: Define a go-to market plan with internal and external stakeholders and customers\na. Determine internal and external customers \nb. Determine branding and communication plan to customer by MLP releases\nc. Identify key events and dates to drive adoption\nd. Build co-brading strategies with Stripe",
   },
@@ -133,7 +153,7 @@ export const questions = [
     nestleOwner: "Vanessa / Massud",
     why: "Having the right resources capable of adopting Stripe is key for a successful implementation. We need to make sure that the correct resources with the right knowledge are allocated to this initiative to improve project delivery, avoid unforeseen issues/challenges and ensure a optimal utilisation of resources.",
     sunnyDay:
-      "One of my clients last year allocated and aligned all the correct resources to make sure their project was delivered in time before their scheduled code freeze. We scheduled the kick-off call on 12th November and they went live with their POC on 8th December as expected.  3 project highlights: \r\n1. There was a clear vision to go live before their code freeze on 15th December, driven by leadership and the business.\r\n2. The team had clear ownership and responsibilities defined for each workstream\r\n 3. The Programme Manager pushed the team and went above and beyond to make sure they integrated with Stripe before their code freeze in December.\r",
+      "One of my clients last year allocated and aligned all the correct resources to make sure their project was delivered in time before their scheduled code freeze. We scheduled the kick-off call on 12th November and they went live with their POC on 8th December as expected.  3 project highlights: \n1. There was a clear vision to go live before their code freeze on 15th December, driven by leadership and the business.\n2. The team had clear ownership and responsibilities defined for each workstream\n 3. The Programme Manager pushed the team and went above and beyond to make sure they integrated with Stripe before their code freeze in December.\n",
     rainyDay:
       "One of my clients an EU trading platform only allocated 1-2 developers to implement Stripe. They have been multi-processor for years, passing raw PANs and they were confident that they would be able to implement pay-ins or deposits just with very little resources allocated in less than a month. We started the kick-off in January, and they just released deposits for their Italian customers on 1st July (the project took 5 months longer than expected). \n3 major takeaways for this project:  \n1. Resource allocation could have definitely been improved since the beginning. e.g. Finance could have been involved earlier to complete KYC and bank account configuration or involving a partner for hands-on keyboard work. \n2. There wasn’t a clear vision for the go live. The project was not prioritised by the business, each month they had new conflicting priorities and the Stripe integration was deprioritised at least 3 times.  \n3. Lack of clear owners and responsibilities the Payments manager did not know well the back office/customer support team and what their needs were and how could this be implemented / automated within Stripe. \n",
     pathToGreen:
@@ -160,6 +180,16 @@ export const questions = [
       "Are roles and responsibilities clear to people in your organization across business and technology units?\n(including Center of Excellence)\n",
     title: "Roles & Responsibilities",
     workshopPhase: "People & Governance",
+    ratingDefinition:
+      "Red - No, we allocate resources as needed but is not clear.\nAmber - Overall, roles and responsibilities are clear but there are overlaps between teams and business units\nGreen - Yes, roles and responsibilities are clear.",
+    nestleOwner: "Vanessa / Massud",
+    why: "Defining responsibility, accountability and process mechanisms over a project it is key to ensure a successful delivery. ",
+    sunnyDay:
+      "Priorities and requirements for my user were clear since the beginning, we built an execution plan together and defined clear timelines where the owners, major risks, dependencies and priorities were highlighted for all team members to be accountable and work towards the same goal. ",
+    rainyDay:
+      "User was not clear on timelines to deliver the project, the communication between the business and the tech teams was not great either. It was difficult to know who was working on what or who should be responsible for requesting the data to be migrated into Stripe from their previous PSP to provide a quick example. ",
+    pathToGreen:
+      "Outcome: Provide an execution plan with clear milestones, timelines and ownership.\n\nHow:\na. Help users build RACI matrix (Responsible, Accountable, Consulted, Informed) and Organizational Chart \nb. Define priorities, dependencies, risks, timelines and ownership for each task within the execution plan. ",
   },
   {
     question:
@@ -186,6 +216,10 @@ export const questions = [
       "Red - We live under a rock and use waterfall only. What is agile? We do not have any resources trained on Agile (Change this defn) \nAmber - We use Agile but are not well trained on it and as a result always see our programs going over budget with scope creep and missing timelines. \nGreen - We mostly use Agile but are flexible in bringing in waterfall based on the type of program / project. We have a good set of core resources well trained in all aspects of Agile Delivery Methodology. ",
     nestleOwner: "Vanessa / Massud",
     why: "Program management ensures people and teams are focused and collaborating across departments who are working together to achieve a shared strategic vision.",
+    sunnyDay:
+      "One of my users a UK publishing company had a Program manager that had clear understanding of the requirements, key milestones and timelines of the project as well as responsibilities and ownership. The development team followed the Agile methodology to deploy their POC in December while the Program manager project managed all the different workstreams and initiatives impacted from a change management perspective allowing the POC to go live in less than a month resulting in a successful implementation.",
+    rainyDay:
+      "One of my users an e-commerce platform doesn't have a Project manager trained on Agile methodologies and doesn't understand fully the requirements and timelines needed to meet the overall goal of the business and the transformation project resulting in project delays. ",
     pathToGreen:
       "Outcome: Make our users Agile ready to take on large transformation program\n\nHow: \na. Assess user's maturity on s/w development methodologies and train the user to plan and execute using Agile delivery methodology.  \nb. Maturity can be assessed on the following factors : -\n* Communication & Cross Team Collaboration\n* Continous Integration & delivery\n* Training in methodologies & tools\n* Shared Services & Environment support ",
   },
@@ -197,6 +231,10 @@ export const questions = [
       "Red - We have multiple business units taking their own decisions which generally results in delay to kickstart important programs critical to organization's performance.\nAmber - Most of our decisions are taken by a governing body but no central authority to intervene during a deadlock.\nGreen - Centrally - We have a central steering committee / governing body that ultimately approves/rejects programs and takes all decisions. ",
     nestleOwner: "Vanessa / Massud",
     why: "Having a central steering committee / governing body makes the decision-making process more efficient and focused on the overall vision of the business. ",
+    sunnyDay:
+      "One of my users a UK platform that enables users to build e-commerce websites have a central steering committee within their leadership team that approves all the major initiatives and rollouts that allows them to move faster, reduce costs, make efficient decisions and meet business objectives. ",
+    rainyDay:
+      "At the beginning of the implementation with this user it wasn't clear which team was working on what, the Head of payments left the organisation 3 months after the programme started. The Project manager was also fairly new to the team and the vision was not clear to them, resulting in project delays. The outcome was for ProServ to work with the user on helping building an execution plan with clear action owners that helped them to unblock them and define ownership internally and provide all the guidance they needed to move forward.",
     pathToGreen:
       "Outcome: Setup a governing body / steering committee for faster decision making on the program\n\nHow: This offering is including but not limited to the following areas : -\n\na. Help users build RACI matrix (Responsible, Accountable, Consulted, Informed) and Organizational Chart \nb. Help users create Risk Management & Communication plans\nc. Setup data driven business prioritization processes to arrive at decisions faster (see Outcome: Build a common/consistent business prioritzation methodology to assess if teams are working on the most critical projects) ",
     commentsInsightsDerivedOutOfTheAnswersQuestions:
@@ -343,7 +381,7 @@ export const questions = [
     pathToGreen:
       "Outcome: Incorporate multi-PSP best practices\n\nHow: Support and guide on the best way to setup Stripe in a multi-processor fashion with helping on the following ares:\n - User Interface\n - Card storage\n - Payments Orchestration\n - Risk\n - Performance\n - Reporting and Monitoring\n\n",
     commentsInsightsDerivedOutOfTheAnswersQuestions:
-      "https://confluence.corp.stripe.com/display/GBL/Build+a+Multi-PSP+integration",
+      "confluence.corp.stripe.com/display/GBL/Build+a+Multi-PSP+integration",
   },
   {
     question: "Has the migration process been defined?\n",
@@ -369,6 +407,8 @@ export const questions = [
       "Red - No, we're not sure which processes will be impacted\nAmber - Yes, we've identified the processses and tools, but have not assessed how a Stripe integration may affect these\nGreen - Yes, these have been identified.  We have a plan of action for the tools and processes to be updated and have already identified the teams necessary to make this happen",
     nestleOwner: "Danny / Massud",
     why: "User should know that payments touch numerous parts of their businesss. These will need to have the operations in place to absorb the changes that using Stripe will bring",
+    pathToGreen:
+      "Outcome: Operations teams are seemlessly able to continue their jobs post integration\n\nHow: Understand what user operations will have touchpoints to Stripe and spin them up \n\na. Identify User's current operation\nb. Ensure that these teams are trained pre-Go Live and provide a plan on how to transition to Stripe\nc. Assist through Go-Live\n",
   },
   {
     question:
@@ -414,6 +454,8 @@ export const questions = [
       "Red - No, we have no plan for when things go wrong\nAmber - We have some processes in place however there's room for improvement\nGreen - Yes, we have a complete plan with DRIs and escalation paths should a disaster strike",
     nestleOwner: "Danny / Massud",
     why: "Things will eventually go wrong so User's need to have a plan in place to mitigate damage\nPeople will also eventually leave a company or go on vacation.  Business continuity plans are essential to make sure that there is not a single point of failure",
+    pathToGreen:
+      "Outcome: Establish a DR/BC plan\n\nHow: Collaborate with User to assign DRIs for should things go awry\na. Discuss previous disaster recovery examples and their current plans\nb. Validate plans and provide details of necessary Stripe Points of Contact \n\n",
   },
   {
     question:
@@ -426,5 +468,7 @@ export const questions = [
     why: "As a company grows with Stripe, it is essential to make sure that our User's customers needs are met.  User's need to have a plan to support their customers at scales for things like refunds, chargebacks, etc.",
     rainyDay:
       "FREE NOW has a complicated, multiprocessor set up.  They wanted to launch quickly, but are holding back some ramp as they work to incorporate refunds into their proprietary Customer Service tool (as opposed to manually going into the dashboard).  This was a trade off that they made",
+    pathToGreen:
+      "Outcome: Operations are ready to scale with Stripe\n\nHow: Collaboarte with Operations design processes that work for the long terms\n\na. Identify User's current operations\nb. Ensure that these teams are trained pre-Go Live and provide a plan on how to transition to Stripe\nc. Stripe helps to identify what can be automated/streamlined as the business grows\n",
   },
 ];
