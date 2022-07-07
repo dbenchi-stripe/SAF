@@ -20,11 +20,6 @@ export const Answers = () => {
     setNote(note);
   }, [answeredQuestions, currentQuestion]);
 
-  console.log({
-    questions,
-    answeredQuestions,
-  });
-
   return (
     <div className="answer-wrapper">
       <div className="answer-wrapper-text-area">
@@ -36,7 +31,6 @@ export const Answers = () => {
           cacheMeasurements
           value={note}
           onChange={(event) => {
-            console.log("onchange ", event.target.value);
             setNote(event.target.value);
           }}
         />

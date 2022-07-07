@@ -19,6 +19,7 @@ import { handleDownloadCsv } from "./utils/handleDownloadCsv";
 import { handleDownloadDiv } from "./utils/handleDownloadDiv";
 
 import "./Results.css";
+import { SAFRadar } from "./SAFRadar/SAFRadar";
 
 /*
  * the recharts-to-png is internally based on html2canavas
@@ -28,7 +29,6 @@ const html2CanavsConfiguration = { scale: 5 };
 
 export const Results = () => {
   const {
-    initialCapacities,
     capacities,
     answeredQuestions,
     questions,
@@ -103,46 +103,22 @@ export const Results = () => {
     <div>
       <div className="result-container">
         <div className="parent">
-          <ResponsiveContainer className="div1">
-            <RadarChart ref={ref_total} data={capacities}>
-              <PolarGrid />
-              <PolarAngleAxis dataKey="subject" />
-              <PolarRadiusAxis
-                angle={90 - 360 / initialCapacities.length}
-                domain={[0, 100]}
-              />
-              <Radar
-                dataKey="score"
-                stroke="#5469D4"
-                fill="#8884d8"
-                fillOpacity={0.6}
-                name="Overall view"
-              />
-              <Tooltip />
-              <Legend />
-            </RadarChart>
-          </ResponsiveContainer>
-
+          <SAFRadar
+            ref={ref_total}
+            data={capacities}
+            dataKey="subject"
+            name="Overall view"
+            className="div1"
+          />
           {capacities.map((capacity, index) => (
-            <ResponsiveContainer className={"div" + (index + 2)} key={index}>
-              <RadarChart ref={refs[index]} data={capacity.title}>
-                <PolarGrid />
-                <PolarAngleAxis dataKey="subject" />
-                <PolarRadiusAxis
-                  angle={90 - 360 / capacity.title?.length}
-                  domain={[0, 100]}
-                />
-                <Radar
-                  dataKey="score"
-                  stroke="#5469D4"
-                  fill="#8884d8"
-                  fillOpacity={0.6}
-                  name={capacity.subject}
-                />
-                <Tooltip />
-                <Legend />
-              </RadarChart>
-            </ResponsiveContainer>
+            <SAFRadar
+              key={index}
+              ref={refs[index]}
+              data={capacity.title}
+              dataKey="subject"
+              name={capacity.subject}
+              className={"div" + (index + 2)}
+            />
           ))}
         </div>
         {!done && <SAFArchitecture />}
