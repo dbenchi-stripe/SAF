@@ -1,14 +1,4 @@
 import React, { useContext, useCallback, useMemo } from "react";
-import {
-  Radar,
-  RadarChart,
-  PolarGrid,
-  PolarAngleAxis,
-  PolarRadiusAxis,
-  ResponsiveContainer,
-  Tooltip,
-  Legend,
-} from "recharts";
 import { useCurrentPng } from "recharts-to-png";
 import FileSaver from "file-saver";
 import { CapabilityAssessmentContext } from "../CapabilityAssessment";
