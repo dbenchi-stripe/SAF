@@ -11,24 +11,20 @@ import {
 } from "recharts";
 import { useCurrentPng } from "recharts-to-png";
 import FileSaver from "file-saver";
-import html2canvas from "html2canvas";
-import { parse } from "json2csv";
-import { HotTable } from "@handsontable/react";
-import { registerAllModules } from "handsontable/registry";
-import _ from "lodash";
-import "handsontable/dist/handsontable.full.css";
 import { CapabilityAssessmentContext } from "../CapabilityAssessment";
 import { SAFArchitecture } from "../SAFArchitecture/SAFArchitecture";
-import "./Results.css";
 import { SAFArchitectureResults } from "../SAFArchitectureResults/SAFArchitectureResults";
+import { AllAnswersTable } from "./AllAnswersTable/AllAnswersTable";
+import { handleDownloadCsv } from "./utils/handleDownloadCsv";
+import { handleDownloadDiv } from "./utils/handleDownloadDiv";
+
+import "./Results.css";
 
 /*
  * the recharts-to-png is internally based on html2canavas
  * all html2canavas configuration is supported: https://html2canvas.hertzen.com/configuration
  */
 const html2CanavsConfiguration = { scale: 5 };
-
-registerAllModules();
 
 export const Results = () => {
   const {
@@ -39,6 +35,7 @@ export const Results = () => {
     done,
     printSAFArchitectureResultsRef,
   } = useContext(CapabilityAssessmentContext);
+
   const [getTotalAreaPng, { ref: ref_total }] = useCurrentPng(
     html2CanavsConfiguration
   );
@@ -77,7 +74,7 @@ export const Results = () => {
     ]
   );
 
-  const allResults = questions.map((question, index) => {
+  const allAnswers = questions.map((question, index) => {
     if (answeredQuestions[index]) {
       return {
         ...question,
@@ -90,54 +87,9 @@ export const Results = () => {
     return question;
   });
 
-  const columns = Object.keys(allResults[0]).map((key) => _.startCase(key));
-
   const handleAreaDownload = useCallback(async () => {
-    const handleDownloadImage = async () => {
-      const element = printSAFArchitectureResultsRef.current;
-      const canvas = await html2canvas(element, html2CanavsConfiguration);
-
-      const data = canvas.toDataURL("image/png");
-      const link = document.createElement("a");
-
-      if (typeof link.download === "string") {
-        link.href = data;
-        link.download = "saf-stripes.png";
-
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      } else {
-        window.open(data);
-      }
-    };
-
-    const handleDownloadCsv = async () => {
-      const link = document.createElement("a");
-      const csv = parse(allResults, {
-        quote: "",
-        delimiter: "\t",
-        eol: "\r\n",
-        transforms: (item) => {
-          return Object.entries(item).reduce((result, [key, value]) => {
-            return {
-              ...result,
-              [key]: String(value).replaceAll?.("\n", "\\n"),
-            };
-          }, {});
-        },
-      });
-
-      link.href = "data:text/csv;charset=utf-8," + encodeURI(csv);
-      link.target = "_blank";
-      link.download = "saf-csv.csv";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    };
-
-    handleDownloadImage();
-    handleDownloadCsv();
+    handleDownloadDiv(printSAFArchitectureResultsRef, html2CanavsConfiguration);
+    handleDownloadCsv(allAnswers);
 
     for await (const { getPng, title } of getPngs) {
       let png = await getPng();
@@ -145,7 +97,7 @@ export const Results = () => {
         FileSaver.saveAs(png, title);
       }
     }
-  }, [getPngs, printSAFArchitectureResultsRef, allResults]);
+  }, [getPngs, printSAFArchitectureResultsRef, allAnswers]);
 
   return (
     <div>
@@ -198,23 +150,11 @@ export const Results = () => {
       {done && (
         <>
           <SAFArchitectureResults />
-          <HotTable
-            data={allResults}
-            colHeaders={columns}
-            rowHeaders={true}
-            width="100%"
-            height="40vh"
-            readOnly
-            manualColumnResize
-            colWidths={200}
-            licenseKey="non-commercial-and-evaluation"
-          />
+          <AllAnswersTable allAnswers={allAnswers} />
+          <div className="button-container">
+            <button onClick={() => handleAreaDownload()}>Download All</button>
+          </div>
         </>
-      )}
-      {done && (
-        <div className="button-container">
-          <button onClick={() => handleAreaDownload()}>Download All</button>
-        </div>
       )}
     </div>
   );
