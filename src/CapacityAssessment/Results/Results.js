@@ -13,6 +13,10 @@ import { useCurrentPng } from "recharts-to-png";
 import FileSaver from "file-saver";
 import html2canvas from "html2canvas";
 import { parse } from "json2csv";
+import { HotTable } from "@handsontable/react";
+import { registerAllModules } from "handsontable/registry";
+import _ from "lodash";
+import "handsontable/dist/handsontable.full.css";
 import { CapabilityAssessmentContext } from "../CapabilityAssessment";
 import { SAFArchitecture } from "../SAFArchitecture/SAFArchitecture";
 import "./Results.css";
@@ -23,6 +27,8 @@ import { SAFArchitectureResults } from "../SAFArchitectureResults/SAFArchitectur
  * all html2canavas configuration is supported: https://html2canvas.hertzen.com/configuration
  */
 const html2CanavsConfiguration = { scale: 5 };
+
+registerAllModules();
 
 export const Results = () => {
   const {
@@ -83,6 +89,8 @@ export const Results = () => {
 
     return question;
   });
+
+  const columns = Object.keys(allResults[0]).map((key) => _.startCase(key));
 
   const handleAreaDownload = useCallback(async () => {
     const handleDownloadImage = async () => {
@@ -187,7 +195,22 @@ export const Results = () => {
         </div>
         {!done && <SAFArchitecture />}
       </div>
-      {done && <SAFArchitectureResults />}
+      {done && (
+        <>
+          <SAFArchitectureResults />
+          <HotTable
+            data={allResults}
+            colHeaders={columns}
+            rowHeaders={true}
+            width="100%"
+            height="40vh"
+            readOnly
+            manualColumnResize
+            colWidths={200}
+            licenseKey="non-commercial-and-evaluation"
+          />
+        </>
+      )}
       {done && (
         <div className="button-container">
           <button onClick={() => handleAreaDownload()}>Download All</button>
