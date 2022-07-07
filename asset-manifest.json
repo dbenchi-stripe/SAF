@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/SAF/static/css/main.34fb4a2b.css",
-    "main.js": "/SAF/static/js/main.fe500444.js",
+    "main.css": "/SAF/static/css/main.5a06c6ec.css",
+    "main.js": "/SAF/static/js/main.ba904e5c.js",
     "static/js/787.075e446f.chunk.js": "/SAF/static/js/787.075e446f.chunk.js",
     "static/media/SAFArchitecture.svg": "/SAF/static/media/SAFArchitecture.35882e9e3bed3133593abe3b94377385.svg",
     "index.html": "/SAF/index.html",
     "static/media/icon-check.svg": "/SAF/static/media/icon-check.12ef56dba3e58d61a792.svg",
-    "main.34fb4a2b.css.map": "/SAF/static/css/main.34fb4a2b.css.map",
-    "main.fe500444.js.map": "/SAF/static/js/main.fe500444.js.map",
+    "main.5a06c6ec.css.map": "/SAF/static/css/main.5a06c6ec.css.map",
+    "main.ba904e5c.js.map": "/SAF/static/js/main.ba904e5c.js.map",
     "787.075e446f.chunk.js.map": "/SAF/static/js/787.075e446f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.34fb4a2b.css",
-    "static/js/main.fe500444.js"
+    "static/css/main.5a06c6ec.css",
+    "static/js/main.ba904e5c.js"
   ]
 }
