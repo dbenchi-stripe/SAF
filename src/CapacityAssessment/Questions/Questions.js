@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { CapabilityAssessmentContext } from "../CapabilityAssessment";
 import { Answers } from "../Answers/Answers";
+import { AllAnswersTable } from "../Results/AllAnswersTable/AllAnswersTable";
 import "./Questions.css";
 
 export const Questions = (
@@ -18,22 +19,19 @@ export const Questions = (
             <span>{questions.length}</span>
           </div>
           <h2 className="question">{questions[currentQuestion].question}</h2>
-          {showMoreInformation && (
-            <h3 className="question-text">
-              {questions[currentQuestion].ratingDefinition}
-            </h3>
-          )}
-          {showMoreInformation && questions[currentQuestion].pathToGreen && (
-            <div className="path-to-green-container">
-              <h3 className="path-to-green">
-                {questions[currentQuestion].pathToGreen}
-              </h3>
-            </div>
-          )}
         </div>
 
         <Answers />
       </div>
+      {showMoreInformation && (
+        <div className="question-table">
+          <AllAnswersTable
+            height="auto"
+            rowHeaders={currentQuestion + 1}
+            allAnswers={[questions[currentQuestion]]}
+          />
+        </div>
+      )}
     </div>
   );
 };

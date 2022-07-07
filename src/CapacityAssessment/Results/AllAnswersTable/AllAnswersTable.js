@@ -6,19 +6,24 @@ import "handsontable/dist/handsontable.full.css";
 
 registerAllModules();
 
-export const AllAnswersTable = ({ allAnswers }) => {
+export const AllAnswersTable = ({ allAnswers, height, rowHeaders }) => {
   const columns = Object.keys(allAnswers[0]).map((key) => _.startCase(key));
 
   return (
     <HotTable
       data={allAnswers}
       colHeaders={columns}
-      rowHeaders={true}
-      width="100%"
-      height="40vh"
+      rowHeaders={rowHeaders || true}
+      // width="100vw"
+      colWidths={"150"}
+      height={height || "50vh"}
       readOnly
       manualColumnResize
-      colWidths={200}
+      autoColumnSize
+      autoRowSize
+      autoWrapRow
+      autoWrapCol
+      // stretchH="all"
       licenseKey="non-commercial-and-evaluation"
     />
   );

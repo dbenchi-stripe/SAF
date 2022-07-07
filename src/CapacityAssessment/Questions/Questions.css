@@ -17,6 +17,10 @@
     margin: 20px;
 }
 
+.question-table{
+    padding-top: 10px;
+}
+
 .path-to-green-container {
     display: flex;
     justify-content: center;
