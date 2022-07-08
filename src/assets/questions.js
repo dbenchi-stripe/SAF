@@ -407,6 +407,10 @@ export const questions = [
       "Red - No, we're not sure which processes will be impacted\nAmber - Yes, we've identified the processses and tools, but have not assessed how a Stripe integration may affect these\nGreen - Yes, these have been identified.  We have a plan of action for the tools and processes to be updated and have already identified the teams necessary to make this happen",
     nestleOwner: "Danny / Massud",
     why: "User should know that payments touch numerous parts of their businesss. These will need to have the operations in place to absorb the changes that using Stripe will bring",
+    sunnyDay:
+      "Davy had a clear plan that once they implemented Stripe for pay-ins, they wanted to have friction before releasing funds for their team to do reconciliaton.  This led to them to develop a tool in parallel so that once they were live with Stripe, they're affected teams knew how to keep their processes going",
+    rainyDay:
+      "FREE NOW has a complicated, multiprocessor set up.  They wanted to launch quickly, but are holding back some ramp as they work to incorporate refunds into their proprietary Customer Service tool (as opposed to manually going into the dashboard).  This was a trade off that they made",
     pathToGreen:
       "Outcome: Operations teams are seemlessly able to continue their jobs post integration\n\nHow: Understand what user operations will have touchpoints to Stripe and spin them up \n\na. Identify User's current operation\nb. Ensure that these teams are trained pre-Go Live and provide a plan on how to transition to Stripe\nc. Assist through Go-Live\n",
   },
@@ -420,7 +424,7 @@ export const questions = [
     nestleOwner: "Danny / Massud",
     why: "Payments will be your inputs for financial teams.  It is essential that users understand how to ingest Stripe data for these purposes",
     sunnyDay:
-      "Davy had a clear plan that once they implemented Stripe for pay-ins, they wanted to have friction before releasing funds for their team to do reconciliaton.  This led to them to develop a tool in parallel so that once they were live with Stripe, they're affected teams knew how to keep their processes going",
+      "Davy knew that they had regulations that they needed to be accountable for for financial reporting and KYC.  We had mutliple meetings with their finance teams to ensure that their integration was able to flow into their currnet tooling.  ",
     rainyDay:
       "Mivo integrated Stripe with a Connector (Mirakl).  There was a workshop on financial reconciliation during integration. However not all in the finance team were comfortable with this (we found out after the fact), and needed to run additional workshops post Go-Live to enable them further",
     pathToGreen:
@@ -435,6 +439,12 @@ export const questions = [
       "Red - No, we're haven't thought about this yet\nAmber - We know some systems will be affected, but don't know the scope or have an action plan\nGreen - Yes, the IT impacts have been mapped out and we have a team responsible for implementing the changes",
     nestleOwner: "Danny / Massud",
     why: "IT will need to be able to understand and be compatible with Stripe's instances, so that they can grow",
+    sunnyDay:
+      "Moonactive is a gaming site that experiences high amounts of fraud (friendly fraud, credit card fraud).  They are leveraging Radar and had to merge their external fraud detection system (which takes feedback from their live data) and makes sure that it is in sync with Radar. Technical processes had to be defined for how to input new rules into Radar based upon their analysis",
+    rainyDay:
+      "Viessmann, a manufacturing company, began processing on Stripe without IT Service Management system processes in place.  They started this without any thought of which payment methods would be able to interact with their SAP integration.  This led to confusion as to what was possible in the future with Stripe",
+    pathToGreen:
+      "Outcome: IT team understand that they will need to support from a Stripe integration\n\nHow: Enable users with training for IT teams on how Stripe will affect their system\n\na. Identify how User's current IT service management\nb. Ensure that these teams are trained pre-Go Live on how to support Stripe from an IT standpoint\nc. Assist through Go-Live and have DRIs that know how to escalate issues\n",
   },
   {
     question:
@@ -445,6 +455,12 @@ export const questions = [
       "Red - No, we're haven't thought about this yet\nAmber - We've thought about which areas to improve but have not documented this\nGreen - Yes, we've documented and identified what we want to improve and have a plan of action for this",
     nestleOwner: "Danny / Massud",
     why: "Users should always be thinking about the next step.  If they have places they know where they would like to improve, we can help them reach those goals",
+    sunnyDay:
+      "FREE NOW is a multiprocessor but currently do all of their vaulting in one PSP.  As this is operationally dangerous (if that one PSP goes down, they cannot process new users), they are already thinking about how to vault as well with Stripe to have no single point of failure",
+    rainyDay:
+      "One of my users a trading platform is currently multi-PSP. Their backoffice team have to log into each PSP portal to deal with support requests such as disputes. In the long term, the goal is for them to develop their own in-house tool/dashboard that will allow the back-office team to deal with all disputes and issues from the same centralised place and this can be automated easily using Stripe APIs.",
+    pathToGreen:
+      "Outcome: Operations teams are realizes that there is future work to be done to get better\n\nHow: Help user think one step beyond their current integration and focus on long term success\n\na. Push user to think deeper about their systems\nb. Identify and expand upon cases for improvement\nc. Assist to operationalize improvements within the context of Stripe\n",
   },
   {
     question: "Is there a disaster recovery / business continuity plan?\n",
@@ -454,6 +470,10 @@ export const questions = [
       "Red - No, we have no plan for when things go wrong\nAmber - We have some processes in place however there's room for improvement\nGreen - Yes, we have a complete plan with DRIs and escalation paths should a disaster strike",
     nestleOwner: "Danny / Massud",
     why: "Things will eventually go wrong so User's need to have a plan in place to mitigate damage\nPeople will also eventually leave a company or go on vacation.  Business continuity plans are essential to make sure that there is not a single point of failure",
+    sunnyDay:
+      "Slack goes down? What does Stripe do internally: notify team, move to email/Gchat, and keep teams alert of any updates",
+    rainyDay:
+      "Cloudflare goes down two weeks ago.  Think about the twitter trolls and the loss of business for clients.  ",
     pathToGreen:
       "Outcome: Establish a DR/BC plan\n\nHow: Collaborate with User to assign DRIs for should things go awry\na. Discuss previous disaster recovery examples and their current plans\nb. Validate plans and provide details of necessary Stripe Points of Contact \n\n",
   },
@@ -466,6 +486,8 @@ export const questions = [
       "Red - No. Operations are strapped for resources OR we are not sure what scaling would look like\nAmber - We have a team in place but are not sure they can scale\nGreen - Yes, we understand how our operations team will need to scale and we have a plan on what this will look like over the next X months/years",
     nestleOwner: "Danny / Massud",
     why: "As a company grows with Stripe, it is essential to make sure that our User's customers needs are met.  User's need to have a plan to support their customers at scales for things like refunds, chargebacks, etc.",
+    sunnyDay:
+      "Solarisbank had a team in place for customer service questions once live.  Our ProServe team met with them and it was a collaborative effort where they could give feedback to their Engineers about their needs for operationalizing the Stripe dashboard with their internal tools",
     rainyDay:
       "FREE NOW has a complicated, multiprocessor set up.  They wanted to launch quickly, but are holding back some ramp as they work to incorporate refunds into their proprietary Customer Service tool (as opposed to manually going into the dashboard).  This was a trade off that they made",
     pathToGreen:
