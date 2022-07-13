@@ -81,26 +81,31 @@ function CapabilityAssessment() {
   const [storage, setStorage, { removeItem, isPersistent }] =
     useLocalStorageState("saf");
 
+  const getNumberOfAlreadyAnsweredQuestions = () =>
+    parseInt(Object.keys(storage)[Object.keys(storage).length - 1]);
+
   if (!_.isEmpty(storage) && _.isEmpty(answeredQuestions)) {
     confirmAlert({
       customUI: ({ onClose }) => {
         return (
-          <div className="custom-ui">
-            <h1 style={{ textAlign: "center" }}>Pick up where we left off?</h1>
+          <div className="alert-confirmation">
+            <h1 style={{ textAlign: "center" }}>
+              Pick up where we left off? &#128517;
+            </h1>
+            <p>
+              You have already answered{" "}
+              {getNumberOfAlreadyAnsweredQuestions() + 1} questions.
+            </p>
             <p>Do you want to move forward with the latest evaluation?</p>
             <button
               onClick={() => {
                 setAnsweredQuestions(storage);
-                setCurrentQuestion(
-                  parseInt(
-                    Object.keys(storage)[Object.keys(storage).length - 1]
-                  )
-                );
+                setCurrentQuestion(getNumberOfAlreadyAnsweredQuestions());
                 setRecoveredFromLocalStage(true);
                 onClose();
               }}
             >
-              Yes, let us continue
+              &#10004; Yes, let us continue
             </button>
             <button
               style={{ backgroundColor: "red" }}
@@ -109,7 +114,7 @@ function CapabilityAssessment() {
                 onClose();
               }}
             >
-              No, delete it
+              &#10006; No, delete it
             </button>
           </div>
         );
