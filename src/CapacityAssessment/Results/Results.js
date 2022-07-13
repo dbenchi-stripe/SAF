@@ -24,6 +24,7 @@ export const Results = () => {
     questions,
     done,
     printSAFArchitectureResultsRef,
+    removeItem,
   } = useContext(CapabilityAssessmentContext);
 
   const [getTotalAreaPng, { ref: ref_total }] = useCurrentPng(
@@ -87,7 +88,8 @@ export const Results = () => {
         FileSaver.saveAs(png, title);
       }
     }
-  }, [getPngs, printSAFArchitectureResultsRef, allAnswers]);
+    removeItem("saf");
+  }, [getPngs, printSAFArchitectureResultsRef, allAnswers, removeItem]);
 
   return (
     <div>

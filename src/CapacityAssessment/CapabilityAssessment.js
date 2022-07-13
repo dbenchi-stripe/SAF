@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect, useCallback } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import _ from "lodash";
 import { confirmAlert } from "react-confirm-alert";
@@ -23,6 +23,7 @@ export const CapabilityAssessmentContext = createContext({
   capacities: null,
   answeredQuestions: null,
   printSAFArchitectureResultsRef: null,
+  removeItem: null,
 });
 
 const getCapacitiesTitles = (workshopPhase) => {
@@ -73,11 +74,13 @@ function CapabilityAssessment() {
   const [showResults, setShowResults] = useState(true);
   const [done, setDone] = useState(false);
   const [showMoreInformation, setShowMoreInformation] = useState(false);
+  const [recoveredFromLocalStage, setRecoveredFromLocalStage] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answeredQuestions, setAnsweredQuestions] = useState({});
   const printSAFArchitectureResultsRef = React.useRef();
   const [storage, setStorage, { removeItem, isPersistent }] =
     useLocalStorageState("saf");
+
   if (!_.isEmpty(storage) && _.isEmpty(answeredQuestions)) {
     confirmAlert({
       title: "Pick up where we left off?",
@@ -85,12 +88,12 @@ function CapabilityAssessment() {
       buttons: [
         {
           label: "Yes",
-          onClick: () => {
+          onClick: async () => {
             setAnsweredQuestions(storage);
             setCurrentQuestion(
-              parseInt(Object.keys(storage)[Object.keys(storage).length - 1]) +
-                1
+              parseInt(Object.keys(storage)[Object.keys(storage).length - 1])
             );
+            setRecoveredFromLocalStage(true);
           },
         },
         {
@@ -149,18 +152,28 @@ function CapabilityAssessment() {
     return newCapacities;
   };
 
-  const hasNextQuestion = () => currentQuestion + 1 < questions.length;
+  const hasNextQuestion = useCallback(
+    () => currentQuestion + 1 < questions.length,
+    [currentQuestion]
+  );
+
   const hasPreviousQuestion = () => currentQuestion >= 1;
 
-  const nextQuestion = () => {
+  const nextQuestion = useCallback(() => {
     if (hasNextQuestion()) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       setShowResults(true);
-      removeItem("saf");
       setDone(true);
     }
-  };
+  }, [currentQuestion, hasNextQuestion]);
+
+  useEffect(() => {
+    if (recoveredFromLocalStage) {
+      nextQuestion();
+      setRecoveredFromLocalStage(false);
+    }
+  }, [recoveredFromLocalStage, nextQuestion]);
 
   const previousQuestion = () => {
     if (hasPreviousQuestion()) {
@@ -218,6 +231,7 @@ function CapabilityAssessment() {
         capacities: getCapacities(),
         answeredQuestions,
         printSAFArchitectureResultsRef,
+        removeItem,
       }}
     >
       <div className="container">
