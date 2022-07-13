@@ -1,6 +1,6 @@
 {
   "name": "saf",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "homepage": "https://dbenchi-stripe.github.io/SAF/",
   "private": true,
   "dependencies": {

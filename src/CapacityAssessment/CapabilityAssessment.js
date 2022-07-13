@@ -83,26 +83,37 @@ function CapabilityAssessment() {
 
   if (!_.isEmpty(storage) && _.isEmpty(answeredQuestions)) {
     confirmAlert({
-      title: "Pick up where we left off?",
-      message: "Do you want to move forward with the latest evaluation?",
-      buttons: [
-        {
-          label: "Yes",
-          onClick: async () => {
-            setAnsweredQuestions(storage);
-            setCurrentQuestion(
-              parseInt(Object.keys(storage)[Object.keys(storage).length - 1])
-            );
-            setRecoveredFromLocalStage(true);
-          },
-        },
-        {
-          label: "No, delete it",
-          onClick: () => {
-            removeItem("saf");
-          },
-        },
-      ],
+      customUI: ({ onClose }) => {
+        return (
+          <div className="custom-ui">
+            <h1 style={{ textAlign: "center" }}>Pick up where we left off?</h1>
+            <p>Do you want to move forward with the latest evaluation?</p>
+            <button
+              onClick={() => {
+                setAnsweredQuestions(storage);
+                setCurrentQuestion(
+                  parseInt(
+                    Object.keys(storage)[Object.keys(storage).length - 1]
+                  )
+                );
+                setRecoveredFromLocalStage(true);
+                onClose();
+              }}
+            >
+              Yes, let us continue
+            </button>
+            <button
+              style={{ backgroundColor: "red" }}
+              onClick={() => {
+                removeItem("saf");
+                onClose();
+              }}
+            >
+              No, delete it
+            </button>
+          </div>
+        );
+      },
     });
   }
 
