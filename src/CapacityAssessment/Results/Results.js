@@ -98,7 +98,7 @@ export const Results = () => {
           <SAFRadar
             ref={ref_total}
             data={capacities}
-            dataKey="subject"
+            dataKey="workshopPhase"
             name="Overall view"
             className="div1"
           />
@@ -106,9 +106,9 @@ export const Results = () => {
             <SAFRadar
               key={index}
               ref={refs[index]}
-              data={capacity.title}
-              dataKey="subject"
-              name={capacity.subject}
+              data={capacity.titles}
+              dataKey="workshopPhase"
+              name={capacity.workshopPhase}
               className={"div" + (index + 2)}
             />
           ))}

@@ -36,37 +36,37 @@ const getCapacitiesTitles = (workshopPhase) => {
     })
     .map((question) => {
       return {
-        subject: question.title,
-        score: 0,
+        workshopPhase: question.title,
+        value: 0,
       };
     });
 };
 
 const initialCapacities = [
   {
-    subject: WorkshopPhases["business"],
+    workshopPhase: WorkshopPhases["business"],
     titles: getCapacitiesTitles(WorkshopPhases["business"]),
-    score: 0,
+    value: 0,
   },
   {
-    subject: WorkshopPhases["people"],
+    workshopPhase: WorkshopPhases["people"],
     titles: getCapacitiesTitles(WorkshopPhases["people"]),
-    score: 0,
+    value: 0,
   },
   {
-    subject: WorkshopPhases["risk"],
+    workshopPhase: WorkshopPhases["risk"],
     titles: getCapacitiesTitles(WorkshopPhases["risk"]),
-    score: 0,
+    value: 0,
   },
   {
-    subject: WorkshopPhases["tech"],
+    workshopPhase: WorkshopPhases["tech"],
     titles: getCapacitiesTitles(WorkshopPhases["tech"]),
-    score: 0,
+    value: 0,
   },
   {
-    subject: WorkshopPhases["operation"],
+    workshopPhase: WorkshopPhases["operation"],
     titles: getCapacitiesTitles(WorkshopPhases["operation"]),
-    score: 0,
+    value: 0,
   },
 ];
 
@@ -135,7 +135,7 @@ function CapabilityAssessment() {
             ...(result[workshopPhase + "_titles"]
               ? result[workshopPhase + "_titles"]
               : []),
-            { subject: title, score: value },
+            { workshopPhase: title, value },
           ],
         };
       },
@@ -147,20 +147,21 @@ function CapabilityAssessment() {
         return (
           newComputedTitles?.find(
             (newComputedTitlesObject) =>
-              newComputedTitlesObject.subject === originalTitlesObject.subject
+              newComputedTitlesObject.workshopPhase ===
+              originalTitlesObject.workshopPhase
           ) || originalTitlesObject
         );
       });
     };
 
     const newCapacities = initialCapacities.map(
-      ({ subject, score, titles }) => {
+      ({ workshopPhase, value, titles }) => {
         return {
-          subject,
-          score: newResult[subject]?.length
-            ? average(newResult[subject])
-            : score,
-          title: getTitles(titles, newResult[subject + "_titles"]),
+          workshopPhase,
+          value: newResult[workshopPhase]?.length
+            ? average(newResult[workshopPhase])
+            : value,
+          titles: getTitles(titles, newResult[workshopPhase + "_titles"]),
         };
       }
     );
@@ -234,6 +235,8 @@ function CapabilityAssessment() {
   const toggleShowMoreInformation = () => {
     setShowMoreInformation((showMoreInformation) => !showMoreInformation);
   };
+
+  console.log(answeredQuestions, getCapacities());
 
   return (
     <CapabilityAssessmentContext.Provider

@@ -19,7 +19,7 @@ export const SAFRadar = forwardRef(
           <PolarAngleAxis dataKey={dataKey} />
           <PolarRadiusAxis angle={90 - 360 / data?.length} domain={[0, 100]} />
           <Radar
-            dataKey="score"
+            dataKey="value"
             stroke="#5469D4"
             fill="#8884d8"
             fillOpacity={0.6}
