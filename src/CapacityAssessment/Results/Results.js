@@ -25,6 +25,7 @@ export const Results = () => {
     done,
     printSAFArchitectureResultsRef,
     removeItem,
+    allowGlobalResults,
   } = useContext(CapabilityAssessmentContext);
 
   const [getTotalAreaPng, { ref: ref_total }] = useCurrentPng(
@@ -71,6 +72,8 @@ export const Results = () => {
         ...question,
         answerText: answeredQuestions[index].text,
         answerValue: answeredQuestions[index].value,
+        answerTextGlobal: answeredQuestions[index].text_global,
+        answerValueGlobal: answeredQuestions[index].value_global,
         note: answeredQuestions[index].note,
       };
     }
@@ -101,6 +104,7 @@ export const Results = () => {
             dataKey="workshopPhase"
             name="Overall view"
             className="div1"
+            allowGlobalResults={allowGlobalResults}
           />
           {capacities.map((capacity, index) => (
             <SAFRadar
@@ -110,6 +114,7 @@ export const Results = () => {
               dataKey="workshopPhase"
               name={capacity.workshopPhase}
               className={"div" + (index + 2)}
+              allowGlobalResults={allowGlobalResults}
             />
           ))}
         </div>

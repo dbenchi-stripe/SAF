@@ -1,7 +1,7 @@
 {
   "name": "saf",
   "version": "1.0.2",
-  "homepage": "https://dbenchi-stripe.github.io/SAF/",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@handsontable/react": "^12.1.1",

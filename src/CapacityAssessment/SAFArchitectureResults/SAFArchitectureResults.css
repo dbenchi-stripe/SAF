@@ -48,3 +48,9 @@
     border-color: red;
 }
 
+.inner-capacity-name.gray {
+    color: rgb(129, 127, 127);
+    text-decoration:line-through;
+    border-color: gray;
+}
+

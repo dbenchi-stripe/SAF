@@ -12,6 +12,10 @@ export const SAFArchitectureResults = ({ className }) => {
     `saf-item inner-item-content active ${className}`;
 
   const getClassColor = (value) => {
+    if (!value) {
+      return "gray";
+    }
+
     if (value < 30) {
       return "red";
     }
@@ -31,7 +35,7 @@ export const SAFArchitectureResults = ({ className }) => {
       <div className={getClassNames(workshopPhase)}>
         {capacities.map((capacity, index) => {
           if (capacity.workshopPhase === WorkshopPhases[workshopPhase]) {
-            return capacity.title.map((title) => (
+            return capacity.titles.map((title) => (
               <div
                 key={`SAFArchitectureResultsItem_${title.workshopPhase}_${index}`}
                 className={`${getClassColor(title.value)} inner-capacity-name`}
@@ -52,11 +56,11 @@ export const SAFArchitectureResults = ({ className }) => {
       ref={printSAFArchitectureResultsRef}
       className={`${className ? className : ""} saf`}
     >
-      <SAFArchitectureResultsItem workshoPhase="business" />
-      <SAFArchitectureResultsItem workshoPhase="people" />
-      <SAFArchitectureResultsItem workshoPhase="tech" />
-      <SAFArchitectureResultsItem workshoPhase="risk" />
-      <SAFArchitectureResultsItem workshoPhase="operation" />
+      <SAFArchitectureResultsItem workshopPhase="business" />
+      <SAFArchitectureResultsItem workshopPhase="people" />
+      <SAFArchitectureResultsItem workshopPhase="tech" />
+      <SAFArchitectureResultsItem workshopPhase="risk" />
+      <SAFArchitectureResultsItem workshopPhase="operation" />
     </div>
   );
 };

@@ -6,7 +6,7 @@ import { confirmAlert } from "react-confirm-alert";
 import { questions } from "../assets/questions";
 import { WorkshopPhases } from "../assets/WorkshopPhases";
 import { answers } from "../assets/answers";
-import { average } from "./utils";
+import { average, isDevMode } from "./utils";
 import { Questions } from "./Questions/Questions";
 import { Results } from "./Results/Results";
 
@@ -24,6 +24,7 @@ export const CapabilityAssessmentContext = createContext({
   answeredQuestions: null,
   printSAFArchitectureResultsRef: null,
   removeItem: null,
+  allowGlobalResults: false,
 });
 
 const getCapacitiesTitles = (workshopPhase) => {
@@ -47,26 +48,31 @@ const initialCapacities = [
     workshopPhase: WorkshopPhases["business"],
     titles: getCapacitiesTitles(WorkshopPhases["business"]),
     value: 0,
+    value_global: 0,
   },
   {
     workshopPhase: WorkshopPhases["people"],
     titles: getCapacitiesTitles(WorkshopPhases["people"]),
     value: 0,
+    value_global: 0,
   },
   {
     workshopPhase: WorkshopPhases["risk"],
     titles: getCapacitiesTitles(WorkshopPhases["risk"]),
     value: 0,
+    value_global: 0,
   },
   {
     workshopPhase: WorkshopPhases["tech"],
     titles: getCapacitiesTitles(WorkshopPhases["tech"]),
     value: 0,
+    value_global: 0,
   },
   {
     workshopPhase: WorkshopPhases["operation"],
     titles: getCapacitiesTitles(WorkshopPhases["operation"]),
     value: 0,
+    value_global: 0,
   },
 ];
 
@@ -74,6 +80,7 @@ function CapabilityAssessment() {
   const [showResults, setShowResults] = useState(true);
   const [done, setDone] = useState(false);
   const [showMoreInformation, setShowMoreInformation] = useState(false);
+  const [allowGlobalResults, setAllowGlobalResults] = useState(true);
   const [recoveredFromLocalStage, setRecoveredFromLocalStage] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answeredQuestions, setAnsweredQuestions] = useState({});
@@ -124,18 +131,18 @@ function CapabilityAssessment() {
 
   const getCapacities = () => {
     const newResult = Object.values(answeredQuestions)?.reduce(
-      (result, { workshopPhase, title, value }) => {
+      (result, { workshopPhase, title, value, value_global }) => {
         return {
           ...result,
           [workshopPhase]: [
             ...(result[workshopPhase] ? result[workshopPhase] : []),
-            value,
+            { value, value_global },
           ],
           [workshopPhase + "_titles"]: [
             ...(result[workshopPhase + "_titles"]
               ? result[workshopPhase + "_titles"]
               : []),
-            { workshopPhase: title, value },
+            { workshopPhase: title, value, value_global },
           ],
         };
       },
@@ -155,12 +162,15 @@ function CapabilityAssessment() {
     };
 
     const newCapacities = initialCapacities.map(
-      ({ workshopPhase, value, titles }) => {
+      ({ workshopPhase, value, titles, value_global }) => {
         return {
           workshopPhase,
           value: newResult[workshopPhase]?.length
-            ? average(newResult[workshopPhase])
+            ? average(newResult[workshopPhase], "value")
             : value,
+          value_global: newResult[workshopPhase]?.length
+            ? average(newResult[workshopPhase], "value_global")
+            : value_global,
           titles: getTitles(titles, newResult[workshopPhase + "_titles"]),
         };
       }
@@ -204,6 +214,8 @@ function CapabilityAssessment() {
     title,
     text,
     value,
+    value_global,
+    text_global,
     note,
   }) => {
     const newAnsweredQuestions = {
@@ -213,6 +225,8 @@ function CapabilityAssessment() {
         title,
         text,
         value,
+        value_global,
+        text_global,
         note,
       },
     };
@@ -236,7 +250,9 @@ function CapabilityAssessment() {
     setShowMoreInformation((showMoreInformation) => !showMoreInformation);
   };
 
-  console.log(answeredQuestions, getCapacities());
+  const toggleAllowGlobalResults = () => {
+    setAllowGlobalResults((allowGlobalResults) => !allowGlobalResults);
+  };
 
   return (
     <CapabilityAssessmentContext.Provider
@@ -251,6 +267,7 @@ function CapabilityAssessment() {
         answeredQuestions,
         printSAFArchitectureResultsRef,
         removeItem,
+        allowGlobalResults,
       }}
     >
       <div className="container">
@@ -280,6 +297,13 @@ function CapabilityAssessment() {
               <button onClick={() => toggleShowResult()}>
                 {showResults ? "Hide Results" : "Show Results"}
               </button>
+              {isDevMode() && (
+                <button onClick={() => toggleAllowGlobalResults()}>
+                  {allowGlobalResults
+                    ? "Hide Global Results"
+                    : "Show Global Results"}
+                </button>
+              )}
               <button onClick={() => toggleShowMoreInformation()}>
                 {showMoreInformation
                   ? "Hide Question Information"

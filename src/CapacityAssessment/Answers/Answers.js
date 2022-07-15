@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
-import { CapabilityAssessmentContext } from "../CapabilityAssessment";
 import TextareaAutosize from "react-textarea-autosize";
+
+import { CapabilityAssessmentContext } from "../CapabilityAssessment";
+import { AnswerOptions } from "./AnswerOptions/AnswerOptions";
 import "./Answers.css";
 
 export const Answers = () => {
@@ -10,8 +12,12 @@ export const Answers = () => {
     answerClicked,
     answers,
     answeredQuestions,
+    allowGlobalResults,
   } = useContext(CapabilityAssessmentContext);
+
   const [note, setNote] = useState();
+  const [currentAnswer, setCurrentAnswer] = useState();
+  const [currentGlobalAnswer, setCurrentGlobalAnswer] = useState();
 
   useEffect(() => {
     const note = answeredQuestions[currentQuestion]
@@ -20,57 +26,72 @@ export const Answers = () => {
     setNote(note);
   }, [answeredQuestions, currentQuestion]);
 
+  useEffect(() => {
+    setCurrentAnswer({
+      value: answeredQuestions[currentQuestion]?.value,
+      text: answeredQuestions[currentQuestion]?.text,
+    });
+
+    setCurrentGlobalAnswer({
+      value: answeredQuestions[currentQuestion]?.value_global,
+      text: answeredQuestions[currentQuestion]?.text_global,
+    });
+  }, [answeredQuestions, currentQuestion]);
+
   return (
-    <div className="answer-wrapper">
-      <div className="answer-wrapper-text-area">
-        <h3>Notes:</h3>
-        <TextareaAutosize
-          minRows={14}
-          maxRows={14}
-          style={{ width: "94%", marginLeft: 20 }}
-          cacheMeasurements
-          value={note}
-          onChange={(event) => {
-            setNote(event.target.value);
-          }}
+    <>
+      <div className="answer-wrapper">
+        <div className="answer-wrapper-text-area">
+          <h5 style={{ textAlign: "center" }}>Notes:</h5>
+
+          <TextareaAutosize
+            minRows={14}
+            maxRows={14}
+            style={{ width: "94%", marginLeft: 20 }}
+            cacheMeasurements
+            value={note}
+            onChange={(event) => {
+              setNote(event.target.value);
+            }}
+          />
+        </div>
+        <AnswerOptions
+          name="localRadioGroup"
+          answers={answers}
+          currentAnswer={currentAnswer}
+          setCurrentAnswer={setCurrentAnswer}
         />
+        {allowGlobalResults && (
+          <AnswerOptions
+            name="globalRadioGroup"
+            answers={answers}
+            currentAnswer={currentGlobalAnswer}
+            setCurrentAnswer={setCurrentGlobalAnswer}
+          />
+        )}
       </div>
-      <ul className="answer-wrapper-answer-options answer-options">
-        {answers.map((answer) => {
-          return (
-            <li
-              key={answer.id}
-              className={`answer-option ${answer.text}`}
-              onClick={() => {
-                setNote("");
-                answerClicked({
-                  questionNumber: currentQuestion,
-                  workshopPhase: questions[currentQuestion].workshopPhase,
-                  title: questions[currentQuestion].title,
-                  value: answer.value,
-                  note,
-                  text: answer.text,
-                });
-              }}
-            >
-              <input
-                type="radio"
-                className="radioCustomButton"
-                name="radioGroup"
-                checked={
-                  answer.value === answeredQuestions[currentQuestion]?.value
-                }
-                value={answer.text}
-                id={answer.id}
-                onChange={() => {}}
-              />
-              <label className={`radioCustomLabel ${answer.text}`}>
-                {answer.text}
-              </label>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+      <div
+        style={{ display: "flex", justifyContent: "flex-end" }}
+        onClick={() => {
+          setNote("");
+          answerClicked({
+            questionNumber: currentQuestion,
+            workshopPhase: questions[currentQuestion].workshopPhase,
+            title: questions[currentQuestion].title,
+            value: currentAnswer.value,
+            text: currentAnswer.text,
+            value_global: currentGlobalAnswer.value
+              ? currentGlobalAnswer.value
+              : currentAnswer.value,
+            text_global: currentGlobalAnswer.text
+              ? currentGlobalAnswer.text
+              : currentAnswer.text,
+            note,
+          });
+        }}
+      >
+        <button>Save and Next</button>
+      </div>
+    </>
   );
 };

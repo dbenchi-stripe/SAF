@@ -10,8 +10,11 @@ import {
   Legend,
 } from "recharts";
 
+const localColor = "#5469D4";
+const globalColor = "#d45454";
+
 export const SAFRadar = forwardRef(
-  ({ data, dataKey, name, className, angle }, ref) => {
+  ({ data, dataKey, name, className, allowGlobalResults = false }, ref) => {
     return (
       <ResponsiveContainer className={className}>
         <RadarChart ref={ref} data={data}>
@@ -20,11 +23,20 @@ export const SAFRadar = forwardRef(
           <PolarRadiusAxis angle={90 - 360 / data?.length} domain={[0, 100]} />
           <Radar
             dataKey="value"
-            stroke="#5469D4"
-            fill="#8884d8"
+            stroke={localColor}
+            fill={localColor}
             fillOpacity={0.6}
-            name={name}
+            name={name + ": local"}
           />
+          {allowGlobalResults && (
+            <Radar
+              dataKey="value_global"
+              stroke={globalColor}
+              fill={globalColor}
+              fillOpacity={0.6}
+              name={name + ": global"}
+            />
+          )}
           <Tooltip />
           <Legend />
         </RadarChart>
