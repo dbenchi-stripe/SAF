@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.3] - 2022-07-18
+
+### Changed
+
+* a lot of refactor preparing for the local/global voting
+
 ## [1.0.2] - 2022-07-13
 
 ### Added
