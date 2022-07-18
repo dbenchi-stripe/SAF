@@ -80,7 +80,7 @@ function CapabilityAssessment() {
   const [showResults, setShowResults] = useState(true);
   const [done, setDone] = useState(false);
   const [showMoreInformation, setShowMoreInformation] = useState(false);
-  const [allowGlobalResults, setAllowGlobalResults] = useState(true);
+  const [allowGlobalResults, setAllowGlobalResults] = useState(isDevMode());
   const [recoveredFromLocalStage, setRecoveredFromLocalStage] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answeredQuestions, setAnsweredQuestions] = useState({});
