@@ -26,6 +26,7 @@
     "react-scripts": "5.0.1",
     "recharts": "^2.1.12",
     "recharts-to-png": "^2.1.0",
+    "source-map-explorer": "^2.5.2",
     "use-local-storage-state": "^18.1.0",
     "web-vitals": "^2.1.4"
   },
@@ -34,6 +35,7 @@
     "build": "react-scripts build",
     "predeploy": "npm version patch && npm run build",
     "deploy": "gh-pages -d build",
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
