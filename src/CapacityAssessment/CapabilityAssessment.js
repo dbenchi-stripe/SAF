@@ -1,8 +1,16 @@
 import React, { useState, createContext, useEffect, useCallback } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import _ from "lodash";
-import { confirmAlert } from "react-confirm-alert";
-import { Stack, Button, Box } from "@mui/material";
+import {
+  Stack,
+  Button,
+  Box,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from "@mui/material";
 import { Restore, DeleteForever } from "@mui/icons-material";
 
 import { questions } from "../assets/questions";
@@ -12,7 +20,6 @@ import { average, isDevMode } from "./utils";
 import { Questions } from "./Questions/Questions";
 import { Results } from "./Results/Results";
 
-import "react-confirm-alert/src/react-confirm-alert.css";
 import "./CapacityAssessment.css";
 
 export const CapabilityAssessmentContext = createContext({
@@ -84,6 +91,7 @@ const initialCapacities = [
 ];
 
 function CapabilityAssessment() {
+  const [openDialog, setOpenDialog] = React.useState(false);
   const [showResults, setShowResults] = useState(true);
   const [done, setDone] = useState(false);
   const [showMoreInformation, setShowMoreInformation] = useState(false);
@@ -97,52 +105,13 @@ function CapabilityAssessment() {
     useLocalStorageState("saf");
 
   const getNumberOfAlreadyAnsweredQuestions = () =>
-    parseInt(Object.keys(storage)[Object.keys(storage).length - 1]);
+    parseInt(Object.keys(storage || {})[Object.keys(storage || {}).length - 1]);
 
-  if (!_.isEmpty(storage) && _.isEmpty(answeredQuestions)) {
-    confirmAlert({
-      customUI: ({ onClose }) => {
-        return (
-          <div className="alert-confirmation">
-            <h1 style={{ textAlign: "center" }}>
-              Pick up where we left off? &#128517;
-            </h1>
-            <p>
-              You have already answered{" "}
-              {getNumberOfAlreadyAnsweredQuestions() + 1} questions.
-            </p>
-            <p>Do you want to move forward with the latest evaluation?</p>
-            <Box margin={2} display="flex" justifyContent="space-around">
-              <Button
-                startIcon={<Restore />}
-                variant="contained"
-                color="success"
-                onClick={() => {
-                  setAnsweredQuestions(storage);
-                  setCurrentQuestion(getNumberOfAlreadyAnsweredQuestions());
-                  setRecoveredFromLocalStage(true);
-                  onClose();
-                }}
-              >
-                Yes, let us continue
-              </Button>
-              <Button
-                startIcon={<DeleteForever />}
-                color="error"
-                variant="contained"
-                onClick={() => {
-                  removeItem("saf");
-                  onClose();
-                }}
-              >
-                No, delete it
-              </Button>
-            </Box>
-          </div>
-        );
-      },
-    });
-  }
+  useEffect(() => {
+    if (!_.isEmpty(storage) && _.isEmpty(answeredQuestions)) {
+      setOpenDialog(true);
+    }
+  }, []);
 
   const getCapacities = () => {
     const newResult = Object.values(answeredQuestions)?.reduce(
@@ -336,6 +305,51 @@ function CapabilityAssessment() {
           </>
         )}
       </div>
+      <Dialog
+        open={openDialog}
+        onClose={() => setOpenDialog(false)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          Pick up where we left off? &#128517;
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            You have already answered{" "}
+            {getNumberOfAlreadyAnsweredQuestions() + 1} questions.
+          </DialogContentText>
+          <DialogContentText id="alert-dialog-description">
+            Do you want to move forward with the latest evaluation?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            startIcon={<Restore />}
+            variant="contained"
+            color="success"
+            onClick={() => {
+              setAnsweredQuestions(storage);
+              setCurrentQuestion(getNumberOfAlreadyAnsweredQuestions());
+              setRecoveredFromLocalStage(true);
+              setOpenDialog(false);
+            }}
+          >
+            Yes, let us continue
+          </Button>
+          <Button
+            startIcon={<DeleteForever />}
+            color="error"
+            variant="contained"
+            onClick={() => {
+              removeItem("saf");
+              setOpenDialog(false);
+            }}
+          >
+            No, delete it
+          </Button>
+        </DialogActions>
+      </Dialog>
     </CapabilityAssessmentContext.Provider>
   );
 }
