@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import _ from "lodash";
 import { TextareaAutosize } from "@mui/base";
 import { Box, Button, IconButton } from "@mui/material";
 import { Save, ArrowForward, ArrowBack } from "@mui/icons-material";
@@ -72,6 +73,7 @@ export const Answers = () => {
           />
         </div>
         <AnswerOptions
+          label="Local"
           name="localRadioGroup"
           answers={answers}
           currentAnswer={currentAnswer}
@@ -79,6 +81,7 @@ export const Answers = () => {
         />
         {allowGlobalResults && (
           <AnswerOptions
+            label="Global"
             name="globalRadioGroup"
             answers={answers}
             currentAnswer={currentGlobalAnswer}
@@ -98,6 +101,7 @@ export const Answers = () => {
       <Box margin={2} display="flex" justifyContent="center">
         <Button
           variant="contained"
+          disabled={_.isNil(currentAnswer?.value)}
           size="large"
           startIcon={<Save />}
           onClick={() => {

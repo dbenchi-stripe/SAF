@@ -5,9 +5,10 @@ export const AnswerOptions = ({
   name,
   currentAnswer,
   setCurrentAnswer,
+  label,
 }) => (
   <ul className="answer-wrapper-answer-options answer-options">
-    <h5 style={{ textAlign: "center" }}>Local</h5>
+    <h5 style={{ textAlign: "center" }}>{label}</h5>
     {answers.map((answer) => {
       return (
         <li

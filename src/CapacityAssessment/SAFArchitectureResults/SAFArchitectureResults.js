@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import _ from "lodash";
 import { CapabilityAssessmentContext } from "../CapabilityAssessment";
 import { WorkshopPhases } from "../../assets/WorkshopPhases";
 import "./SAFArchitectureResults.css";
@@ -12,7 +13,7 @@ export const SAFArchitectureResults = ({ className }) => {
     `saf-item inner-item-content active ${className}`;
 
   const getClassColor = (value) => {
-    if (!value) {
+    if (_.isNil(value)) {
       return "gray";
     }
 
