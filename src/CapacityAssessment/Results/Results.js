@@ -91,11 +91,13 @@ export const Results = () => {
       "saf-stripes-local",
       html2CanavsConfiguration
     );
-    handleDownloadDiv(
-      printGlobalSAFArchitectureResultsRef,
-      "saf-stripes-global",
-      html2CanavsConfiguration
-    );
+    if (allowGlobalResults) {
+      handleDownloadDiv(
+        printGlobalSAFArchitectureResultsRef,
+        "saf-stripes-global",
+        html2CanavsConfiguration
+      );
+    }
     handleDownloadCsv(allAnswers);
 
     for await (const { getPng, title } of getPngs) {
@@ -109,6 +111,7 @@ export const Results = () => {
     getPngs,
     printLocalSAFArchitectureResultsRef,
     printGlobalSAFArchitectureResultsRef,
+    allowGlobalResults,
     allAnswers,
     removeItem,
   ]);
@@ -142,7 +145,7 @@ export const Results = () => {
       {done && (
         <>
           <SAFArchitectureResults />
-          <SAFArchitectureResults global />
+          {allowGlobalResults && <SAFArchitectureResults global />}
           <AllAnswersTable allAnswers={allAnswers} height="auto" />
           <Fab
             size="large"
