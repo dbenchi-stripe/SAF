@@ -26,7 +26,7 @@ export const SAFRadar = forwardRef(
             stroke={localColor}
             fill={localColor}
             fillOpacity={0.6}
-            name={name + ": local"}
+            name={`${name}${allowGlobalResults ? ": local" : ""}`}
           />
           {allowGlobalResults && (
             <Radar
