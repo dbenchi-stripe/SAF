@@ -65,7 +65,6 @@ export const Answers = () => {
             minRows={14}
             maxRows={14}
             style={{ width: "94%", marginLeft: 20 }}
-            cacheMeasurements
             value={note}
             onChange={(event) => {
               setNote(event.target.value);
