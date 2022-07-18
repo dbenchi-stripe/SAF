@@ -4,7 +4,6 @@ import _ from "lodash";
 import {
   Stack,
   Button,
-  Box,
   Dialog,
   DialogActions,
   DialogContent,
@@ -104,14 +103,14 @@ function CapabilityAssessment() {
   const [storage, setStorage, { removeItem, isPersistent }] =
     useLocalStorageState("saf");
 
-  const getNumberOfAlreadyAnsweredQuestions = () =>
-    parseInt(Object.keys(storage || {})[Object.keys(storage || {}).length - 1]);
-
   useEffect(() => {
     if (!_.isEmpty(storage) && _.isEmpty(answeredQuestions)) {
       setOpenDialog(true);
     }
   }, []);
+
+  const getNumberOfAlreadyAnsweredQuestions = () =>
+    parseInt(Object.keys(storage || {})[Object.keys(storage || {}).length - 1]);
 
   const getCapacities = () => {
     const newResult = Object.values(answeredQuestions)?.reduce(
