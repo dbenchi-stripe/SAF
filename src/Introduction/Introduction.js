@@ -1,7 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Box } from "@mui/material";
-import { Start } from "@mui/icons-material";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import StartIcon from "@mui/icons-material/Start";
 
 import { getInvalideQuestions } from "../helper/questionsValidation";
 import saf from "../assets/SAFArchitecture.svg";
@@ -29,7 +30,7 @@ export const Introduction = () => {
           />
           <Box margin={2} display="flex" justifyContent="center">
             <Button
-              endIcon={<Start />}
+              endIcon={<StartIcon />}
               size="large"
               variant="contained"
               color="primary"

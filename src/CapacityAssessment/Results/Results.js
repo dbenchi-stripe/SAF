@@ -1,8 +1,8 @@
 import React, { useContext, useCallback, useMemo } from "react";
 import { useCurrentPng } from "recharts-to-png";
 import FileSaver from "file-saver";
-import { Fab } from "@mui/material";
-import { FileDownload } from "@mui/icons-material";
+import Fab from "@mui/material/Fab";
+import FileDownloadIcon from "@mui/icons-material/FileDownload";
 
 import { CapabilityAssessmentContext } from "../CapabilityAssessment";
 import { SAFArchitecture } from "../SAFArchitecture/SAFArchitecture";
@@ -161,7 +161,7 @@ export const Results = () => {
               margin: 0,
             }}
           >
-            <FileDownload />
+            <FileDownloadIcon />
             Download All
           </Fab>
         </>

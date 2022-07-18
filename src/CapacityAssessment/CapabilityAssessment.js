@@ -1,16 +1,16 @@
 import React, { useState, createContext, useEffect, useCallback } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import _ from "lodash";
-import {
-  Stack,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from "@mui/material";
-import { Restore, DeleteForever } from "@mui/icons-material";
+
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import RestoreIcon from "@mui/icons-material/Restore";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 import { questions } from "../assets/questions";
 import { WorkshopPhases } from "../assets/WorkshopPhases";
@@ -324,7 +324,7 @@ function CapabilityAssessment() {
         </DialogContent>
         <DialogActions>
           <Button
-            startIcon={<Restore />}
+            startIcon={<RestoreIcon />}
             variant="contained"
             color="success"
             onClick={() => {
@@ -337,7 +337,7 @@ function CapabilityAssessment() {
             Yes, let us continue
           </Button>
           <Button
-            startIcon={<DeleteForever />}
+            startIcon={<DeleteForeverIcon />}
             color="error"
             variant="contained"
             onClick={() => {

@@ -1,8 +1,13 @@
 import React, { useContext, useState, useEffect } from "react";
 import _ from "lodash";
-import { TextareaAutosize } from "@mui/base";
-import { Box, Button, IconButton } from "@mui/material";
-import { Save, ArrowForward, ArrowBack } from "@mui/icons-material";
+import TextareaAutosize from "@mui/base/TextareaAutosize";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+
+import SaveIcon from "@mui/icons-material/Save";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 import { CapabilityAssessmentContext } from "../CapabilityAssessment";
 import { AnswerOptions } from "./AnswerOptions/AnswerOptions";
@@ -56,7 +61,7 @@ export const Answers = () => {
           disabled={!hasPreviousQuestion() || done}
           onClick={() => previousQuestion()}
         >
-          <ArrowBack />
+          <ArrowBackIcon />
         </IconButton>
         <div className="answer-wrapper-text-area">
           <h5 style={{ textAlign: "center" }}>Notes:</h5>
@@ -94,7 +99,7 @@ export const Answers = () => {
           disabled={!hasNextQuestion() || done}
           onClick={() => nextQuestion()}
         >
-          <ArrowForward />
+          <ArrowForwardIcon />
         </IconButton>
       </div>
       <Box margin={2} display="flex" justifyContent="center">
@@ -102,7 +107,7 @@ export const Answers = () => {
           variant="contained"
           disabled={_.isNil(currentAnswer?.value)}
           size="large"
-          startIcon={<Save />}
+          startIcon={<SaveIcon />}
           onClick={() => {
             setNote("");
             answerClicked({
