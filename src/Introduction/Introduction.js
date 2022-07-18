@@ -1,5 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Button, Box } from "@mui/material";
+import { Start } from "@mui/icons-material";
+
 import { getInvalideQuestions } from "../helper/questionsValidation";
 import saf from "../assets/SAFArchitecture.svg";
 import "./Introduction.css";
@@ -24,13 +27,18 @@ export const Introduction = () => {
             src={saf}
             className="introduction-image"
           />
-          <button
-            style={{ height: 70, width: 200, fontSize: 35 }}
-            onClick={() => navigate(`/saf`)}
-            disabled={invalideQuestions.length !== 0}
-          >
-            Start
-          </button>
+          <Box margin={2} display="flex" justifyContent="center">
+            <Button
+              endIcon={<Start />}
+              size="large"
+              variant="contained"
+              color="primary"
+              onClick={() => navigate(`/saf`)}
+              disabled={invalideQuestions.length !== 0}
+            >
+              Start
+            </Button>
+          </Box>
         </div>
       </div>
 

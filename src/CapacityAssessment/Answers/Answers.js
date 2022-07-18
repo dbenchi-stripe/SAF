@@ -1,5 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import TextareaAutosize from "react-textarea-autosize";
+import { Box, Button, IconButton } from "@mui/material";
+import { Save, ArrowForward, ArrowBack } from "@mui/icons-material";
 
 import { CapabilityAssessmentContext } from "../CapabilityAssessment";
 import { AnswerOptions } from "./AnswerOptions/AnswerOptions";
@@ -13,6 +15,11 @@ export const Answers = () => {
     answers,
     answeredQuestions,
     allowGlobalResults,
+    hasPreviousQuestion,
+    previousQuestion,
+    done,
+    hasNextQuestion,
+    nextQuestion,
   } = useContext(CapabilityAssessmentContext);
 
   const [note, setNote] = useState();
@@ -39,8 +46,17 @@ export const Answers = () => {
   }, [answeredQuestions, currentQuestion]);
 
   return (
-    <>
+    <div>
       <div className="answer-wrapper">
+        <IconButton
+          aria-label="back"
+          size="large"
+          color="primary"
+          disabled={!hasPreviousQuestion() || done}
+          onClick={() => previousQuestion()}
+        >
+          <ArrowBack />
+        </IconButton>
         <div className="answer-wrapper-text-area">
           <h5 style={{ textAlign: "center" }}>Notes:</h5>
 
@@ -69,29 +85,42 @@ export const Answers = () => {
             setCurrentAnswer={setCurrentGlobalAnswer}
           />
         )}
+        <IconButton
+          aria-label="next"
+          size="large"
+          color="primary"
+          disabled={!hasNextQuestion() || done}
+          onClick={() => nextQuestion()}
+        >
+          <ArrowForward />
+        </IconButton>
       </div>
-      <div
-        style={{ display: "flex", justifyContent: "flex-end" }}
-        onClick={() => {
-          setNote("");
-          answerClicked({
-            questionNumber: currentQuestion,
-            workshopPhase: questions[currentQuestion].workshopPhase,
-            title: questions[currentQuestion].title,
-            value: currentAnswer.value,
-            text: currentAnswer.text,
-            value_global: currentGlobalAnswer.value
-              ? currentGlobalAnswer.value
-              : currentAnswer.value,
-            text_global: currentGlobalAnswer.text
-              ? currentGlobalAnswer.text
-              : currentAnswer.text,
-            note,
-          });
-        }}
-      >
-        <button>Save and Next</button>
-      </div>
-    </>
+      <Box margin={2} display="flex" justifyContent="center">
+        <Button
+          variant="contained"
+          size="large"
+          startIcon={<Save />}
+          onClick={() => {
+            setNote("");
+            answerClicked({
+              questionNumber: currentQuestion,
+              workshopPhase: questions[currentQuestion].workshopPhase,
+              title: questions[currentQuestion].title,
+              value: currentAnswer.value,
+              text: currentAnswer.text,
+              value_global: currentGlobalAnswer.value
+                ? currentGlobalAnswer.value
+                : currentAnswer.value,
+              text_global: currentGlobalAnswer.text
+                ? currentGlobalAnswer.text
+                : currentAnswer.text,
+              note,
+            });
+          }}
+        >
+          Save and Next
+        </Button>
+      </Box>
+    </div>
   );
 };

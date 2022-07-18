@@ -2,6 +2,8 @@ import React, { useState, createContext, useEffect, useCallback } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import _ from "lodash";
 import { confirmAlert } from "react-confirm-alert";
+import { Stack, Button, Box } from "@mui/material";
+import { Restore, DeleteForever } from "@mui/icons-material";
 
 import { questions } from "../assets/questions";
 import { WorkshopPhases } from "../assets/WorkshopPhases";
@@ -25,6 +27,10 @@ export const CapabilityAssessmentContext = createContext({
   printSAFArchitectureResultsRef: null,
   removeItem: null,
   allowGlobalResults: false,
+  hasPreviousQuestion: null,
+  previousQuestion: null,
+  hasNextQuestion: null,
+  nextQuestion: null,
 });
 
 const getCapacitiesTitles = (workshopPhase) => {
@@ -104,25 +110,32 @@ function CapabilityAssessment() {
               {getNumberOfAlreadyAnsweredQuestions() + 1} questions.
             </p>
             <p>Do you want to move forward with the latest evaluation?</p>
-            <button
-              onClick={() => {
-                setAnsweredQuestions(storage);
-                setCurrentQuestion(getNumberOfAlreadyAnsweredQuestions());
-                setRecoveredFromLocalStage(true);
-                onClose();
-              }}
-            >
-              &#10004; Yes, let us continue
-            </button>
-            <button
-              style={{ backgroundColor: "red" }}
-              onClick={() => {
-                removeItem("saf");
-                onClose();
-              }}
-            >
-              &#10006; No, delete it
-            </button>
+            <Box margin={2} display="flex" justifyContent="space-around">
+              <Button
+                startIcon={<Restore />}
+                variant="contained"
+                color="success"
+                onClick={() => {
+                  setAnsweredQuestions(storage);
+                  setCurrentQuestion(getNumberOfAlreadyAnsweredQuestions());
+                  setRecoveredFromLocalStage(true);
+                  onClose();
+                }}
+              >
+                Yes, let us continue
+              </Button>
+              <Button
+                startIcon={<DeleteForever />}
+                color="error"
+                variant="contained"
+                onClick={() => {
+                  removeItem("saf");
+                  onClose();
+                }}
+              >
+                No, delete it
+              </Button>
+            </Box>
           </div>
         );
       },
@@ -268,48 +281,55 @@ function CapabilityAssessment() {
         printSAFArchitectureResultsRef,
         removeItem,
         allowGlobalResults,
+        hasPreviousQuestion,
+        previousQuestion,
+        hasNextQuestion,
+        nextQuestion,
       }}
     >
       <div className="container">
         <div className="header">
-          <button
-            disabled={!hasPreviousQuestion() || done}
-            onClick={() => previousQuestion()}
-          >
-            {"<"}
-          </button>
           <h1 className="title">Stripe Adoption Framework</h1>
-          <button
-            disabled={!hasNextQuestion() || done}
-            onClick={() => nextQuestion()}
-          >
-            {">"}
-          </button>
         </div>
         {showResults && <Results />}
         {!done && (
           <>
             <Questions showMoreInformation={showMoreInformation} />
-            <div className="button-container">
-              <button onClick={() => restartCapacityAssessment()}>
+            <Stack
+              spacing={2}
+              direction="row"
+              justifyContent="space-around"
+              marginTop={2}
+            >
+              <Button
+                variant="contained"
+                color="error"
+                onClick={() => restartCapacityAssessment()}
+              >
                 Restart Capacity Assessment
-              </button>
-              <button onClick={() => toggleShowResult()}>
+              </Button>
+              <Button variant="contained" onClick={() => toggleShowResult()}>
                 {showResults ? "Hide Results" : "Show Results"}
-              </button>
+              </Button>
               {isDevMode() && (
-                <button onClick={() => toggleAllowGlobalResults()}>
+                <Button
+                  variant="contained"
+                  onClick={() => toggleAllowGlobalResults()}
+                >
                   {allowGlobalResults
                     ? "Hide Global Results"
                     : "Show Global Results"}
-                </button>
+                </Button>
               )}
-              <button onClick={() => toggleShowMoreInformation()}>
+              <Button
+                variant="contained"
+                onClick={() => toggleShowMoreInformation()}
+              >
                 {showMoreInformation
                   ? "Hide Question Information"
                   : "Show Question Information"}
-              </button>
-            </div>
+              </Button>
+            </Stack>
           </>
         )}
       </div>

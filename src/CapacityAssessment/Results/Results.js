@@ -1,6 +1,9 @@
 import React, { useContext, useCallback, useMemo } from "react";
 import { useCurrentPng } from "recharts-to-png";
 import FileSaver from "file-saver";
+import { Button, Box } from "@mui/material";
+import { FileDownload } from "@mui/icons-material";
+
 import { CapabilityAssessmentContext } from "../CapabilityAssessment";
 import { SAFArchitecture } from "../SAFArchitecture/SAFArchitecture";
 import { SAFArchitectureResults } from "../SAFArchitectureResults/SAFArchitectureResults";
@@ -124,9 +127,17 @@ export const Results = () => {
         <>
           <SAFArchitectureResults />
           <AllAnswersTable allAnswers={allAnswers} />
-          <div className="button-container">
-            <button onClick={() => handleAreaDownload()}>Download All</button>
-          </div>
+          <Box margin={2} display="flex" justifyContent="center">
+            <Button
+              startIcon={<FileDownload />}
+              size="large"
+              variant="contained"
+              color="primary"
+              onClick={() => handleAreaDownload()}
+            >
+              Download All
+            </Button>
+          </Box>
         </>
       )}
     </div>
