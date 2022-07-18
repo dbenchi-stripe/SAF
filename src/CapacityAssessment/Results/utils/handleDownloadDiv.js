@@ -1,6 +1,6 @@
 import html2canvas from "html2canvas";
 
-export const handleDownloadDiv = async (ref, configuration) => {
+export const handleDownloadDiv = async (ref, name, configuration) => {
   const element = ref.current;
   const canvas = await html2canvas(element, configuration);
 
@@ -9,7 +9,7 @@ export const handleDownloadDiv = async (ref, configuration) => {
 
   if (typeof link.download === "string") {
     link.href = data;
-    link.download = "saf-stripes.png";
+    link.download = name + ".png";
 
     document.body.appendChild(link);
     link.click();

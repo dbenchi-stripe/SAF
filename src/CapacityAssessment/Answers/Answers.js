@@ -112,7 +112,7 @@ export const Answers = () => {
               title: questions[currentQuestion].title,
               value: currentAnswer.value,
               text: currentAnswer.text,
-              value_global: currentGlobalAnswer.value
+              value_global: !_.isNil(currentGlobalAnswer.value)
                 ? currentGlobalAnswer.value
                 : currentAnswer.value,
               text_global: currentGlobalAnswer.text

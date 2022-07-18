@@ -4,10 +4,12 @@ import { CapabilityAssessmentContext } from "../CapabilityAssessment";
 import { WorkshopPhases } from "../../assets/WorkshopPhases";
 import "./SAFArchitectureResults.css";
 
-export const SAFArchitectureResults = ({ className }) => {
-  const { capacities, printSAFArchitectureResultsRef } = useContext(
-    CapabilityAssessmentContext
-  );
+export const SAFArchitectureResults = ({ className, global }) => {
+  const {
+    capacities,
+    printLocalSAFArchitectureResultsRef,
+    printGlobalSAFArchitectureResultsRef,
+  } = useContext(CapabilityAssessmentContext);
 
   const getClassNames = (className) =>
     `saf-item inner-item-content active ${className}`;
@@ -39,7 +41,9 @@ export const SAFArchitectureResults = ({ className }) => {
             return capacity.titles.map((title) => (
               <div
                 key={`SAFArchitectureResultsItem_${title.workshopPhase}_${index}`}
-                className={`${getClassColor(title.value)} inner-capacity-name`}
+                className={`${getClassColor(
+                  global ? title.value_global : title.value
+                )} inner-capacity-name`}
               >
                 {title.workshopPhase}
               </div>
@@ -54,7 +58,11 @@ export const SAFArchitectureResults = ({ className }) => {
 
   return (
     <div
-      ref={printSAFArchitectureResultsRef}
+      ref={
+        global
+          ? printGlobalSAFArchitectureResultsRef
+          : printLocalSAFArchitectureResultsRef
+      }
       className={`${className ? className : ""} saf`}
     >
       <SAFArchitectureResultsItem workshopPhase="business" />
@@ -62,6 +70,7 @@ export const SAFArchitectureResults = ({ className }) => {
       <SAFArchitectureResultsItem workshopPhase="tech" />
       <SAFArchitectureResultsItem workshopPhase="risk" />
       <SAFArchitectureResultsItem workshopPhase="operation" />
+      <h3>{global ? "Global SAF Results" : "Local SAF Results"}</h3>
     </div>
   );
 };

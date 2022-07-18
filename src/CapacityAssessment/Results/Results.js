@@ -1,7 +1,7 @@
 import React, { useContext, useCallback, useMemo } from "react";
 import { useCurrentPng } from "recharts-to-png";
 import FileSaver from "file-saver";
-import { Button, Box } from "@mui/material";
+import { Fab } from "@mui/material";
 import { FileDownload } from "@mui/icons-material";
 
 import { CapabilityAssessmentContext } from "../CapabilityAssessment";
@@ -26,7 +26,8 @@ export const Results = () => {
     answeredQuestions,
     questions,
     done,
-    printSAFArchitectureResultsRef,
+    printLocalSAFArchitectureResultsRef,
+    printGlobalSAFArchitectureResultsRef,
     removeItem,
     allowGlobalResults,
   } = useContext(CapabilityAssessmentContext);
@@ -85,7 +86,16 @@ export const Results = () => {
   });
 
   const handleAreaDownload = useCallback(async () => {
-    handleDownloadDiv(printSAFArchitectureResultsRef, html2CanavsConfiguration);
+    handleDownloadDiv(
+      printLocalSAFArchitectureResultsRef,
+      "saf-stripes-local",
+      html2CanavsConfiguration
+    );
+    handleDownloadDiv(
+      printGlobalSAFArchitectureResultsRef,
+      "saf-stripes-global",
+      html2CanavsConfiguration
+    );
     handleDownloadCsv(allAnswers);
 
     for await (const { getPng, title } of getPngs) {
@@ -95,7 +105,13 @@ export const Results = () => {
       }
     }
     removeItem("saf");
-  }, [getPngs, printSAFArchitectureResultsRef, allAnswers, removeItem]);
+  }, [
+    getPngs,
+    printLocalSAFArchitectureResultsRef,
+    printGlobalSAFArchitectureResultsRef,
+    allAnswers,
+    removeItem,
+  ]);
 
   return (
     <div>
@@ -126,18 +142,25 @@ export const Results = () => {
       {done && (
         <>
           <SAFArchitectureResults />
-          <AllAnswersTable allAnswers={allAnswers} />
-          <Box margin={2} display="flex" justifyContent="center">
-            <Button
-              startIcon={<FileDownload />}
-              size="large"
-              variant="contained"
-              color="primary"
-              onClick={() => handleAreaDownload()}
-            >
-              Download All
-            </Button>
-          </Box>
+          <SAFArchitectureResults global />
+          <AllAnswersTable allAnswers={allAnswers} height="auto" />
+          <Fab
+            size="large"
+            variant="extended"
+            color="primary"
+            onClick={() => handleAreaDownload()}
+            sx={{
+              position: "fixed",
+              bottom: 20,
+              right: 20,
+              top: "auto",
+              left: "auto",
+              margin: 0,
+            }}
+          >
+            <FileDownload />
+            Download All
+          </Fab>
         </>
       )}
     </div>

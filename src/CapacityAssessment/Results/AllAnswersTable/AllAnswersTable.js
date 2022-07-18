@@ -17,6 +17,8 @@ export const AllAnswersTable = ({ allAnswers, height, rowHeaders }) => {
       // width="100vw"
       colWidths={"150"}
       height={height || "50vh"}
+      dropdownMenu
+      filters
       readOnly
       manualColumnResize
       autoColumnSize

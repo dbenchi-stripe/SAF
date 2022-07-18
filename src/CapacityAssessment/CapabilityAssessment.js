@@ -24,7 +24,8 @@ export const CapabilityAssessmentContext = createContext({
   initialCapacities: null,
   capacities: null,
   answeredQuestions: null,
-  printSAFArchitectureResultsRef: null,
+  printLocalSAFArchitectureResultsRef: null,
+  printGlobalSAFArchitectureResultsRef: null,
   removeItem: null,
   allowGlobalResults: false,
   hasPreviousQuestion: null,
@@ -90,7 +91,8 @@ function CapabilityAssessment() {
   const [recoveredFromLocalStage, setRecoveredFromLocalStage] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answeredQuestions, setAnsweredQuestions] = useState({});
-  const printSAFArchitectureResultsRef = React.useRef();
+  const printLocalSAFArchitectureResultsRef = React.useRef();
+  const printGlobalSAFArchitectureResultsRef = React.useRef();
   const [storage, setStorage, { removeItem, isPersistent }] =
     useLocalStorageState("saf");
 
@@ -278,7 +280,8 @@ function CapabilityAssessment() {
         initialCapacities,
         capacities: getCapacities(),
         answeredQuestions,
-        printSAFArchitectureResultsRef,
+        printLocalSAFArchitectureResultsRef,
+        printGlobalSAFArchitectureResultsRef,
         removeItem,
         allowGlobalResults,
         hasPreviousQuestion,
