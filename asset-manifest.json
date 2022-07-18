@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/SAF/static/css/main.08297cf8.css",
-    "main.js": "/SAF/static/js/main.b556c5d1.js",
-    "static/js/787.075e446f.chunk.js": "/SAF/static/js/787.075e446f.chunk.js",
-    "static/media/SAFArchitecture.svg": "/SAF/static/media/SAFArchitecture.35882e9e3bed3133593abe3b94377385.svg",
-    "index.html": "/SAF/index.html",
-    "static/media/icon-check.svg": "/SAF/static/media/icon-check.12ef56dba3e58d61a792.svg",
-    "main.08297cf8.css.map": "/SAF/static/css/main.08297cf8.css.map",
-    "main.b556c5d1.js.map": "/SAF/static/js/main.b556c5d1.js.map",
-    "787.075e446f.chunk.js.map": "/SAF/static/js/787.075e446f.chunk.js.map"
+    "main.css": "./static/css/main.f4689e71.css",
+    "main.js": "./static/js/main.127c9015.js",
+    "static/js/787.075e446f.chunk.js": "./static/js/787.075e446f.chunk.js",
+    "static/media/SAFArchitecture.svg": "./static/media/SAFArchitecture.35882e9e3bed3133593abe3b94377385.svg",
+    "index.html": "./index.html",
+    "static/media/icon-check.svg": "./static/media/icon-check.12ef56dba3e58d61a792.svg",
+    "main.f4689e71.css.map": "./static/css/main.f4689e71.css.map",
+    "main.127c9015.js.map": "./static/js/main.127c9015.js.map",
+    "787.075e446f.chunk.js.map": "./static/js/787.075e446f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.08297cf8.css",
-    "static/js/main.b556c5d1.js"
+    "static/css/main.f4689e71.css",
+    "static/js/main.127c9015.js"
   ]
 }
