@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import TextareaAutosize from "react-textarea-autosize";
+import { TextareaAutosize } from "@mui/base";
 import { Box, Button, IconButton } from "@mui/material";
 import { Save, ArrowForward, ArrowBack } from "@mui/icons-material";
 
