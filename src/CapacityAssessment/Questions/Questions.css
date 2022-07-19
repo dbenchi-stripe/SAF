@@ -1,15 +1,5 @@
-.question-count {
-    padding: 1.5rem 2.5rem 0;
-    font-size: 14px;
-}
-
-.question {
-    margin: 0;
-    padding: 0.5rem 2.5rem 1.5rem 2.5rem;
-}
-
 .question-card {
-    border: rgb(84, 105, 212);
+    border: var(--color-stripe);
     border-style: solid;
 }
 

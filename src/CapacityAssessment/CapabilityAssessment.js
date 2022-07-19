@@ -13,8 +13,6 @@ import { average, isDevMode } from "./utils";
 import { Questions } from "./Questions/Questions";
 import { Results } from "./Results/Results";
 
-import "./CapacityAssessment.css";
-
 export const CapabilityAssessmentContext = createContext({
   answerClicked: null,
   done: null,
@@ -253,9 +251,6 @@ function CapabilityAssessment() {
       }}
     >
       <div className="container">
-        <div className="header">
-          <h1 className="title">Stripe Adoption Framework</h1>
-        </div>
         {showResults && <Results />}
         {!done && (
           <>

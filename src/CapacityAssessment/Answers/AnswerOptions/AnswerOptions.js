@@ -1,3 +1,5 @@
+import Typography from "@mui/material/Typography";
+
 import "./AnswerOptions.css";
 
 export const AnswerOptions = ({
@@ -8,7 +10,9 @@ export const AnswerOptions = ({
   label,
 }) => (
   <ul className="answer-wrapper-answer-options answer-options">
-    <h5 style={{ textAlign: "center" }}>{label}</h5>
+    <Typography variant="subtitle2" color="primary" align="center" p={2}>
+      {label}
+    </Typography>
     {answers.map((answer) => {
       return (
         <li

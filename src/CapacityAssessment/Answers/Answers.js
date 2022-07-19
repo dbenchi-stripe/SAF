@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
+import Typography from "@mui/material/Typography";
 
 import SaveIcon from "@mui/icons-material/Save";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -55,19 +56,21 @@ export const Answers = () => {
   return (
     <div>
       <div className="answer-wrapper">
-        <Tooltip title="Skip Backward">
-          <IconButton
-            aria-label="back"
-            size="large"
-            color="primary"
-            disabled={!hasPreviousQuestion() || done}
-            onClick={() => previousQuestion()}
-          >
+        <IconButton
+          aria-label="back"
+          size="large"
+          color="primary"
+          disabled={!hasPreviousQuestion() || done}
+          onClick={() => previousQuestion()}
+        >
+          <Tooltip title="Skip Backward">
             <ArrowBackIcon />
-          </IconButton>
-        </Tooltip>
+          </Tooltip>
+        </IconButton>
         <div className="answer-wrapper-text-area">
-          <h5 style={{ textAlign: "center" }}>Notes:</h5>
+          <Typography variant="subtitle2" color="primary" align="center" p={2}>
+            Notes:
+          </Typography>
 
           <TextareaAutosize
             minRows={14}
@@ -95,17 +98,17 @@ export const Answers = () => {
             setCurrentAnswer={setCurrentGlobalAnswer}
           />
         )}
-        <Tooltip title="Skip Forward">
-          <IconButton
-            aria-label="next"
-            size="large"
-            color="primary"
-            disabled={!hasNextQuestion() || done}
-            onClick={() => nextQuestion()}
-          >
+        <IconButton
+          aria-label="next"
+          size="large"
+          color="primary"
+          disabled={!hasNextQuestion() || done}
+          onClick={() => nextQuestion()}
+        >
+          <Tooltip title="Skip Forward">
             <ArrowForwardIcon />
-          </IconButton>
-        </Tooltip>
+          </Tooltip>
+        </IconButton>
       </div>
       <Box margin={2} display="flex" justifyContent="center">
         <Button

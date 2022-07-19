@@ -1,5 +1,7 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import _ from "lodash";
+import Typography from "@mui/material/Typography";
+
 import { CapabilityAssessmentContext } from "../../CapabilityAssessment";
 import { WorkshopPhases } from "../../../assets/WorkshopPhases";
 import "./SAFArchitectureResults.css";
@@ -32,9 +34,9 @@ export const SAFArchitectureResults = ({ className, global }) => {
 
   const SAFArchitectureResultsItem = ({ workshopPhase }) => (
     <div className="inner-item">
-      <span className="inner-item-header">
-        {WorkshopPhases[workshopPhase]}:{" "}
-      </span>{" "}
+      <Typography variant="subtitle2" color="primary" align="left" width="12vw">
+        {WorkshopPhases[workshopPhase]}:
+      </Typography>
       <div className={getClassNames(workshopPhase)}>
         {capacities.map((capacity, index) => {
           if (capacity.workshopPhase === WorkshopPhases[workshopPhase]) {
@@ -70,7 +72,9 @@ export const SAFArchitectureResults = ({ className, global }) => {
       <SAFArchitectureResultsItem workshopPhase="tech" />
       <SAFArchitectureResultsItem workshopPhase="risk" />
       <SAFArchitectureResultsItem workshopPhase="operation" />
-      <h3>{global ? "Global SAF Results" : "Local SAF Results"}</h3>
+      <Typography variant="h5" color="primary" align="center" mb={2}>
+        {global ? "Global SAF Results" : "Local SAF Results"}
+      </Typography>
     </div>
   );
 };

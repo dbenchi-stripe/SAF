@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import StartIcon from "@mui/icons-material/Start";
+import Typography from "@mui/material/Typography";
 
 import { getInvalideQuestions } from "../helper/questionsValidation";
 import saf from "../assets/SAFArchitecture.svg";
@@ -15,13 +16,13 @@ export const Introduction = () => {
   return (
     <div>
       <div className="container">
-        <div className="header">
-          <h1 className="title">Stripe Adoption Framework</h1>
-        </div>
-        <h2>
+        <Typography variant="h2" m={2} color="primary">
+          Stripe Adoption Framework
+        </Typography>
+        <Typography variant="h4" m={2} color="primary">
           A holistic approach for digital transformation using Stripe financial
           services infrastructure
-        </h2>
+        </Typography>
         <div className="introduction-card">
           <img
             alt="SAF Architecture"
