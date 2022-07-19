@@ -4,6 +4,7 @@ import TextareaAutosize from "@mui/base/TextareaAutosize";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
 
 import SaveIcon from "@mui/icons-material/Save";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -54,15 +55,17 @@ export const Answers = () => {
   return (
     <div>
       <div className="answer-wrapper">
-        <IconButton
-          aria-label="back"
-          size="large"
-          color="primary"
-          disabled={!hasPreviousQuestion() || done}
-          onClick={() => previousQuestion()}
-        >
-          <ArrowBackIcon />
-        </IconButton>
+        <Tooltip title="Skip Backward">
+          <IconButton
+            aria-label="back"
+            size="large"
+            color="primary"
+            disabled={!hasPreviousQuestion() || done}
+            onClick={() => previousQuestion()}
+          >
+            <ArrowBackIcon />
+          </IconButton>
+        </Tooltip>
         <div className="answer-wrapper-text-area">
           <h5 style={{ textAlign: "center" }}>Notes:</h5>
 
@@ -92,15 +95,17 @@ export const Answers = () => {
             setCurrentAnswer={setCurrentGlobalAnswer}
           />
         )}
-        <IconButton
-          aria-label="next"
-          size="large"
-          color="primary"
-          disabled={!hasNextQuestion() || done}
-          onClick={() => nextQuestion()}
-        >
-          <ArrowForwardIcon />
-        </IconButton>
+        <Tooltip title="Skip Forward">
+          <IconButton
+            aria-label="next"
+            size="large"
+            color="primary"
+            disabled={!hasNextQuestion() || done}
+            onClick={() => nextQuestion()}
+          >
+            <ArrowForwardIcon />
+          </IconButton>
+        </Tooltip>
       </div>
       <Box margin={2} display="flex" justifyContent="center">
         <Button

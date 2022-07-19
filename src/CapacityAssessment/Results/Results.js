@@ -6,7 +6,7 @@ import FileDownloadIcon from "@mui/icons-material/FileDownload";
 
 import { CapabilityAssessmentContext } from "../CapabilityAssessment";
 import { SAFArchitecture } from "../SAFArchitecture/SAFArchitecture";
-import { SAFArchitectureResults } from "../SAFArchitectureResults/SAFArchitectureResults";
+import { SAFArchitectureResults } from "./SAFArchitectureResults/SAFArchitectureResults";
 import { AllAnswersTable } from "./AllAnswersTable/AllAnswersTable";
 import { handleDownloadCsv } from "./utils/handleDownloadCsv";
 import { handleDownloadDiv } from "./utils/handleDownloadDiv";

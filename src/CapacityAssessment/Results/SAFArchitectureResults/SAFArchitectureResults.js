@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import _ from "lodash";
-import { CapabilityAssessmentContext } from "../CapabilityAssessment";
-import { WorkshopPhases } from "../../assets/WorkshopPhases";
+import { CapabilityAssessmentContext } from "../../CapabilityAssessment";
+import { WorkshopPhases } from "../../../assets/WorkshopPhases";
 import "./SAFArchitectureResults.css";
 
 export const SAFArchitectureResults = ({ className, global }) => {

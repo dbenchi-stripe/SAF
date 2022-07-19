@@ -4,14 +4,8 @@ import _ from "lodash";
 
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import RestoreIcon from "@mui/icons-material/Restore";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
+import { DisasterRecoveryDialog } from "./DisasterRecoveryDialog/DisasterRecoveryDialog";
 import { questions } from "../assets/questions";
 import { WorkshopPhases } from "../assets/WorkshopPhases";
 import { answers } from "../assets/answers";
@@ -304,51 +298,21 @@ function CapabilityAssessment() {
           </>
         )}
       </div>
-      <Dialog
-        open={openDialog}
-        onClose={() => setOpenDialog(false)}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          Pick up where we left off? &#128517;
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            You have already answered{" "}
-            {getNumberOfAlreadyAnsweredQuestions() + 1} questions.
-          </DialogContentText>
-          <DialogContentText id="alert-dialog-description">
-            Do you want to move forward with the latest evaluation?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button
-            startIcon={<RestoreIcon />}
-            variant="contained"
-            color="success"
-            onClick={() => {
-              setAnsweredQuestions(storage);
-              setCurrentQuestion(getNumberOfAlreadyAnsweredQuestions());
-              setRecoveredFromLocalStage(true);
-              setOpenDialog(false);
-            }}
-          >
-            Yes, let us continue
-          </Button>
-          <Button
-            startIcon={<DeleteForeverIcon />}
-            color="error"
-            variant="contained"
-            onClick={() => {
-              removeItem("saf");
-              setOpenDialog(false);
-            }}
-          >
-            No, delete it
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <DisasterRecoveryDialog
+        openDialog={openDialog}
+        setOpenDialog={setOpenDialog}
+        numberOfAlreadyAnsweredQuestions={getNumberOfAlreadyAnsweredQuestions()}
+        cancelOnClick={() => {
+          removeItem("saf");
+          setOpenDialog(false);
+        }}
+        restoreOnClick={() => {
+          setAnsweredQuestions(storage);
+          setCurrentQuestion(getNumberOfAlreadyAnsweredQuestions());
+          setRecoveredFromLocalStage(true);
+          setOpenDialog(false);
+        }}
+      />
     </CapabilityAssessmentContext.Provider>
   );
 }
