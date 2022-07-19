@@ -20,7 +20,7 @@ export const mainListItems = (
       <ListItemIcon>
         <QuizIcon />
       </ListItemIcon>
-      <ListItemText primary="Assessments" />
+      <ListItemText primary="SAF Assessments" />
     </ListItemButton>
   </>
 );

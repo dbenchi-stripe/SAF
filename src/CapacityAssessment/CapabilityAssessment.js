@@ -81,7 +81,7 @@ const initialCapacities = [
   },
 ];
 
-function CapabilityAssessment() {
+export const CapabilityAssessment = () => {
   const [openDialog, setOpenDialog] = React.useState(false);
   const [showResults, setShowResults] = useState(true);
   const [done, setDone] = useState(false);
@@ -310,6 +310,4 @@ function CapabilityAssessment() {
       />
     </CapabilityAssessmentContext.Provider>
   );
-}
-
-export default CapabilityAssessment;
+};
