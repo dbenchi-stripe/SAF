@@ -25,6 +25,7 @@ export const Questions = (
             p="0.5rem 2.5rem 1.5rem 2.5rem"
             m={0}
             color="primary"
+            style={{ fontWeight: 600 }}
           >
             {questions[currentQuestion].question}
           </Typography>

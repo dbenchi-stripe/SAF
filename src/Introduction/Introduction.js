@@ -16,7 +16,13 @@ export const Introduction = () => {
   return (
     <div>
       <div className="container">
-        <Typography variant="h2" m={2} color="primary">
+        <Typography
+          variant="h3"
+          m={2}
+          color="primary"
+          style={{ fontWeight: 600 }}
+          align="center"
+        >
           Stripe Adoption Framework
         </Typography>
         <Typography variant="h4" m={2} color="primary">
