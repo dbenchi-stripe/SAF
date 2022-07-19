@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.0.0] - 2022-07-19
+
+### Added
+
+* All application is refactored leveraging [mui](https://mui.com/) 
+
 ## [1.0.3] - 2022-07-18
 
 ### Changed
