@@ -10,7 +10,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 import { CapabilityAssessment } from "../../CapacityAssessment/CapabilityAssessment";
 import { DashboardContext } from "../Dashboard";
-import { isDevMode } from "../../CapacityAssessment/utils";
+import { useFeature } from "flagged";
 
 const steps = [
   "Welcome & Introduction",
@@ -23,8 +23,9 @@ const steps = [
 
 export const ActualStep = () => {
   const { activeStep } = useContext(DashboardContext);
+  const hasDeliveryGuide = useFeature("deliveryGuide");
 
-  if (!isDevMode()) {
+  if (!hasDeliveryGuide) {
     return <CapabilityAssessment />;
   }
 

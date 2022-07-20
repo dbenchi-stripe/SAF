@@ -5,7 +5,8 @@ import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
-import { mainListItems } from "./listItems";
+import { MainListItems } from "./ListItems/MainListItems";
+import { FeatureFlagsListItems } from "./ListItems/FeatureFlagsListItems";
 
 import { drawerWidth } from "../constants";
 
@@ -50,6 +51,10 @@ export const Drawer = ({ open, toggleDrawer }) => (
       </IconButton>
     </Toolbar>
     <Divider />
-    <List component="nav">{mainListItems}</List>
+    <List component="nav">
+      <MainListItems />
+      <Divider sx={{ my: 1 }} />
+      <FeatureFlagsListItems />
+    </List>
   </DrawerInternal>
 );

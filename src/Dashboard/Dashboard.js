@@ -5,6 +5,8 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Paper from "@mui/material/Paper";
 import { Routes, Route } from "react-router-dom";
+import { FlagsProvider, Feature } from "flagged";
+
 import { Introduction } from "../Introduction/Introduction";
 import { AppBar } from "./AppBar";
 import { Drawer } from "./Drawer/Drawer";
@@ -16,10 +18,15 @@ const mdTheme = createTheme();
 export const DashboardContext = createContext({
   activeStep: null,
   setActiveStep: null,
+  setFeatures: null,
 });
 
 export const Dashboard = () => {
   const [activeStep, setActiveStep] = useState(0);
+  const [features, setFeatures] = useState({
+    allowGlobalResults: isDevMode(),
+    deliveryGuide: isDevMode(),
+  });
   const [open, setOpen] = useState(false);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -30,45 +37,53 @@ export const Dashboard = () => {
       value={{
         activeStep,
         setActiveStep,
+        toggleFeature: (feature) => {
+          setFeatures({
+            ...features,
+            [feature]: !features[feature],
+          });
+        },
       }}
     >
-      <ThemeProvider theme={mdTheme}>
-        <Box sx={{ display: "flex" }}>
-          <CssBaseline />
-          <AppBar open={open} toggleDrawer={toggleDrawer} />
-          <Drawer open={open} toggleDrawer={toggleDrawer} />
-          <Box
-            component="main"
-            sx={{
-              backgroundColor: (theme) =>
-                theme.palette.mode === "light"
-                  ? theme.palette.grey[100]
-                  : theme.palette.grey[900],
-              flexGrow: 1,
-              height: "100vh",
-              overflow: "auto",
-            }}
-          >
-            <Toolbar />
-            {isDevMode() && (
-              <Paper
-                variant="outlined"
-                sx={{ px: 2, m: 1, display: "flex", flexDirection: "column" }}
-              >
-                <DeliveryGuide />
-              </Paper>
-            )}
-            <Paper
-              sx={{ p: 2, m: 1, display: "flex", flexDirection: "column" }}
+      <FlagsProvider features={features}>
+        <ThemeProvider theme={mdTheme}>
+          <Box sx={{ display: "flex" }}>
+            <CssBaseline />
+            <AppBar open={open} toggleDrawer={toggleDrawer} />
+            <Drawer open={open} toggleDrawer={toggleDrawer} />
+            <Box
+              component="main"
+              sx={{
+                backgroundColor: (theme) =>
+                  theme.palette.mode === "light"
+                    ? theme.palette.grey[100]
+                    : theme.palette.grey[900],
+                flexGrow: 1,
+                height: "100vh",
+                overflow: "auto",
+              }}
             >
-              <Routes>
-                <Route path="/" element={<Introduction />} />
-                <Route path="/saf" element={<ActualStep />} />
-              </Routes>
-            </Paper>
+              <Toolbar />
+              <Feature name="deliveryGuide">
+                <Paper
+                  variant="outlined"
+                  sx={{ px: 2, m: 1, display: "flex", flexDirection: "column" }}
+                >
+                  <DeliveryGuide />
+                </Paper>
+              </Feature>
+              <Paper
+                sx={{ p: 2, m: 1, display: "flex", flexDirection: "column" }}
+              >
+                <Routes>
+                  <Route path="/" element={<Introduction />} />
+                  <Route path="/saf" element={<ActualStep />} />
+                </Routes>
+              </Paper>
+            </Box>
           </Box>
-        </Box>
-      </ThemeProvider>
+        </ThemeProvider>
+      </FlagsProvider>
     </DashboardContext.Provider>
   );
 };

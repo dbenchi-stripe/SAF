@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect, useCallback } from "react";
+import { useState, createContext, useEffect, useCallback, useRef } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import _ from "lodash";
 
@@ -9,9 +9,10 @@ import { DisasterRecoveryDialog } from "./DisasterRecoveryDialog/DisasterRecover
 import { questions } from "../assets/questions";
 import { WorkshopPhases } from "../assets/WorkshopPhases";
 import { answers } from "../assets/answers";
-import { average, isDevMode } from "./utils";
+import { average } from "./utils";
 import { Questions } from "./Questions/Questions";
 import { Results } from "./Results/Results";
+import { Feature, useFeature } from "flagged";
 
 export const CapabilityAssessmentContext = createContext({
   answerClicked: null,
@@ -82,16 +83,18 @@ const initialCapacities = [
 ];
 
 export const CapabilityAssessment = () => {
-  const [openDialog, setOpenDialog] = React.useState(false);
+  const [openDialog, setOpenDialog] = useState(false);
   const [showResults, setShowResults] = useState(true);
   const [done, setDone] = useState(false);
   const [showMoreInformation, setShowMoreInformation] = useState(false);
-  const [allowGlobalResults, setAllowGlobalResults] = useState(isDevMode());
+  const [allowGlobalResults, setAllowGlobalResults] = useState(
+    useFeature("allowGlobalResults")
+  );
   const [recoveredFromLocalStage, setRecoveredFromLocalStage] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answeredQuestions, setAnsweredQuestions] = useState({});
-  const printLocalSAFArchitectureResultsRef = React.useRef();
-  const printGlobalSAFArchitectureResultsRef = React.useRef();
+  const printLocalSAFArchitectureResultsRef = useRef();
+  const printGlobalSAFArchitectureResultsRef = useRef();
   const [storage, setStorage, { removeItem, isPersistent }] =
     useLocalStorageState("saf");
 
@@ -273,7 +276,7 @@ export const CapabilityAssessment = () => {
               <Button variant="contained" onClick={() => toggleShowResult()}>
                 {showResults ? "Hide Results" : "Show Results"}
               </Button>
-              {isDevMode() && (
+              <Feature name="allowGlobalResults">
                 <Button
                   variant="contained"
                   onClick={() => toggleAllowGlobalResults()}
@@ -282,7 +285,7 @@ export const CapabilityAssessment = () => {
                     ? "Hide Global Results"
                     : "Show Global Results"}
                 </Button>
-              )}
+              </Feature>
               <Button
                 variant="contained"
                 onClick={() => toggleShowMoreInformation()}
