@@ -89,7 +89,7 @@ export const Answers = () => {
         </Box>
         <Box sx={{ flexGrow: 4 }}>
           <Typography variant="subtitle2" color="primary" align="center" p={2}>
-            Why red/amber/green?
+            Why Red/Amber/Green?
           </Typography>
 
           <TextareaAutosize
