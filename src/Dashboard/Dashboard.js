@@ -8,11 +8,7 @@ import { Routes, Route } from "react-router-dom";
 import { Introduction } from "../Introduction/Introduction";
 import { AppBar } from "./AppBar";
 import { Drawer } from "./Drawer/Drawer";
-import {
-  ActualStep,
-  DeliveryGuide,
-  StepChanger,
-} from "./DeliveryGuide/DeliveryGuide";
+import { ActualStep, DeliveryGuide } from "./DeliveryGuide/DeliveryGuide";
 import { isDevMode } from "../CapacityAssessment/utils";
 
 const mdTheme = createTheme();
@@ -70,7 +66,6 @@ export const Dashboard = () => {
                 <Route path="/saf" element={<ActualStep />} />
               </Routes>
             </Paper>
-            {isDevMode() && <StepChanger />}
           </Box>
         </Box>
       </ThemeProvider>

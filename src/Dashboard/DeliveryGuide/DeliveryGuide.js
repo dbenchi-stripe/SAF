@@ -3,8 +3,11 @@ import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-
+import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
 import StepLabel from "@mui/material/StepLabel";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 import { CapabilityAssessment } from "../../CapacityAssessment/CapabilityAssessment";
 import { DashboardContext } from "../Dashboard";
@@ -56,8 +59,9 @@ export const ActualStep = () => {
   }
 };
 
-export const StepChanger = () => {
+export const DeliveryGuide = () => {
   const { activeStep, setActiveStep } = useContext(DashboardContext);
+
   const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
@@ -65,33 +69,37 @@ export const StepChanger = () => {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
-
   return (
-    <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-      {activeStep !== 0 && (
-        <Button variant="contained" onClick={handleBack}>
-          Back
-        </Button>
-      )}
+    <Box margin={2} display="flex" justifyContent="center">
+      <IconButton
+        aria-label="back"
+        color="primary"
+        disabled={activeStep === 0}
+        onClick={handleBack}
+      >
+        <Tooltip title="Step Backward">
+          <ArrowBackIosIcon />
+        </Tooltip>
+      </IconButton>
 
-      {activeStep < steps.length - 1 && (
-        <Button variant="contained" onClick={handleNext} sx={{ mx: 3 }}>
-          Next
-        </Button>
-      )}
+      <Stepper activeStep={activeStep} sx={{ py: 3, mx: 1, flexGrow: 1 }}>
+        {steps.map((label) => (
+          <Step key={label}>
+            <StepLabel>{label}</StepLabel>
+          </Step>
+        ))}
+      </Stepper>
+
+      <IconButton
+        aria-label="next"
+        color="primary"
+        disabled={activeStep === steps.length - 1}
+        onClick={handleNext}
+      >
+        <Tooltip title="Step Forward">
+          <ArrowForwardIosIcon />
+        </Tooltip>
+      </IconButton>
     </Box>
-  );
-};
-
-export const DeliveryGuide = () => {
-  const { activeStep } = useContext(DashboardContext);
-  return (
-    <Stepper activeStep={activeStep} sx={{ py: 3, mx: 2 }}>
-      {steps.map((label) => (
-        <Step key={label}>
-          <StepLabel>{label}</StepLabel>
-        </Step>
-      ))}
-    </Stepper>
   );
 };
