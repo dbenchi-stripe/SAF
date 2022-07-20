@@ -79,6 +79,7 @@ export const Results = () => {
         answerTextGlobal: answeredQuestions[index].text_global,
         answerValueGlobal: answeredQuestions[index].value_global,
         note: answeredQuestions[index].note,
+        whyRedAmberGreen: answeredQuestions[index].whyRedAmberGreen,
       };
     }
 

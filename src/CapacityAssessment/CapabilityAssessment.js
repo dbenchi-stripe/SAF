@@ -192,6 +192,7 @@ export const CapabilityAssessment = () => {
     value_global,
     text_global,
     note,
+    whyRedAmberGreen,
   }) => {
     const newAnsweredQuestions = {
       ...answeredQuestions,
@@ -203,6 +204,7 @@ export const CapabilityAssessment = () => {
         value_global,
         text_global,
         note,
+        whyRedAmberGreen,
       },
     };
     setAnsweredQuestions(newAnsweredQuestions);

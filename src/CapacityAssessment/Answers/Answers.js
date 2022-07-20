@@ -13,7 +13,6 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 import { CapabilityAssessmentContext } from "../CapabilityAssessment";
 import { AnswerOptions } from "./AnswerOptions/AnswerOptions";
-import "./Answers.css";
 
 export const Answers = () => {
   const {
@@ -31,6 +30,7 @@ export const Answers = () => {
   } = useContext(CapabilityAssessmentContext);
 
   const [note, setNote] = useState();
+  const [whyRedAmberGreen, setWhyRedAmberGreen] = useState();
   const [currentAnswer, setCurrentAnswer] = useState();
   const [currentGlobalAnswer, setCurrentGlobalAnswer] = useState();
 
@@ -38,7 +38,12 @@ export const Answers = () => {
     const note = answeredQuestions[currentQuestion]
       ? answeredQuestions[currentQuestion].note
       : "";
+    const whyRedAmberGreen = answeredQuestions[currentQuestion]
+      ? answeredQuestions[currentQuestion].whyRedAmberGreen
+      : "";
+
     setNote(note);
+    setWhyRedAmberGreen(whyRedAmberGreen);
   }, [answeredQuestions, currentQuestion]);
 
   useEffect(() => {
@@ -55,7 +60,7 @@ export const Answers = () => {
 
   return (
     <div>
-      <div className="answer-wrapper">
+      <Box display="flex">
         <IconButton
           aria-label="back"
           size="large"
@@ -67,21 +72,36 @@ export const Answers = () => {
             <ArrowBackIcon />
           </Tooltip>
         </IconButton>
-        <div className="answer-wrapper-text-area">
+        <Box sx={{ flexGrow: 4 }}>
           <Typography variant="subtitle2" color="primary" align="center" p={2}>
-            Notes:
+            General Notes:
           </Typography>
 
           <TextareaAutosize
             minRows={14}
             maxRows={14}
-            style={{ width: "94%", marginLeft: 20 }}
+            style={{ width: "99%" }}
             value={note}
             onChange={(event) => {
               setNote(event.target.value);
             }}
           />
-        </div>
+        </Box>
+        <Box sx={{ flexGrow: 4 }}>
+          <Typography variant="subtitle2" color="primary" align="center" p={2}>
+            Why red/amber/green?
+          </Typography>
+
+          <TextareaAutosize
+            minRows={14}
+            maxRows={14}
+            style={{ width: "99%" }}
+            value={whyRedAmberGreen}
+            onChange={(event) => {
+              setWhyRedAmberGreen(event.target.value);
+            }}
+          />
+        </Box>
         <AnswerOptions
           label="Local"
           name="localRadioGroup"
@@ -109,7 +129,7 @@ export const Answers = () => {
             <ArrowForwardIcon />
           </Tooltip>
         </IconButton>
-      </div>
+      </Box>
       <Box margin={2} display="flex" justifyContent="center">
         <Button
           variant="contained"
@@ -118,6 +138,7 @@ export const Answers = () => {
           startIcon={<SaveIcon />}
           onClick={() => {
             setNote("");
+            setWhyRedAmberGreen("");
             answerClicked({
               questionNumber: currentQuestion,
               workshopPhase: questions[currentQuestion].workshopPhase,
@@ -131,6 +152,7 @@ export const Answers = () => {
                 ? currentGlobalAnswer.text
                 : currentAnswer.text,
               note,
+              whyRedAmberGreen,
             });
           }}
         >

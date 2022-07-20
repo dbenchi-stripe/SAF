@@ -1,8 +1,0 @@
-.answer-wrapper {
-    display: flex;
-}
-
-.answer-wrapper-text-area{
-    flex-grow: 3;
-    padding-left: 40px;
-}
