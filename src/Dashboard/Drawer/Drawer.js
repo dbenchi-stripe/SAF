@@ -51,15 +51,15 @@ export const Drawer = ({ open, toggleDrawer }) => (
         <ChevronLeftIcon />
       </IconButton>
     </Toolbar>
-    {isDevMode() && (
-      <>
-        <Divider />
-        <List component="nav">
-          <MainListItems />
+    <Divider />
+    <List component="nav">
+      <MainListItems />
+      {isDevMode() && (
+        <>
           <Divider sx={{ my: 1 }} />
           <FeatureFlagsListItems />
-        </List>
-      </>
-    )}
+        </>
+      )}
+    </List>
   </DrawerInternal>
 );
