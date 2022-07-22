@@ -5,6 +5,8 @@ import { useFeature } from "flagged";
 import { WelcomeAndIntroduction } from "../WelcomeAndIntroduction/WelcomeAndIntroduction";
 import { DeliveryGuideContext } from "./DeliveryGuide";
 import { ProjectOutcomesAndSuccessCriteria } from "../ProjectOutcomesAndSuccessCriteria/ProjectOutcomesAndSuccessCriteria";
+import { NextStepsAndFeedback } from "../NextStepsAndFeedback/NextStepsAndFeedback";
+import { HighLevelRoadmapAndExecutionPlan } from "../HighLevelRoadmapAndExecutionPlan/HighLevelRoadmapAndExecutionPlan";
 
 export const ActualStep = () => {
   const { activeStep } = useContext(DeliveryGuideContext);
@@ -24,9 +26,9 @@ export const ActualStep = () => {
     case 3:
       return <h1> Project Backlog & Deliverables </h1>;
     case 4:
-      return <h1> High Level Roadmap & Execution Plan </h1>;
+      return <HighLevelRoadmapAndExecutionPlan />;
     case 5:
-      return <h1> Next Steps & Feedback </h1>;
+      return <NextStepsAndFeedback />;
     default:
       throw new Error("Unknown step");
   }
