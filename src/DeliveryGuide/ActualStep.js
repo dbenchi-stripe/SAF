@@ -4,6 +4,7 @@ import { CapabilityAssessment } from "../CapacityAssessment/CapabilityAssessment
 import { useFeature } from "flagged";
 import { WelcomeAndIntroduction } from "../WelcomeAndIntroduction/WelcomeAndIntroduction";
 import { DeliveryGuideContext } from "./DeliveryGuide";
+import { ProjectOutcomesAndSuccessCriteria } from "../ProjectOutcomesAndSuccessCriteria/ProjectOutcomesAndSuccessCriteria";
 
 export const ActualStep = () => {
   const { activeStep } = useContext(DeliveryGuideContext);
@@ -19,12 +20,7 @@ export const ActualStep = () => {
     case 1:
       return <CapabilityAssessment />;
     case 2:
-      return (
-        <>
-          <h1>What are the desired project outcomes?</h1>
-          <h1>What are the success criteria for a big celebration party?</h1>
-        </>
-      );
+      return <ProjectOutcomesAndSuccessCriteria />;
     case 3:
       return <h1> Project Backlog & Deliverables </h1>;
     case 4:

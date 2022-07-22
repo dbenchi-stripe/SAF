@@ -20,7 +20,7 @@ export const DeliveryGuideContext = createContext({
 const steps = [
   { label: "Welcome & Introduction", nestedTotal: 4 },
   { label: "Stripe Adoption Framework", nestedTotal: 1 },
-  { label: "Project Outcomes & Success Criteria", nestedTotal: 1 },
+  { label: "Project Outcomes & Success Criteria", nestedTotal: 2 },
   { label: "Project Backlog & Deliverables", nestedTotal: 1 },
   { label: "High Level Roadmap & Execution Plan", nestedTotal: 1 },
   { label: "Next Steps & Feedback", nestedTotal: 1 },
