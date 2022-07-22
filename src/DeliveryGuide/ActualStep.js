@@ -1,7 +1,6 @@
 import { useContext } from "react";
 
 import { CapabilityAssessment } from "../CapacityAssessment/CapabilityAssessment";
-import { useFeature } from "flagged";
 import { WelcomeAndIntroduction } from "../WelcomeAndIntroduction/WelcomeAndIntroduction";
 import { DeliveryGuideContext } from "./DeliveryGuide";
 import { ProjectOutcomesAndSuccessCriteria } from "../ProjectOutcomesAndSuccessCriteria/ProjectOutcomesAndSuccessCriteria";
@@ -11,11 +10,6 @@ import { ProjectBacklogAndDeliverables } from "../ProjectBacklogAndDeliverables/
 
 export const ActualStep = () => {
   const { activeStep } = useContext(DeliveryGuideContext);
-  const hasDeliveryGuide = useFeature("deliveryGuide");
-
-  if (!hasDeliveryGuide) {
-    return <CapabilityAssessment />;
-  }
 
   switch (activeStep) {
     case 0:
