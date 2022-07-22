@@ -7,6 +7,7 @@ import { DeliveryGuideContext } from "./DeliveryGuide";
 import { ProjectOutcomesAndSuccessCriteria } from "../ProjectOutcomesAndSuccessCriteria/ProjectOutcomesAndSuccessCriteria";
 import { NextStepsAndFeedback } from "../NextStepsAndFeedback/NextStepsAndFeedback";
 import { HighLevelRoadmapAndExecutionPlan } from "../HighLevelRoadmapAndExecutionPlan/HighLevelRoadmapAndExecutionPlan";
+import { ProjectBacklogAndDeliverables } from "../ProjectBacklogAndDeliverables/ProjectBacklogAndDeliverables";
 
 export const ActualStep = () => {
   const { activeStep } = useContext(DeliveryGuideContext);
@@ -24,7 +25,7 @@ export const ActualStep = () => {
     case 2:
       return <ProjectOutcomesAndSuccessCriteria />;
     case 3:
-      return <h1> Project Backlog & Deliverables </h1>;
+      return <ProjectBacklogAndDeliverables />;
     case 4:
       return <HighLevelRoadmapAndExecutionPlan />;
     case 5:
