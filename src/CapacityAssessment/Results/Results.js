@@ -28,7 +28,6 @@ export const Results = () => {
     done,
     printLocalSAFArchitectureResultsRef,
     printGlobalSAFArchitectureResultsRef,
-    removeItem,
     allowGlobalResults,
   } = useContext(CapabilityAssessmentContext);
 
@@ -107,14 +106,12 @@ export const Results = () => {
         FileSaver.saveAs(png, title);
       }
     }
-    removeItem("saf");
   }, [
     getPngs,
     printLocalSAFArchitectureResultsRef,
     printGlobalSAFArchitectureResultsRef,
     allowGlobalResults,
     allAnswers,
-    removeItem,
   ]);
 
   return (
