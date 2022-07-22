@@ -2,7 +2,6 @@ import { useState, createContext } from "react";
 
 import Paper from "@mui/material/Paper";
 import { Routes, Route } from "react-router-dom";
-import { Feature } from "flagged";
 import { Introduction } from "../Introduction/Introduction";
 import { ActualStep } from "./ActualStep";
 import { DeliveryGuideStepper } from "./DeliveryGuideStepper";
@@ -64,14 +63,12 @@ export const DeliveryGuide = () => {
         hasNext,
       }}
     >
-      <Feature name="deliveryGuide">
-        <Paper
-          variant="outlined"
-          sx={{ px: 2, m: 1, display: "flex", flexDirection: "column" }}
-        >
-          <DeliveryGuideStepper />
-        </Paper>
-      </Feature>
+      <Paper
+        variant="outlined"
+        sx={{ px: 2, m: 1, display: "flex", flexDirection: "column" }}
+      >
+        <DeliveryGuideStepper />
+      </Paper>
       <Paper sx={{ p: 2, m: 1, display: "flex", flexDirection: "column" }}>
         <Routes>
           <Route path="/" element={<Introduction />} />

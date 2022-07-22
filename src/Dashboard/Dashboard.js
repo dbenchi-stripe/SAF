@@ -19,7 +19,6 @@ export const DashboardContext = createContext({
 export const Dashboard = () => {
   const [features, setFeatures] = useState({
     allowGlobalResults: isDevMode(),
-    deliveryGuide: isDevMode(),
   });
   const [open, setOpen] = useState(false);
   const toggleDrawer = () => {

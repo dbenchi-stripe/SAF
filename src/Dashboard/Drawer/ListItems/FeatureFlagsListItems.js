@@ -33,21 +33,6 @@ export const FeatureFlagsListItems = () => {
           }}
         />
       </ListItem>
-
-      <ListItem>
-        <ListItemIcon>
-          <FollowTheSignsIcon />
-        </ListItemIcon>
-        <ListItemText id="switch-list-label-global" primary="Delivery Guide" />
-        <Switch
-          edge="end"
-          onChange={() => toggleFeature("deliveryGuide")}
-          checked={features.deliveryGuide}
-          inputProps={{
-            "aria-labelledby": "switch-list-label-global",
-          }}
-        />
-      </ListItem>
     </>
   );
 };
