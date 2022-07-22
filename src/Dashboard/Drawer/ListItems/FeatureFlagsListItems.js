@@ -4,7 +4,6 @@ import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import ListItem from "@mui/material/ListItem";
 import Switch from "@mui/material/Switch";
-import FollowTheSignsIcon from "@mui/icons-material/FollowTheSigns";
 import DifferenceIcon from "@mui/icons-material/Difference";
 import { useFeatures } from "flagged";
 import { DashboardContext } from "../../Dashboard";
