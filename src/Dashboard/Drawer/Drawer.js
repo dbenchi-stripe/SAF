@@ -9,7 +9,6 @@ import { MainListItems } from "./ListItems/MainListItems";
 import { FeatureFlagsListItems } from "./ListItems/FeatureFlagsListItems";
 
 import { drawerWidth } from "../constants";
-import { isDevMode } from "../../CapacityAssessment/utils";
 
 const DrawerInternal = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -54,12 +53,8 @@ export const Drawer = ({ open, toggleDrawer }) => (
     <Divider />
     <List component="nav">
       <MainListItems />
-      {isDevMode() && (
-        <>
-          <Divider sx={{ my: 1 }} />
-          <FeatureFlagsListItems />
-        </>
-      )}
+      <Divider sx={{ my: 1 }} />
+      <FeatureFlagsListItems />
     </List>
   </DrawerInternal>
 );
