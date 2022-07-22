@@ -3,26 +3,20 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import Paper from "@mui/material/Paper";
-import { Routes, Route } from "react-router-dom";
-import { FlagsProvider, Feature } from "flagged";
+import { FlagsProvider } from "flagged";
 
-import { Introduction } from "../Introduction/Introduction";
 import { AppBar } from "./AppBar";
 import { Drawer } from "./Drawer/Drawer";
-import { ActualStep, DeliveryGuide } from "./DeliveryGuide/DeliveryGuide";
+import { DeliveryGuide } from "../DeliveryGuide/DeliveryGuide";
 import { isDevMode } from "../CapacityAssessment/utils";
 
 const mdTheme = createTheme();
 
 export const DashboardContext = createContext({
-  activeStep: null,
-  setActiveStep: null,
   setFeatures: null,
 });
 
 export const Dashboard = () => {
-  const [activeStep, setActiveStep] = useState(0);
   const [features, setFeatures] = useState({
     allowGlobalResults: isDevMode(),
     deliveryGuide: isDevMode(),
@@ -35,8 +29,6 @@ export const Dashboard = () => {
   return (
     <DashboardContext.Provider
       value={{
-        activeStep,
-        setActiveStep,
         toggleFeature: (feature) => {
           setFeatures({
             ...features,
@@ -64,22 +56,7 @@ export const Dashboard = () => {
               }}
             >
               <Toolbar />
-              <Feature name="deliveryGuide">
-                <Paper
-                  variant="outlined"
-                  sx={{ px: 2, m: 1, display: "flex", flexDirection: "column" }}
-                >
-                  <DeliveryGuide />
-                </Paper>
-              </Feature>
-              <Paper
-                sx={{ p: 2, m: 1, display: "flex", flexDirection: "column" }}
-              >
-                <Routes>
-                  <Route path="/" element={<Introduction />} />
-                  <Route path="/saf" element={<ActualStep />} />
-                </Routes>
-              </Paper>
+              <DeliveryGuide />
             </Box>
           </Box>
         </ThemeProvider>
