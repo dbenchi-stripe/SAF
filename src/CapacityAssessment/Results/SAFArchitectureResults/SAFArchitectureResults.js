@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import { CapabilityAssessmentContext } from "../../CapabilityAssessment";
 import { WorkshopPhases } from "../../../assets/WorkshopPhases";
 import "./SAFArchitectureResults.css";
+import { DeliveryGuideContext } from "../../../DeliveryGuide/DeliveryGuide";
 
 export const SAFArchitectureResults = ({ className, global }) => {
   const {
@@ -12,6 +13,10 @@ export const SAFArchitectureResults = ({ className, global }) => {
     printLocalSAFArchitectureResultsRef,
     printGlobalSAFArchitectureResultsRef,
   } = useContext(CapabilityAssessmentContext);
+
+  const { finalCapacities } = useContext(DeliveryGuideContext);
+
+  const capacitiesToBeUsed = capacities || finalCapacities;
 
   const getClassNames = (className) =>
     `saf-item inner-item-content active ${className}`;
@@ -38,7 +43,7 @@ export const SAFArchitectureResults = ({ className, global }) => {
         {WorkshopPhases[workshopPhase]}:
       </Typography>
       <div className={getClassNames(workshopPhase)}>
-        {capacities.map((capacity, index) => {
+        {capacitiesToBeUsed.map((capacity, index) => {
           if (capacity.workshopPhase === WorkshopPhases[workshopPhase]) {
             return capacity.titles.map((title) => (
               <div

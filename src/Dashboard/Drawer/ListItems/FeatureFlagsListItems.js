@@ -16,7 +16,7 @@ export const FeatureFlagsListItems = () => {
   return (
     <>
       <ListSubheader component="div" inset>
-        Under development
+        Gated Features
       </ListSubheader>
 
       <ListItem>

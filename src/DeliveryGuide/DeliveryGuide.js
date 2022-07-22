@@ -14,6 +14,8 @@ export const DeliveryGuideContext = createContext({
   handleBack: null,
   hasBack: null,
   hasNext: null,
+  finalCapacities: null,
+  setFinalCapacities: null,
 });
 
 const steps = [
@@ -28,6 +30,7 @@ const steps = [
 export const DeliveryGuide = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [activeNestedStep, setActiveNestedStep] = useState(0);
+  const [finalCapacities, setFinalCapacities] = useState({});
   const handleNext = () => {
     if (activeNestedStep + 1 < steps[activeStep].nestedTotal) {
       setActiveNestedStep(activeNestedStep + 1);
@@ -61,6 +64,8 @@ export const DeliveryGuide = () => {
         handleBack,
         hasBack,
         hasNext,
+        finalCapacities,
+        setFinalCapacities,
       }}
     >
       <Paper

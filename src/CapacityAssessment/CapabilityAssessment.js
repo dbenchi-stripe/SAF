@@ -1,4 +1,11 @@
-import { useState, createContext, useEffect, useCallback, useRef } from "react";
+import {
+  useState,
+  createContext,
+  useEffect,
+  useCallback,
+  useRef,
+  useContext,
+} from "react";
 import useLocalStorageState from "use-local-storage-state";
 import _ from "lodash";
 
@@ -13,6 +20,7 @@ import { average } from "./utils";
 import { Questions } from "./Questions/Questions";
 import { Results } from "./Results/Results";
 import { Feature, useFeature } from "flagged";
+import { DeliveryGuideContext } from "../DeliveryGuide/DeliveryGuide";
 
 export const CapabilityAssessmentContext = createContext({
   answerClicked: null,
@@ -83,6 +91,8 @@ const initialCapacities = [
 ];
 
 export const CapabilityAssessment = () => {
+  const { setFinalCapacities } = useContext(DeliveryGuideContext);
+
   const [openDialog, setOpenDialog] = useState(false);
   const [showResults, setShowResults] = useState(true);
   const [done, setDone] = useState(false);
@@ -98,16 +108,10 @@ export const CapabilityAssessment = () => {
   const [storage, setStorage, { removeItem, isPersistent }] =
     useLocalStorageState("saf");
 
-  useEffect(() => {
-    if (!_.isEmpty(storage) && _.isEmpty(answeredQuestions)) {
-      setOpenDialog(true);
-    }
-  }, []);
-
   const getNumberOfAlreadyAnsweredQuestions = () =>
     parseInt(Object.keys(storage || {})[Object.keys(storage || {}).length - 1]);
 
-  const getCapacities = () => {
+  const getCapacities = useCallback(() => {
     const newResult = Object.values(answeredQuestions)?.reduce(
       (result, { workshopPhase, title, value, value_global }) => {
         return {
@@ -155,7 +159,7 @@ export const CapabilityAssessment = () => {
     );
 
     return newCapacities;
-  };
+  });
 
   const hasNextQuestion = useCallback(
     () => currentQuestion + 1 < questions.length,
@@ -172,13 +176,6 @@ export const CapabilityAssessment = () => {
       setDone(true);
     }
   }, [currentQuestion, hasNextQuestion]);
-
-  useEffect(() => {
-    if (recoveredFromLocalStage) {
-      nextQuestion();
-      setRecoveredFromLocalStage(false);
-    }
-  }, [recoveredFromLocalStage, nextQuestion]);
 
   const previousQuestion = () => {
     if (hasPreviousQuestion()) {
@@ -233,6 +230,25 @@ export const CapabilityAssessment = () => {
   const toggleAllowGlobalResults = () => {
     setAllowGlobalResults((allowGlobalResults) => !allowGlobalResults);
   };
+
+  useEffect(() => {
+    if (!_.isEmpty(storage) && _.isEmpty(answeredQuestions)) {
+      setOpenDialog(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (recoveredFromLocalStage) {
+      nextQuestion();
+      setRecoveredFromLocalStage(false);
+    }
+  }, [recoveredFromLocalStage, nextQuestion]);
+
+  useEffect(() => {
+    if (done) {
+      setFinalCapacities(getCapacities);
+    }
+  }, [setFinalCapacities, done, getCapacities]);
 
   return (
     <CapabilityAssessmentContext.Provider
