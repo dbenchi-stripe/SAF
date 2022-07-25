@@ -1,6 +1,7 @@
 import Looks3RoundedIcon from "@mui/icons-material/Looks3Rounded";
 import LooksOneRoundedIcon from "@mui/icons-material/LooksOneRounded";
 import LooksTwoRoundedIcon from "@mui/icons-material/LooksTwoRounded";
+import { Paper } from "@mui/material";
 import Link from "@mui/material/Link";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -11,8 +12,8 @@ import React from "react";
 
 export const HowToAddMyQuestions = () => {
   return (
-    <>
-      <Typography variant="h6" color="primary" mt={5}>
+    <Paper variant="elevation" sx={{ p: 3, mt: 5 }} elevation={4}>
+      <Typography variant="h6" color="primary">
         How can I add my own set of questions to this tool?
       </Typography>
       <Typography variant="body1">
@@ -93,6 +94,6 @@ export const HowToAddMyQuestions = () => {
           />
         </ListItem>
       </List>
-    </>
+    </Paper>
   );
 };
