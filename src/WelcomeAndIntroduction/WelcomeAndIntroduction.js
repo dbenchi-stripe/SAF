@@ -1,6 +1,6 @@
+import { DeliveryGuideContext } from "DeliveryGuide/DeliveryGuide";
 import { useContext } from "react";
 
-import { DeliveryGuideContext } from "../DeliveryGuide/DeliveryGuide";
 import { FirstStep } from "./FirstStep";
 import { MainQuestion } from "./MainQuestion";
 import { SAF } from "./SAF";
