@@ -6,7 +6,7 @@ import { ProjectOutcomesAndSuccessCriteria } from "../ProjectOutcomesAndSuccessC
 import { NextStepsAndFeedback } from "../NextStepsAndFeedback/NextStepsAndFeedback";
 import { HighLevelRoadmapAndExecutionPlan } from "../HighLevelRoadmapAndExecutionPlan/HighLevelRoadmapAndExecutionPlan";
 import { ProjectBacklogAndDeliverables } from "../ProjectBacklogAndDeliverables/ProjectBacklogAndDeliverables";
-import { CapabilityAssessment } from "../StripeAdoptionFramework/CapacityAssessment/CapabilityAssessment";
+import { StripeAdoptionFramework } from "StripeAdoptionFramework/StripeAdoptionFramework";
 
 export const ActualStep = () => {
   const { activeStep } = useContext(DeliveryGuideContext);
@@ -15,7 +15,7 @@ export const ActualStep = () => {
     case 0:
       return <WelcomeAndIntroduction />;
     case 1:
-      return <CapabilityAssessment />;
+      return <StripeAdoptionFramework />;
     case 2:
       return <ProjectOutcomesAndSuccessCriteria />;
     case 3:
