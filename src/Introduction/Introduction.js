@@ -10,6 +10,7 @@ import { getInvalideQuestions } from "helper/questionsValidation";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+import { CloneGooglePresentation } from "./CloneGooglePresentation";
 import { HowToAddMyQuestions } from "./HowToAddMyQuestions";
 import "./Introduction.css";
 
@@ -33,11 +34,12 @@ export const Introduction = () => {
       >
         Stripe Adoption Framework
       </Typography>
-      <Typography variant="body1">
+      <Typography variant="body1" textAlign="center">
         A holistic approach for digital transformation using Stripe financial
         services infrastructure. It is founded on a comprehensive list of
         predefined questions.
       </Typography>
+      <CloneGooglePresentation />
       <HowToAddMyQuestions />
       <Typography variant="h6" color="primary" mt={5}>
         What list of questions would you like to begin?

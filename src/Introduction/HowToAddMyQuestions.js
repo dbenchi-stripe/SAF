@@ -1,12 +1,12 @@
 import Looks3RoundedIcon from "@mui/icons-material/Looks3Rounded";
 import LooksOneRoundedIcon from "@mui/icons-material/LooksOneRounded";
 import LooksTwoRoundedIcon from "@mui/icons-material/LooksTwoRounded";
-import { Paper } from "@mui/material";
 import Link from "@mui/material/Link";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import React from "react";
 
