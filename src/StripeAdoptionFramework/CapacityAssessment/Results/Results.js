@@ -1,19 +1,18 @@
-import React, { useContext, useCallback, useMemo } from "react";
-import { useCurrentPng } from "recharts-to-png";
-import FileSaver from "file-saver";
-import Fab from "@mui/material/Fab";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
+import Fab from "@mui/material/Fab";
+import { GlobalConfigurationContext } from "GlobalConfiguration/GlobalConfiguration";
+import { SAFArchitectureResults } from "charts/SAFArchitectureResults/SAFArchitectureResults";
+import { SAFRadar } from "charts/SAFRadar/SAFRadar";
+import FileSaver from "file-saver";
+import React, { useCallback, useContext, useMemo } from "react";
+import { useCurrentPng } from "recharts-to-png";
 
 import { CapabilityAssessmentContext } from "../CapabilityAssessment";
 import { SAFArchitecture } from "../SAFArchitecture/SAFArchitecture";
-import { SAFArchitectureResults } from "charts/SAFArchitectureResults/SAFArchitectureResults";
 import { AllAnswersTable } from "./AllAnswersTable/AllAnswersTable";
+import "./Results.css";
 import { handleDownloadCsv } from "./utils/handleDownloadCsv";
 import { handleDownloadDiv } from "./utils/handleDownloadDiv";
-
-import "./Results.css";
-import { SAFRadar } from "charts/SAFRadar/SAFRadar";
-import { GlobalConfigurationContext } from "GlobalConfiguration/GlobalConfiguration";
 
 /*
  * the recharts-to-png is internally based on html2canavas

@@ -1,15 +1,15 @@
-import { styled } from "@mui/material/styles";
-import MuiDrawer from "@mui/material/Drawer";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import Divider from "@mui/material/Divider";
+import MuiDrawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
-import { MainListItems } from "./ListItems/MainListItems";
-import { FeatureFlagsListItems } from "./ListItems/FeatureFlagsListItems";
+import Toolbar from "@mui/material/Toolbar";
+import { styled } from "@mui/material/styles";
+import { isDevMode } from "helper/utils";
 
 import { drawerWidth } from "../constants";
-import { isDevMode } from "helper/utils";
+import { FeatureFlagsListItems } from "./ListItems/FeatureFlagsListItems";
+import { MainListItems } from "./ListItems/MainListItems";
 
 const DrawerInternal = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",

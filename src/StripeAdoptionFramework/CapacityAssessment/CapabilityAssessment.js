@@ -1,24 +1,23 @@
-import {
-  useState,
-  createContext,
-  useEffect,
-  useCallback,
-  useRef,
-  useContext,
-} from "react";
-import useLocalStorageState from "use-local-storage-state";
-import _ from "lodash";
-
-import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-
-import { DisasterRecoveryDialog } from "./DisasterRecoveryDialog/DisasterRecoveryDialog";
-import { questions } from "assets/questions";
+import Stack from "@mui/material/Stack";
+import { DeliveryGuideContext } from "DeliveryGuide/DeliveryGuide";
 import { WorkshopPhases } from "assets/WorkshopPhases";
 import { answers } from "assets/answers";
+import { questions } from "assets/questions";
+import _ from "lodash";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import useLocalStorageState from "use-local-storage-state";
+
+import { DisasterRecoveryDialog } from "./DisasterRecoveryDialog/DisasterRecoveryDialog";
 import { Questions } from "./Questions/Questions";
 import { Results } from "./Results/Results";
-import { DeliveryGuideContext } from "DeliveryGuide/DeliveryGuide";
 
 export const average = (array, key) =>
   array.reduce((a, b) => a + b[key], 0) / array.length;

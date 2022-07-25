@@ -1,8 +1,8 @@
-import React from "react";
 import { HotTable } from "@handsontable/react";
+import "handsontable/dist/handsontable.full.css";
 import { registerAllModules } from "handsontable/registry";
 import _ from "lodash";
-import "handsontable/dist/handsontable.full.css";
+import React from "react";
 
 registerAllModules();
 

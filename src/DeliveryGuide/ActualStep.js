@@ -1,12 +1,12 @@
+import { HighLevelRoadmapAndExecutionPlan } from "HighLevelRoadmapAndExecutionPlan/HighLevelRoadmapAndExecutionPlan";
+import { NextStepsAndFeedback } from "NextStepsAndFeedback/NextStepsAndFeedback";
+import { ProjectBacklogAndDeliverables } from "ProjectBacklogAndDeliverables/ProjectBacklogAndDeliverables";
+import { ProjectOutcomesAndSuccessCriteria } from "ProjectOutcomesAndSuccessCriteria/ProjectOutcomesAndSuccessCriteria";
+import { StripeAdoptionFramework } from "StripeAdoptionFramework/StripeAdoptionFramework";
+import { WelcomeAndIntroduction } from "WelcomeAndIntroduction/WelcomeAndIntroduction";
 import { useContext } from "react";
 
-import { WelcomeAndIntroduction } from "../WelcomeAndIntroduction/WelcomeAndIntroduction";
 import { DeliveryGuideContext } from "./DeliveryGuide";
-import { ProjectOutcomesAndSuccessCriteria } from "../ProjectOutcomesAndSuccessCriteria/ProjectOutcomesAndSuccessCriteria";
-import { NextStepsAndFeedback } from "../NextStepsAndFeedback/NextStepsAndFeedback";
-import { HighLevelRoadmapAndExecutionPlan } from "../HighLevelRoadmapAndExecutionPlan/HighLevelRoadmapAndExecutionPlan";
-import { ProjectBacklogAndDeliverables } from "../ProjectBacklogAndDeliverables/ProjectBacklogAndDeliverables";
-import { StripeAdoptionFramework } from "StripeAdoptionFramework/StripeAdoptionFramework";
 
 export const ActualStep = () => {
   const { activeStep } = useContext(DeliveryGuideContext);

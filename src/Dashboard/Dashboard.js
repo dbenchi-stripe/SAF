@@ -1,15 +1,15 @@
-import { useState, createContext } from "react";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
 import Toolbar from "@mui/material/Toolbar";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { GlobalConfiguration } from "GlobalConfiguration/GlobalConfiguration";
 import { FlagsProvider } from "flagged";
+import { createContext, useState } from "react";
 
+import { DeliveryGuide } from "../DeliveryGuide/DeliveryGuide";
+import { isDevMode } from "../helper/utils";
 import { AppBar } from "./AppBar";
 import { Drawer } from "./Drawer/Drawer";
-import { DeliveryGuide } from "../DeliveryGuide/DeliveryGuide";
-import { GlobalConfiguration } from "GlobalConfiguration/GlobalConfiguration";
-import { isDevMode } from "../helper/utils";
 
 const mdTheme = createTheme();
 

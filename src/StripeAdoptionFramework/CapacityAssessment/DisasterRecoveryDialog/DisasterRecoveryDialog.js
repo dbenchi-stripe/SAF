@@ -1,12 +1,11 @@
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import RestoreIcon from "@mui/icons-material/Restore";
+import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import Button from "@mui/material/Button";
-
-import RestoreIcon from "@mui/icons-material/Restore";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 export const DisasterRecoveryDialog = ({
   openDialog,

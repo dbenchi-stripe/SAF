@@ -1,11 +1,12 @@
-import { useContext } from "react";
+import DifferenceIcon from "@mui/icons-material/Difference";
+import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
-import ListItem from "@mui/material/ListItem";
 import Switch from "@mui/material/Switch";
-import DifferenceIcon from "@mui/icons-material/Difference";
 import { useFeatures } from "flagged";
+import { useContext } from "react";
+
 import { DashboardContext } from "../../Dashboard";
 
 export const FeatureFlagsListItems = () => {

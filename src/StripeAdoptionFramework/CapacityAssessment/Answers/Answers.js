@@ -1,19 +1,18 @@
-import React, { useContext, useState, useEffect } from "react";
-import _ from "lodash";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import SaveIcon from "@mui/icons-material/Save";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
-
-import SaveIcon from "@mui/icons-material/Save";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { GlobalConfigurationContext } from "GlobalConfiguration/GlobalConfiguration";
+import _ from "lodash";
+import React, { useContext, useEffect, useState } from "react";
 
 import { CapabilityAssessmentContext } from "../CapabilityAssessment";
 import { AnswerOptions } from "./AnswerOptions/AnswerOptions";
-import { GlobalConfigurationContext } from "../../../GlobalConfiguration/GlobalConfiguration";
 
 export const Answers = () => {
   const {

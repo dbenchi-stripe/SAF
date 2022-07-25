@@ -1,14 +1,14 @@
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import QuizIcon from "@mui/icons-material/Quiz";
+import TopicIcon from "@mui/icons-material/Topic";
+import { Divider, ListItem, ListSubheader, Switch } from "@mui/material";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import QuizIcon from "@mui/icons-material/Quiz";
-import { Link } from "react-router-dom";
-import { Divider, ListItem, ListSubheader, Switch } from "@mui/material";
-import { useContext } from "react";
 import { GlobalConfigurationContext } from "GlobalConfiguration/GlobalConfiguration";
 import { Feature } from "flagged";
-import TopicIcon from "@mui/icons-material/Topic";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 export const MainListItems = () => {
   const { allowGlobalResults, toggleAllowGlobalResults } = useContext(

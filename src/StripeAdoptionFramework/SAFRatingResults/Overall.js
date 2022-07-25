@@ -1,15 +1,15 @@
-import _ from "lodash";
-import List from "@mui/material/List";
-import ListSubheader from "@mui/material/ListSubheader";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import CircleSharpIcon from "@mui/icons-material/CircleSharp";
-import { useContext } from "react";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import ListSubheader from "@mui/material/ListSubheader";
+import { Box } from "@mui/system";
 import { DeliveryGuideContext } from "DeliveryGuide/DeliveryGuide";
 import { GlobalConfigurationContext } from "GlobalConfiguration/GlobalConfiguration";
 import { SAFRadar } from "charts/SAFRadar/SAFRadar";
-import { Box } from "@mui/system";
+import _ from "lodash";
+import { useContext } from "react";
 
 export const Overall = () => {
   const { finalCapacities } = useContext(DeliveryGuideContext);

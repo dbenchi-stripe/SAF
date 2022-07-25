@@ -1,9 +1,10 @@
 import { useContext } from "react";
+
 import { DeliveryGuideContext } from "../DeliveryGuide/DeliveryGuide";
 import { FirstStep } from "./FirstStep";
-import { SecondStep } from "./SecondStep";
 import { MainQuestion } from "./MainQuestion";
 import { SAF } from "./SAF";
+import { SecondStep } from "./SecondStep";
 
 export const WelcomeAndIntroduction = () => {
   const { activeNestedStep } = useContext(DeliveryGuideContext);

@@ -1,9 +1,9 @@
-import List from "@mui/material/List";
-import ListSubheader from "@mui/material/ListSubheader";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import CircleSharpIcon from "@mui/icons-material/CircleSharp";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import ListSubheader from "@mui/material/ListSubheader";
 
 export const SecondStep = () => (
   <List>

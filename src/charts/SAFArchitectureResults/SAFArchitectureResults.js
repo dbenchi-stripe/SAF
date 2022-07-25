@@ -1,5 +1,5 @@
-import _ from "lodash";
 import Typography from "@mui/material/Typography";
+import _ from "lodash";
 
 import { WorkshopPhases } from "../../assets/WorkshopPhases";
 import "./SAFArchitectureResults.css";

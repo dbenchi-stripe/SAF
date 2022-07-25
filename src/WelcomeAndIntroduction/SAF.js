@@ -1,9 +1,9 @@
+import { Box } from "@mui/material";
 import List from "@mui/material/List";
-import ListSubheader from "@mui/material/ListSubheader";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import saf from "../assets/SAFArchitecture.svg";
-import { Box } from "@mui/material";
+import ListSubheader from "@mui/material/ListSubheader";
+import saf from "assets/SAFArchitecture.svg";
 
 export const SAF = () => (
   <>

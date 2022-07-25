@@ -1,4 +1,5 @@
-import { questions } from "../assets/questions";
+import { questions } from "assets/questions";
+
 const requiredKeys = ["question", "workshopPhase", "title"];
 const acceptedWorkshopDefinations = [
   "Business",

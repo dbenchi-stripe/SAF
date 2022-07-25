@@ -1,8 +1,8 @@
-import { useContext } from "react";
 import Typography from "@mui/material/Typography";
+import { useContext } from "react";
 
-import { CapabilityAssessmentContext } from "../CapabilityAssessment";
 import { Answers } from "../Answers/Answers";
+import { CapabilityAssessmentContext } from "../CapabilityAssessment";
 import { AllAnswersTable } from "../Results/AllAnswersTable/AllAnswersTable";
 import "./Questions.css";
 
