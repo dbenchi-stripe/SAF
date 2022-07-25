@@ -5,22 +5,15 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import CircleSharpIcon from "@mui/icons-material/CircleSharp";
-import { useContext, useState } from "react";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
-import { Feature, useFeature } from "flagged";
+import { useContext } from "react";
 import { DeliveryGuideContext } from "../DeliveryGuide/DeliveryGuide";
 import { SAFArchitectureResults } from "../CapacityAssessment/Results/SAFArchitectureResults/SAFArchitectureResults";
+import { GlobalConfigurationContext } from "../CapacityAssessment/GlobalConfiguration/GlobalConfiguration";
 
 export const FirstStep = () => {
   const { finalCapacities } = useContext(DeliveryGuideContext);
-  const [allowGlobalResults, setAllowGlobalResults] = useState(
-    useFeature("allowGlobalResults")
-  );
+  const { allowGlobalResults } = useContext(GlobalConfigurationContext);
 
-  const toggleAllowGlobalResults = () => {
-    setAllowGlobalResults((allowGlobalResults) => !allowGlobalResults);
-  };
   return (
     <>
       <List>
@@ -39,16 +32,6 @@ export const FirstStep = () => {
           </>
         )}
       </List>
-      <Stack spacing={2} direction="row" justifyContent="center" marginTop={2}>
-        <Feature name="allowGlobalResults">
-          <Button
-            variant="contained"
-            onClick={() => toggleAllowGlobalResults()}
-          >
-            {allowGlobalResults ? "Hide Global Results" : "Show Global Results"}
-          </Button>
-        </Feature>
-      </Stack>
     </>
   );
 };

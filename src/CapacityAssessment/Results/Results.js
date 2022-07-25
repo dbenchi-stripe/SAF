@@ -13,6 +13,7 @@ import { handleDownloadDiv } from "./utils/handleDownloadDiv";
 
 import "./Results.css";
 import { SAFRadar } from "./SAFRadar/SAFRadar";
+import { GlobalConfigurationContext } from "../GlobalConfiguration/GlobalConfiguration";
 
 /*
  * the recharts-to-png is internally based on html2canavas
@@ -28,8 +29,8 @@ export const Results = () => {
     done,
     printLocalSAFArchitectureResultsRef,
     printGlobalSAFArchitectureResultsRef,
-    allowGlobalResults,
   } = useContext(CapabilityAssessmentContext);
+  const { allowGlobalResults } = useContext(GlobalConfigurationContext);
 
   const [getTotalAreaPng, { ref: ref_total }] = useCurrentPng(
     html2CanavsConfiguration

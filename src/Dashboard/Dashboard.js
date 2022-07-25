@@ -9,6 +9,7 @@ import { AppBar } from "./AppBar";
 import { Drawer } from "./Drawer/Drawer";
 import { DeliveryGuide } from "../DeliveryGuide/DeliveryGuide";
 import { isDevMode } from "../CapacityAssessment/utils";
+import { GlobalConfiguration } from "../CapacityAssessment/GlobalConfiguration/GlobalConfiguration";
 
 const mdTheme = createTheme();
 
@@ -38,26 +39,28 @@ export const Dashboard = () => {
     >
       <FlagsProvider features={features}>
         <ThemeProvider theme={mdTheme}>
-          <Box sx={{ display: "flex" }}>
-            <CssBaseline />
-            <AppBar open={open} toggleDrawer={toggleDrawer} />
-            <Drawer open={open} toggleDrawer={toggleDrawer} />
-            <Box
-              component="main"
-              sx={{
-                backgroundColor: (theme) =>
-                  theme.palette.mode === "light"
-                    ? theme.palette.grey[100]
-                    : theme.palette.grey[900],
-                flexGrow: 1,
-                height: "100vh",
-                overflow: "auto",
-              }}
-            >
-              <Toolbar />
-              <DeliveryGuide />
+          <GlobalConfiguration>
+            <Box sx={{ display: "flex" }}>
+              <CssBaseline />
+              <AppBar open={open} toggleDrawer={toggleDrawer} />
+              <Drawer open={open} toggleDrawer={toggleDrawer} />
+              <Box
+                component="main"
+                sx={{
+                  backgroundColor: (theme) =>
+                    theme.palette.mode === "light"
+                      ? theme.palette.grey[100]
+                      : theme.palette.grey[900],
+                  flexGrow: 1,
+                  height: "100vh",
+                  overflow: "auto",
+                }}
+              >
+                <Toolbar />
+                <DeliveryGuide />
+              </Box>
             </Box>
-          </Box>
+          </GlobalConfiguration>
         </ThemeProvider>
       </FlagsProvider>
     </DashboardContext.Provider>

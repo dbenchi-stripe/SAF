@@ -13,6 +13,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 import { CapabilityAssessmentContext } from "../CapabilityAssessment";
 import { AnswerOptions } from "./AnswerOptions/AnswerOptions";
+import { GlobalConfigurationContext } from "../GlobalConfiguration/GlobalConfiguration";
 
 export const Answers = () => {
   const {
@@ -21,13 +22,14 @@ export const Answers = () => {
     answerClicked,
     answers,
     answeredQuestions,
-    allowGlobalResults,
     hasPreviousQuestion,
     previousQuestion,
     done,
     hasNextQuestion,
     nextQuestion,
   } = useContext(CapabilityAssessmentContext);
+
+  const { allowGlobalResults } = useContext(GlobalConfigurationContext);
 
   const [note, setNote] = useState();
   const [whyRedAmberGreen, setWhyRedAmberGreen] = useState();

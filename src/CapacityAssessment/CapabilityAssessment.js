@@ -19,7 +19,7 @@ import { answers } from "../assets/answers";
 import { average } from "./utils";
 import { Questions } from "./Questions/Questions";
 import { Results } from "./Results/Results";
-import { Feature, useFeature } from "flagged";
+import { Feature } from "flagged";
 import { DeliveryGuideContext } from "../DeliveryGuide/DeliveryGuide";
 
 export const CapabilityAssessmentContext = createContext({
@@ -34,7 +34,6 @@ export const CapabilityAssessmentContext = createContext({
   printLocalSAFArchitectureResultsRef: null,
   printGlobalSAFArchitectureResultsRef: null,
   removeItem: null,
-  allowGlobalResults: false,
   hasPreviousQuestion: null,
   previousQuestion: null,
   hasNextQuestion: null,
@@ -97,9 +96,6 @@ export const CapabilityAssessment = () => {
   const [showResults, setShowResults] = useState(true);
   const [done, setDone] = useState(false);
   const [showMoreInformation, setShowMoreInformation] = useState(false);
-  const [allowGlobalResults, setAllowGlobalResults] = useState(
-    useFeature("allowGlobalResults")
-  );
   const [recoveredFromLocalStage, setRecoveredFromLocalStage] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answeredQuestions, setAnsweredQuestions] = useState({});
@@ -227,10 +223,6 @@ export const CapabilityAssessment = () => {
     setShowMoreInformation((showMoreInformation) => !showMoreInformation);
   };
 
-  const toggleAllowGlobalResults = () => {
-    setAllowGlobalResults((allowGlobalResults) => !allowGlobalResults);
-  };
-
   useEffect(() => {
     if (!_.isEmpty(storage) && _.isEmpty(answeredQuestions)) {
       setOpenDialog(true);
@@ -264,7 +256,6 @@ export const CapabilityAssessment = () => {
         printLocalSAFArchitectureResultsRef,
         printGlobalSAFArchitectureResultsRef,
         removeItem,
-        allowGlobalResults,
         hasPreviousQuestion,
         previousQuestion,
         hasNextQuestion,
@@ -292,16 +283,6 @@ export const CapabilityAssessment = () => {
               <Button variant="contained" onClick={() => toggleShowResult()}>
                 {showResults ? "Hide Results" : "Show Results"}
               </Button>
-              <Feature name="allowGlobalResults">
-                <Button
-                  variant="contained"
-                  onClick={() => toggleAllowGlobalResults()}
-                >
-                  {allowGlobalResults
-                    ? "Hide Global Results"
-                    : "Show Global Results"}
-                </Button>
-              </Feature>
               <Button
                 variant="contained"
                 onClick={() => toggleShowMoreInformation()}
