@@ -1,23 +1,16 @@
-import { useContext } from "react";
 import _ from "lodash";
 import Typography from "@mui/material/Typography";
 
-import { CapabilityAssessmentContext } from "../../CapabilityAssessment";
-import { WorkshopPhases } from "../../../assets/WorkshopPhases";
+import { WorkshopPhases } from "../../assets/WorkshopPhases";
 import "./SAFArchitectureResults.css";
-import { DeliveryGuideContext } from "../../../DeliveryGuide/DeliveryGuide";
 
-export const SAFArchitectureResults = ({ className, global }) => {
-  const {
-    capacities,
-    printLocalSAFArchitectureResultsRef,
-    printGlobalSAFArchitectureResultsRef,
-  } = useContext(CapabilityAssessmentContext);
-
-  const { finalCapacities } = useContext(DeliveryGuideContext);
-
-  const capacitiesToBeUsed = capacities || finalCapacities;
-
+export const SAFArchitectureResults = ({
+  className,
+  global,
+  capacities,
+  printLocalSAFArchitectureResultsRef,
+  printGlobalSAFArchitectureResultsRef,
+}) => {
   const getClassNames = (className) =>
     `saf-item inner-item-content active ${className}`;
 
@@ -39,11 +32,17 @@ export const SAFArchitectureResults = ({ className, global }) => {
 
   const SAFArchitectureResultsItem = ({ workshopPhase }) => (
     <div className="inner-item">
-      <Typography variant="subtitle2" color="primary" align="left" width="12vw">
+      <Typography
+        variant="subtitle2"
+        color="primary"
+        align="left"
+        minWidth="12vw"
+        maxWidth="12vw"
+      >
         {WorkshopPhases[workshopPhase]}:
       </Typography>
       <div className={getClassNames(workshopPhase)}>
-        {capacitiesToBeUsed.map((capacity, index) => {
+        {capacities.map((capacity, index) => {
           if (capacity.workshopPhase === WorkshopPhases[workshopPhase]) {
             return capacity.titles.map((title) => (
               <div

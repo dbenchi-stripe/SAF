@@ -6,13 +6,13 @@ import FileDownloadIcon from "@mui/icons-material/FileDownload";
 
 import { CapabilityAssessmentContext } from "../CapabilityAssessment";
 import { SAFArchitecture } from "../SAFArchitecture/SAFArchitecture";
-import { SAFArchitectureResults } from "./SAFArchitectureResults/SAFArchitectureResults";
+import { SAFArchitectureResults } from "../../charts/SAFArchitectureResults/SAFArchitectureResults";
 import { AllAnswersTable } from "./AllAnswersTable/AllAnswersTable";
 import { handleDownloadCsv } from "./utils/handleDownloadCsv";
 import { handleDownloadDiv } from "./utils/handleDownloadDiv";
 
 import "./Results.css";
-import { SAFRadar } from "./SAFRadar/SAFRadar";
+import { SAFRadar } from "../../charts/SAFRadar/SAFRadar";
 import { GlobalConfigurationContext } from "../GlobalConfiguration/GlobalConfiguration";
 
 /*
@@ -143,8 +143,27 @@ export const Results = () => {
       </div>
       {done && (
         <>
-          <SAFArchitectureResults />
-          {allowGlobalResults && <SAFArchitectureResults global />}
+          <SAFArchitectureResults
+            capacities={capacities}
+            printLocalSAFArchitectureResultsRef={
+              printLocalSAFArchitectureResultsRef
+            }
+            printGlobalSAFArchitectureResultsRef={
+              printGlobalSAFArchitectureResultsRef
+            }
+          />
+          {allowGlobalResults && (
+            <SAFArchitectureResults
+              global
+              capacities={capacities}
+              printLocalSAFArchitectureResultsRef={
+                printLocalSAFArchitectureResultsRef
+              }
+              printGlobalSAFArchitectureResultsRef={
+                printGlobalSAFArchitectureResultsRef
+              }
+            />
+          )}
           <AllAnswersTable allAnswers={allAnswers} height="auto" />
           <Fab
             size="large"
