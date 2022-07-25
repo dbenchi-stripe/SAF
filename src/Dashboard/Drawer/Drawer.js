@@ -9,7 +9,7 @@ import { MainListItems } from "./ListItems/MainListItems";
 import { FeatureFlagsListItems } from "./ListItems/FeatureFlagsListItems";
 
 import { drawerWidth } from "../constants";
-import { isDevMode } from "../../CapacityAssessment/utils";
+import { isDevMode } from "helper/utils";
 
 const DrawerInternal = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",

@@ -13,14 +13,15 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 
 import { DisasterRecoveryDialog } from "./DisasterRecoveryDialog/DisasterRecoveryDialog";
-import { questions } from "../assets/questions";
-import { WorkshopPhases } from "../assets/WorkshopPhases";
-import { answers } from "../assets/answers";
-import { average } from "./utils";
+import { questions } from "assets/questions";
+import { WorkshopPhases } from "assets/WorkshopPhases";
+import { answers } from "assets/answers";
 import { Questions } from "./Questions/Questions";
 import { Results } from "./Results/Results";
-import { Feature } from "flagged";
-import { DeliveryGuideContext } from "../DeliveryGuide/DeliveryGuide";
+import { DeliveryGuideContext } from "DeliveryGuide/DeliveryGuide";
+
+export const average = (array, key) =>
+  array.reduce((a, b) => a + b[key], 0) / array.length;
 
 export const CapabilityAssessmentContext = createContext({
   answerClicked: null,

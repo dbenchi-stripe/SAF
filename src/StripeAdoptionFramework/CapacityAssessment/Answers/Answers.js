@@ -13,7 +13,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 import { CapabilityAssessmentContext } from "../CapabilityAssessment";
 import { AnswerOptions } from "./AnswerOptions/AnswerOptions";
-import { GlobalConfigurationContext } from "../GlobalConfiguration/GlobalConfiguration";
+import { GlobalConfigurationContext } from "../../../GlobalConfiguration/GlobalConfiguration";
 
 export const Answers = () => {
   const {

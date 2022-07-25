@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { CapabilityAssessmentContext } from "../CapabilityAssessment";
-import { WorkshopPhases } from "../../assets/WorkshopPhases";
+import { WorkshopPhases } from "assets/WorkshopPhases";
 import "./SAFArchitecture.css";
 
 export const SAFArchitecture = ({ className }) => {

@@ -6,7 +6,7 @@ import QuizIcon from "@mui/icons-material/Quiz";
 import { Link } from "react-router-dom";
 import { Divider, ListItem, ListSubheader, Switch } from "@mui/material";
 import { useContext } from "react";
-import { GlobalConfigurationContext } from "../../../CapacityAssessment/GlobalConfiguration/GlobalConfiguration";
+import { GlobalConfigurationContext } from "GlobalConfiguration/GlobalConfiguration";
 import { Feature } from "flagged";
 import TopicIcon from "@mui/icons-material/Topic";
 
@@ -31,7 +31,7 @@ export const MainListItems = () => {
       </ListItemButton>
       <Divider sx={{ my: 1 }} />
       <ListSubheader component="div" inset>
-        Global Configuration
+        Global Configurations
       </ListSubheader>
       <Feature name="allowGlobalResults">
         <ListItem>

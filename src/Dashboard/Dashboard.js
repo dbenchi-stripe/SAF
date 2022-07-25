@@ -8,8 +8,8 @@ import { FlagsProvider } from "flagged";
 import { AppBar } from "./AppBar";
 import { Drawer } from "./Drawer/Drawer";
 import { DeliveryGuide } from "../DeliveryGuide/DeliveryGuide";
-import { isDevMode } from "../CapacityAssessment/utils";
-import { GlobalConfiguration } from "../CapacityAssessment/GlobalConfiguration/GlobalConfiguration";
+import { GlobalConfiguration } from "GlobalConfiguration/GlobalConfiguration";
+import { isDevMode } from "../helper/utils";
 
 const mdTheme = createTheme();
 

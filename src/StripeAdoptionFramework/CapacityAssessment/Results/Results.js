@@ -6,14 +6,14 @@ import FileDownloadIcon from "@mui/icons-material/FileDownload";
 
 import { CapabilityAssessmentContext } from "../CapabilityAssessment";
 import { SAFArchitecture } from "../SAFArchitecture/SAFArchitecture";
-import { SAFArchitectureResults } from "../../charts/SAFArchitectureResults/SAFArchitectureResults";
+import { SAFArchitectureResults } from "charts/SAFArchitectureResults/SAFArchitectureResults";
 import { AllAnswersTable } from "./AllAnswersTable/AllAnswersTable";
 import { handleDownloadCsv } from "./utils/handleDownloadCsv";
 import { handleDownloadDiv } from "./utils/handleDownloadDiv";
 
 import "./Results.css";
-import { SAFRadar } from "../../charts/SAFRadar/SAFRadar";
-import { GlobalConfigurationContext } from "../GlobalConfiguration/GlobalConfiguration";
+import { SAFRadar } from "charts/SAFRadar/SAFRadar";
+import { GlobalConfigurationContext } from "GlobalConfiguration/GlobalConfiguration";
 
 /*
  * the recharts-to-png is internally based on html2canavas

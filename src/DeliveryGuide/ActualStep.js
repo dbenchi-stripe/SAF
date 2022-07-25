@@ -1,12 +1,12 @@
 import { useContext } from "react";
 
-import { CapabilityAssessment } from "../CapacityAssessment/CapabilityAssessment";
 import { WelcomeAndIntroduction } from "../WelcomeAndIntroduction/WelcomeAndIntroduction";
 import { DeliveryGuideContext } from "./DeliveryGuide";
 import { ProjectOutcomesAndSuccessCriteria } from "../ProjectOutcomesAndSuccessCriteria/ProjectOutcomesAndSuccessCriteria";
 import { NextStepsAndFeedback } from "../NextStepsAndFeedback/NextStepsAndFeedback";
 import { HighLevelRoadmapAndExecutionPlan } from "../HighLevelRoadmapAndExecutionPlan/HighLevelRoadmapAndExecutionPlan";
 import { ProjectBacklogAndDeliverables } from "../ProjectBacklogAndDeliverables/ProjectBacklogAndDeliverables";
+import { CapabilityAssessment } from "../StripeAdoptionFramework/CapacityAssessment/CapabilityAssessment";
 
 export const ActualStep = () => {
   const { activeStep } = useContext(DeliveryGuideContext);

@@ -7,7 +7,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import CircleSharpIcon from "@mui/icons-material/CircleSharp";
 import { useContext } from "react";
 import { DeliveryGuideContext } from "../DeliveryGuide/DeliveryGuide";
-import { GlobalConfigurationContext } from "../CapacityAssessment/GlobalConfiguration/GlobalConfiguration";
+import { GlobalConfigurationContext } from "GlobalConfiguration/GlobalConfiguration";
 import { SAFArchitectureResults } from "../charts/SAFArchitectureResults/SAFArchitectureResults";
 
 export const FirstStep = () => {
