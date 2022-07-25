@@ -16,7 +16,13 @@ export const DisasterRecoveryDialog = ({
 }) => (
   <Dialog
     open={openDialog}
-    onClose={() => setOpenDialog(false)}
+    onClose={(_, reason) => {
+      // When the user click outside the dialog, the reason is set to backdropClick
+      // This code prevents the user from closing the Dialog accidentally by clicking outside the Dialog
+      if (reason !== "backdropClick") {
+        setOpenDialog(false);
+      }
+    }}
     aria-labelledby="alert-dialog-title"
     aria-describedby="alert-dialog-description"
   >

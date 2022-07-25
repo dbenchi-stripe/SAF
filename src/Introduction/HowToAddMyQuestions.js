@@ -27,7 +27,11 @@ export const HowToAddMyQuestions = () => {
           this google spreadsheet
         </Link>
         . Please copy the google spreadsheet along with the embedded
-        <Typography component="span" sx={{ fontStyle: "italic", ml: 1 }}>
+        <Typography
+          component="span"
+          sx={{ fontStyle: "italic", ml: 1 }}
+          color="secondary"
+        >
           Apps Script file
         </Typography>
         . Once done, you can start editing, adding, and deleting questions on
@@ -86,7 +90,11 @@ export const HowToAddMyQuestions = () => {
                 Schedule a 30 mins session with me
                 <Link mx={1}>dbenchi@stripe.com</Link>
                 while giving me edit rights and add in the title
-                <Typography component="span" sx={{ fontWeight: 600, ml: 1 }}>
+                <Typography
+                  component="span"
+                  sx={{ fontWeight: 600, ml: 1 }}
+                  color="secondary"
+                >
                   [SAF] Question List Request
                 </Typography>
               </span>
