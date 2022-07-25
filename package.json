@@ -62,6 +62,7 @@
     ]
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^3.3.0",
     "gh-pages": "^4.0.0"
   }
 }

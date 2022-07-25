@@ -1,8 +1,6 @@
-import { useState, createContext } from "react";
-
 import Paper from "@mui/material/Paper";
-import { Routes, Route } from "react-router-dom";
-import { Introduction } from "../Introduction/Introduction";
+import { createContext, useState } from "react";
+
 import { ActualStep } from "./ActualStep";
 import { DeliveryGuideStepper } from "./DeliveryGuideStepper";
 
@@ -75,10 +73,7 @@ export const DeliveryGuide = () => {
         <DeliveryGuideStepper />
       </Paper>
       <Paper sx={{ p: 2, m: 1, display: "flex", flexDirection: "column" }}>
-        <Routes>
-          <Route path="/" element={<Introduction />} />
-          <Route path="/saf" element={<ActualStep />} />
-        </Routes>
+        <ActualStep />
       </Paper>
     </DeliveryGuideContext.Provider>
   );
