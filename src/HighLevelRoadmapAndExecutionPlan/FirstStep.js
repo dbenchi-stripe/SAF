@@ -53,101 +53,99 @@ const BacklogItemList = ({ justifyContent, color }) => (
     </List>
   </Box>
 );
-export const FirstStep = () => {
-  return (
-    <>
-      <Typography variant="subtitle2" color="primary" mt={5}>
-        High Level Roadmap & Execution Plan
-      </Typography>
-      <Timeline position="alternate">
-        <TimelineItem>
-          <TimelineOppositeContent
-            sx={{ m: "auto 0" }}
-            align="right"
-            variant="body2"
-            color="text.secondary"
-          >
-            <BacklogItemList justifyContent="flex-end" />
-          </TimelineOppositeContent>
-          <TimelineSeparator>
-            <TimelineConnector />
-            <TimelineDot>
-              <FlagIcon />
-            </TimelineDot>
-            <TimelineConnector sx={{ bgcolor: "error.main" }} />
-          </TimelineSeparator>
-          <TimelineContent sx={{ py: "50px", px: 2 }}>
-            <Typography variant="h6" component="span">
-              {inOneMonth}
-            </Typography>
-          </TimelineContent>
-        </TimelineItem>
-        <TimelineItem>
-          <TimelineOppositeContent
-            sx={{ m: "auto 0" }}
-            variant="body2"
-            color="text.secondary"
-          >
-            <BacklogItemList justifyContent="flex-start" color="error" />
-          </TimelineOppositeContent>
+export const FirstStep = () => (
+  <>
+    <Typography variant="subtitle2" color="primary" mt={5}>
+      High Level Roadmap & Execution Plan
+    </Typography>
+    <Timeline position="alternate">
+      <TimelineItem>
+        <TimelineOppositeContent
+          sx={{ m: "auto 0" }}
+          align="right"
+          variant="body2"
+          color="text.secondary"
+        >
+          <BacklogItemList justifyContent="flex-end" />
+        </TimelineOppositeContent>
+        <TimelineSeparator>
+          <TimelineConnector />
+          <TimelineDot>
+            <FlagIcon />
+          </TimelineDot>
+          <TimelineConnector sx={{ bgcolor: "error.main" }} />
+        </TimelineSeparator>
+        <TimelineContent sx={{ py: "50px", px: 2 }}>
+          <Typography variant="h6" component="span">
+            {inOneMonth}
+          </Typography>
+        </TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <TimelineOppositeContent
+          sx={{ m: "auto 0" }}
+          variant="body2"
+          color="text.secondary"
+        >
+          <BacklogItemList justifyContent="flex-start" color="error" />
+        </TimelineOppositeContent>
 
-          <TimelineSeparator>
-            <TimelineConnector sx={{ bgcolor: "error.main" }} />
-            <TimelineDot color="error">
-              <DirectionsRunIcon />
-            </TimelineDot>
-            <TimelineConnector sx={{ bgcolor: "primary.main" }} />
-          </TimelineSeparator>
-          <TimelineContent sx={{ py: "50px", px: 2 }}>
-            <Typography variant="h6" component="span" color="error">
-              {inThreeMonths} - {inSixMonths}
-            </Typography>
-          </TimelineContent>
-        </TimelineItem>
-        <TimelineItem>
-          <TimelineOppositeContent
-            sx={{ m: "auto 0" }}
-            align="right"
-            variant="body2"
-            color="text.secondary"
-          >
-            <BacklogItemList justifyContent="flex-end" color="primary" />
-          </TimelineOppositeContent>
-          <TimelineSeparator>
-            <TimelineConnector sx={{ bgcolor: "primary.main" }} />
-            <TimelineDot color="primary" variant="outlined">
-              <DirectionsWalkIcon />
-            </TimelineDot>
-            <TimelineConnector sx={{ bgcolor: "secondary.main" }} />
-          </TimelineSeparator>
-          <TimelineContent sx={{ py: "50px", px: 2 }}>
-            <Typography variant="h6" component="span" color="primary">
-              {inOneYear}
-            </Typography>
-          </TimelineContent>
-        </TimelineItem>
-        <TimelineItem>
-          <TimelineOppositeContent
-            sx={{ m: "auto 0" }}
-            variant="body2"
-            color="text.secondary"
-          >
-            <BacklogItemList justifyContent="flex-start" color="secondary" />
-          </TimelineOppositeContent>
-          <TimelineSeparator>
-            <TimelineConnector sx={{ bgcolor: "secondary.main" }} />
-            <TimelineDot color="secondary">
-              <SportsScoreIcon />
-            </TimelineDot>
-            <TimelineConnector />
-          </TimelineSeparator>
-          <TimelineContent sx={{ py: "50px", px: 2 }}>
-            <Typography variant="h6" component="span" color="secondary">
-              {inTwoYears} and later
-            </Typography>
-          </TimelineContent>
-        </TimelineItem>
-      </Timeline>
-    </>
-  );
-};
+        <TimelineSeparator>
+          <TimelineConnector sx={{ bgcolor: "error.main" }} />
+          <TimelineDot color="error">
+            <DirectionsRunIcon />
+          </TimelineDot>
+          <TimelineConnector sx={{ bgcolor: "primary.main" }} />
+        </TimelineSeparator>
+        <TimelineContent sx={{ py: "50px", px: 2 }}>
+          <Typography variant="h6" component="span" color="error">
+            {inThreeMonths} - {inSixMonths}
+          </Typography>
+        </TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <TimelineOppositeContent
+          sx={{ m: "auto 0" }}
+          align="right"
+          variant="body2"
+          color="text.secondary"
+        >
+          <BacklogItemList justifyContent="flex-end" color="primary" />
+        </TimelineOppositeContent>
+        <TimelineSeparator>
+          <TimelineConnector sx={{ bgcolor: "primary.main" }} />
+          <TimelineDot color="primary" variant="outlined">
+            <DirectionsWalkIcon />
+          </TimelineDot>
+          <TimelineConnector sx={{ bgcolor: "secondary.main" }} />
+        </TimelineSeparator>
+        <TimelineContent sx={{ py: "50px", px: 2 }}>
+          <Typography variant="h6" component="span" color="primary">
+            {inOneYear}
+          </Typography>
+        </TimelineContent>
+      </TimelineItem>
+      <TimelineItem>
+        <TimelineOppositeContent
+          sx={{ m: "auto 0" }}
+          variant="body2"
+          color="text.secondary"
+        >
+          <BacklogItemList justifyContent="flex-start" color="secondary" />
+        </TimelineOppositeContent>
+        <TimelineSeparator>
+          <TimelineConnector sx={{ bgcolor: "secondary.main" }} />
+          <TimelineDot color="secondary">
+            <SportsScoreIcon />
+          </TimelineDot>
+          <TimelineConnector />
+        </TimelineSeparator>
+        <TimelineContent sx={{ py: "50px", px: 2 }}>
+          <Typography variant="h6" component="span" color="secondary">
+            {inTwoYears} and later
+          </Typography>
+        </TimelineContent>
+      </TimelineItem>
+    </Timeline>
+  </>
+);
