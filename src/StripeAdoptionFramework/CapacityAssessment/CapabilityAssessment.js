@@ -28,12 +28,7 @@ export const CapabilityAssessmentContext = createContext({
   currentQuestion: null,
   questions: null,
   answers: null,
-  initialCapacities: null,
-  capacities: null,
   answeredQuestions: null,
-  printLocalSAFArchitectureResultsRef: null,
-  printGlobalSAFArchitectureResultsRef: null,
-  removeItem: null,
   hasPreviousQuestion: null,
   previousQuestion: null,
   hasNextQuestion: null,
@@ -101,8 +96,7 @@ export const CapabilityAssessment = () => {
   const [answeredQuestions, setAnsweredQuestions] = useState({});
   const printLocalSAFArchitectureResultsRef = useRef();
   const printGlobalSAFArchitectureResultsRef = useRef();
-  const [storage, setStorage, { removeItem, isPersistent }] =
-    useLocalStorageState("saf");
+  const [storage, setStorage, { removeItem }] = useLocalStorageState("saf");
 
   const getNumberOfAlreadyAnsweredQuestions = () =>
     parseInt(Object.keys(storage || {})[Object.keys(storage || {}).length - 1]);
@@ -155,7 +149,7 @@ export const CapabilityAssessment = () => {
     );
 
     return newCapacities;
-  });
+  }, [answeredQuestions]);
 
   const hasNextQuestion = useCallback(
     () => currentQuestion + 1 < questions.length,
@@ -212,7 +206,7 @@ export const CapabilityAssessment = () => {
     setCurrentQuestion(0);
     setShowResults(true);
     setAnsweredQuestions({});
-    removeItem("saf");
+    removeItem();
   };
 
   const toggleShowResult = () => {
@@ -250,12 +244,7 @@ export const CapabilityAssessment = () => {
         currentQuestion,
         questions,
         answers,
-        initialCapacities,
-        capacities: getCapacities(),
         answeredQuestions,
-        printLocalSAFArchitectureResultsRef,
-        printGlobalSAFArchitectureResultsRef,
-        removeItem,
         hasPreviousQuestion,
         previousQuestion,
         hasNextQuestion,
@@ -263,7 +252,17 @@ export const CapabilityAssessment = () => {
       }}
     >
       <div className="container">
-        {showResults && <Results />}
+        {showResults && (
+          <Results
+            printLocalSAFArchitectureResultsRef={
+              printLocalSAFArchitectureResultsRef
+            }
+            printGlobalSAFArchitectureResultsRef={
+              printGlobalSAFArchitectureResultsRef
+            }
+            capacities={getCapacities()}
+          />
+        )}
         {!done && (
           <>
             <Questions showMoreInformation={showMoreInformation} />
@@ -300,7 +299,7 @@ export const CapabilityAssessment = () => {
         setOpenDialog={setOpenDialog}
         numberOfAlreadyAnsweredQuestions={getNumberOfAlreadyAnsweredQuestions()}
         cancelOnClick={() => {
-          removeItem("saf");
+          removeItem();
           setOpenDialog(false);
         }}
         restoreOnClick={() => {

@@ -20,15 +20,14 @@ import { handleDownloadDiv } from "./utils/handleDownloadDiv";
  */
 const html2CanavsConfiguration = { scale: 5 };
 
-export const Results = () => {
-  const {
-    capacities,
-    answeredQuestions,
-    questions,
-    done,
-    printLocalSAFArchitectureResultsRef,
-    printGlobalSAFArchitectureResultsRef,
-  } = useContext(CapabilityAssessmentContext);
+export const Results = ({
+  printLocalSAFArchitectureResultsRef,
+  printGlobalSAFArchitectureResultsRef,
+  capacities,
+}) => {
+  const { answeredQuestions, questions, done } = useContext(
+    CapabilityAssessmentContext
+  );
   const { allowGlobalResults } = useContext(GlobalConfigurationContext);
 
   const [getTotalAreaPng, { ref: ref_total }] = useCurrentPng(
