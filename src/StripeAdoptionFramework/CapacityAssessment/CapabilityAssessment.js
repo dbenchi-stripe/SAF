@@ -234,7 +234,7 @@ export const CapabilityAssessment = () => {
 
   useEffect(() => {
     if (done) {
-      setFinalCapacities(getCapacities);
+      setFinalCapacities?.(getCapacities);
     }
   }, [setFinalCapacities, done, getCapacities]);
 
