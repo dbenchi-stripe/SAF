@@ -14,7 +14,8 @@ import useLocalStorageState from "use-local-storage-state";
 
 export const FeatureFlagsListItems = () => {
   const { toggleFeature } = useContext(DashboardContext);
-  const [_, setStorage] = useLocalStorageState("saf");
+  // no unused vars should be disabled cause I only need to access second parameter
+  const [_, setStorage] = useLocalStorageState("saf"); // eslint-disable-line no-unused-vars
 
   const features = useFeatures();
 
