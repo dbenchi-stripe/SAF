@@ -221,6 +221,8 @@ export const CapabilityAssessment = () => {
     if (!_.isEmpty(storage) && _.isEmpty(answeredQuestions)) {
       setOpenDialog(true);
     }
+    // This effect is only meant to run once
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

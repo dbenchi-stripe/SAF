@@ -10,8 +10,8 @@ import {
   Tooltip,
 } from "recharts";
 
-const localColor = "#5469D4";
-const globalColor = "#d45454";
+const localColor = "#3f50b5";
+const globalColor = "#f44336";
 
 export const SAFRadar = forwardRef(
   ({ data, dataKey, name, className, allowGlobalResults = false }, ref) => {
