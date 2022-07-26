@@ -61,7 +61,7 @@ export const Introduction = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                First set
+                First Set
               </a>
             }
           />
